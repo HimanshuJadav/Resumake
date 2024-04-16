@@ -1,0 +1,19 @@
+.nav {
+  list-style: none;
+  background-color: #fff;
+  margin: 0px;
+  padding: 0px;
+  height: 40px;
+}
+.nav-item {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
+  font-family: Helvetica;
+}
+body {
+  background-color: #d9e6ed;
+  margin: 0px;
+}
