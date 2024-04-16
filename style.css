@@ -3,6 +3,9 @@ body {
   margin: 0px;
   font-family: Helvetica;
 }
+.shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
 .nav {
   list-style: none;
   background-color: #fff;
@@ -28,6 +31,15 @@ body {
 
 .template-item {
   border: 1px solid #fff;
+  border-radius: 5px;
+  height: 200px;
+  width: 150px;
+  margin-top: 30px;
+}
+
+.template-item:hover {
+  transform: translate3d(1px, 1px, -1px);
+  border: 1px solid #464545;
   border-radius: 5px;
   height: 200px;
   width: 150px;
