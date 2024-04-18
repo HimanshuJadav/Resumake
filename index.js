@@ -28,3 +28,10 @@ document.getElementById("viewTemplate4").onclick = function () {
 document.getElementById("useTemplate4").onclick = function () {
   useTemplate("template4");
 };
+
+var params = new URLSearchParams(document.location.search);
+
+function getParam(param) {
+  alert("Hi");
+  return params.get(param);
+}

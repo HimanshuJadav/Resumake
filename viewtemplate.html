@@ -4,6 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>View Template</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="index.js" async></script>
   </head>
-  <body></body>
+  <body>
+    <ul class="nav shadow">
+      <li class="nav-item">View Template</li>
+    </ul>
+    <div class="container">
+      <section id="view-template">
+        <h1 id="template">getParam</h1>
+      </section>
+    </div>
+    <script language="javascript">
+      var params = new URLSearchParams(document.location.search);
+      var param = params.get("template");
+      //   var param = getParam("template");
+      var templateH1 = document.getElementById("template");
+      templateH1.textContent = param;
+    </script>
+  </body>
 </html>

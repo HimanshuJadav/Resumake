@@ -20,13 +20,16 @@ body {
   font-weight: bold;
   font-size: large;
 }
+.container {
+  width: 70%;
+  margin-left: 15%;
+  margin-bottom: 20px;
+}
+
 #template-list {
   display: flex;
   flex-wrap: wrap;
-  width: 70%;
   justify-content: space-between;
-  margin-left: 15%;
-  margin-bottom: 20px;
 }
 
 .template-item {
