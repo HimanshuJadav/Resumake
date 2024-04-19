@@ -6,20 +6,23 @@
     <title>Edit Resume</title>
     <link rel="stylesheet" href="style.css" />
     <script src="index.js" async></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
   </head>
   <body>
     <ul class="nav shadow">
       <li class="nav-item">Edit Resume</li>
     </ul>
     <div class="container">
-      <section id="view-template">
+      <section id="view-template" class="mt-40">
         <h1 id="template">getParam</h1>
       </section>
-      <section id="personal-details">
-        <div class="full-width"><p class="title">Personal Details</p></div>
+      <section id="personal-details" class="mt-40">
+        <div class="full-width pl-20 pr-20">
+          <p class="title">Personal Details</p>
+        </div>
         <table>
           <tr>
-            <td colspan="2" class="pt-20 pl-20 pr-20">
+            <td colspan="2" class="pl-20 pr-20">
               <div>
                 <div class="full-width">Job Title</div>
                 <div class="mt-10">
@@ -89,6 +92,325 @@
               </div>
             </td>
           </tr>
+          <tr>
+            <td class="pt-20 pl-20 pr-20">
+              <div>
+                <div class="full-width">Country</div>
+                <div class="mt-10">
+                  <input
+                    class="full-width height-30"
+                    type="text"
+                    name="country"
+                    id="country"
+                  />
+                </div>
+              </div>
+            </td>
+            <td class="pt-20 pl-20 pr-20">
+              <div>
+                <div class="full-width">City</div>
+                <div class="mt-10">
+                  <input
+                    class="full-width height-30"
+                    type="text"
+                    name="city"
+                    id="city"
+                  />
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </section>
+      <section id="professional-summary" class="mt-40">
+        <div class="full-width pl-20 pr-20">
+          <p class="title">Professional Summary</p>
+          <p class="subtitle">
+            Write 2-4 short & energetic sentences to interest the reader!
+            Mention your role, experience & most importantly - your biggest
+            achievements, best qualities and skills.
+          </p>
+        </div>
+        <table>
+          <tr>
+            <td colspan="2" class="pl-20 pr-20">
+              <textarea
+                id="professional-summary-editor"
+                placeholder="e.g. Passionate software developer with 8+ years of experience and a track record of ..."
+              ></textarea>
+            </td>
+          </tr>
+        </table>
+      </section>
+      <section id="employment-history" class="mt-40">
+        <div class="full-width pl-20 pr-20">
+          <p class="title">Employment History</p>
+        </div>
+        <table>
+          <tr>
+            <td class="pt-20 pl-20 pr-20">
+              <div>
+                <div class="full-width">Job Title</div>
+                <div class="mt-10">
+                  <input
+                    class="full-width height-30"
+                    type="text"
+                    name="employment-job-title"
+                    id="employment-job-title"
+                  />
+                </div>
+              </div>
+            </td>
+            <td class="pt-20 pl-20 pr-20">
+              <div>
+                <div class="full-width">Employer</div>
+                <div class="mt-10">
+                  <input
+                    class="full-width height-30"
+                    type="text"
+                    name="employer"
+                    id="employer"
+                  />
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="pt-20 pl-20 pr-20">
+              <div>
+                <div class="full-width">Start Date</div>
+                <div class="mt-10">
+                  <input
+                    class="height-30 full-width"
+                    type="date"
+                    name="employment-start-date"
+                    id="employment-start-date"
+                  />
+                </div>
+              </div>
+            </td>
+            <td class="pt-20 pl-20 pr-20">
+              <div>
+                <div class="full-width">End Date</div>
+                <div class="mt-10">
+                  <input
+                    class="height-30 full-width"
+                    type="date"
+                    name="employment-end-date"
+                    id="employment-end-date"
+                  />
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="pt-20 pl-20 pr-20">
+              <div>
+                <div class="full-width">Country</div>
+                <div class="mt-10">
+                  <input
+                    class="full-width height-30"
+                    type="text"
+                    name="employment-country"
+                    id="employment-country"
+                  />
+                </div>
+              </div>
+            </td>
+            <td class="pt-20 pl-20 pr-20">
+              <div>
+                <div class="full-width">City</div>
+                <div class="mt-10">
+                  <input
+                    class="full-width height-30"
+                    type="text"
+                    name="employment-city"
+                    id="employment-city"
+                  />
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="pt-20 pl-20 pr-20" colspan="2">
+              <div class="full-width pb-10">Description</div>
+              <textarea
+                id="employment-history-editor"
+                placeholder="e.g. Collaborated with the product owner/client to architect change requests and defining project
+                development and usability flows."
+              ></textarea>
+            </td>
+          </tr>
+        </table>
+      </section>
+      <section id="education" class="mt-40">
+        <div class="full-width pl-20 pr-20">
+          <p class="title">Education</p>
+        </div>
+        <table>
+          <tr>
+            <td class="pt-20 pl-20 pr-20">
+              <div>
+                <div class="full-width">School</div>
+                <div class="mt-10">
+                  <input
+                    class="full-width height-30"
+                    type="text"
+                    name="education-school"
+                    id="education-school"
+                  />
+                </div>
+              </div>
+            </td>
+            <td class="pt-20 pl-20 pr-20">
+              <div>
+                <div class="full-width">Degree</div>
+                <div class="mt-10">
+                  <input
+                    class="full-width height-30"
+                    type="text"
+                    name="education-degree"
+                    id="education-degree"
+                  />
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="pt-20 pl-20 pr-20">
+              <div>
+                <div class="full-width">Start Date</div>
+                <div class="mt-10">
+                  <input
+                    class="height-30 full-width"
+                    type="date"
+                    name="education-start-date"
+                    id="education-start-date"
+                  />
+                </div>
+              </div>
+            </td>
+            <td class="pt-20 pl-20 pr-20">
+              <div>
+                <div class="full-width">End Date</div>
+                <div class="mt-10">
+                  <input
+                    class="height-30 full-width"
+                    type="date"
+                    name="education-end-date"
+                    id="education-end-date"
+                  />
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="pt-20 pl-20 pr-20">
+              <div>
+                <div class="full-width">Country</div>
+                <div class="mt-10">
+                  <input
+                    class="full-width height-30"
+                    type="text"
+                    name="education-country"
+                    id="education-country"
+                  />
+                </div>
+              </div>
+            </td>
+            <td class="pt-20 pl-20 pr-20">
+              <div>
+                <div class="full-width">City</div>
+                <div class="mt-10">
+                  <input
+                    class="full-width height-30"
+                    type="text"
+                    name="education-city"
+                    id="education-city"
+                  />
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="pt-20 pl-20 pr-20" colspan="2">
+              <div class="full-width pb-10">Description</div>
+              <textarea
+                id="education-editor"
+                placeholder="e.g. Graduated with High Honors."
+              ></textarea>
+            </td>
+          </tr>
+        </table>
+      </section>
+      <section id="skills" class="mt-40">
+        <div class="full-width pl-20 pr-20">
+          <p class="title">Skills</p>
+        </div>
+        <table>
+          <tr>
+            <td class="pt-20 pl-20 pr-20">
+              <div>
+                <div class="full-width">Skill</div>
+                <div class="mt-10">
+                  <input
+                    class="full-width height-30"
+                    type="text"
+                    name="skill-label"
+                    id="skill-label"
+                  />
+                </div>
+              </div>
+            </td>
+            <td class="pt-20 pl-20 pr-20">
+              <div>
+                <div class="full-width">Level</div>
+                <div class="mt-10">
+                  <input
+                    class="full-width height-30"
+                    type="number"
+                    name="skill-level"
+                    id="skill-level"
+                  />
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </section>
+      <section id="links" class="mt-40">
+        <div class="full-width pl-20 pr-20">
+          <p class="title">Websites & Social Links</p>
+        </div>
+        <table>
+          <tr>
+            <td class="pt-20 pl-20 pr-20">
+              <div>
+                <div class="full-width">Label</div>
+                <div class="mt-10">
+                  <input
+                    class="full-width height-30"
+                    type="text"
+                    name="links-label"
+                    id="links-label"
+                  />
+                </div>
+              </div>
+            </td>
+            <td class="pt-20 pl-20 pr-20">
+              <div>
+                <div class="full-width">Link</div>
+                <div class="mt-10">
+                  <input
+                    class="full-width height-30"
+                    type="url"
+                    name="links-link"
+                    id="links-link"
+                  />
+                </div>
+              </div>
+            </td>
+          </tr>
         </table>
       </section>
     </div>
@@ -98,6 +420,127 @@
       //   var param = getParam("template");
       var templateH1 = document.getElementById("template");
       templateH1.textContent = param;
+    </script>
+    <script>
+      ClassicEditor.create(
+        document.querySelector("#professional-summary-editor"),
+        {
+          removePlugins: [
+            "CKFinderUploadAdapter",
+            "Autoformat",
+            "BlockQuote",
+            "CKBox",
+            "CKFinder",
+            "CloudServices",
+            "EasyImage",
+            "Heading",
+            "Image",
+            "ImageCaption",
+            "ImageStyle",
+            "ImageToolbar",
+            "ImageUpload",
+            "Indent",
+            "MediaEmbed",
+            // "Paragraph",
+            "PasteFromOffice",
+            "PictureEditing",
+            "Table",
+            "TableToolbar",
+            "TextTransformation",
+          ],
+        }
+      ).catch((error) => {
+        console.error(error);
+      });
+      ClassicEditor.create(
+        document.querySelector("#employment-history-editor"),
+        {
+          removePlugins: [
+            "CKFinderUploadAdapter",
+            "Autoformat",
+            "BlockQuote",
+            "CKBox",
+            "CKFinder",
+            "CloudServices",
+            "EasyImage",
+            "Heading",
+            "Image",
+            "ImageCaption",
+            "ImageStyle",
+            "ImageToolbar",
+            "ImageUpload",
+            "Indent",
+            "MediaEmbed",
+            // "Paragraph",
+            "PasteFromOffice",
+            "PictureEditing",
+            "Table",
+            "TableToolbar",
+            "TextTransformation",
+          ],
+        }
+      ).catch((error) => {
+        console.error(error);
+      });
+      ClassicEditor.create(document.querySelector("#education-editor"), {
+        removePlugins: [
+          "CKFinderUploadAdapter",
+          "Autoformat",
+          "BlockQuote",
+          "CKBox",
+          "CKFinder",
+          "CloudServices",
+          "EasyImage",
+          "Heading",
+          "Image",
+          "ImageCaption",
+          "ImageStyle",
+          "ImageToolbar",
+          "ImageUpload",
+          "Indent",
+          "MediaEmbed",
+          // "Paragraph",
+          "PasteFromOffice",
+          "PictureEditing",
+          "Table",
+          "TableToolbar",
+          "TextTransformation",
+        ],
+      }).catch((error) => {
+        console.error(error);
+      });
+      //   var plugins = ClassicEditor.builtinPlugins.map(
+      //     (plugin) => plugin.pluginName
+      //   );
+      //   console.log(plugins);
+      //   [
+      //     "Essentials",
+      //     "CKFinderUploadAdapter",
+      //     "Autoformat",
+      //     "Bold",
+      //     "Italic",
+      //     "BlockQuote",
+      //     "CKBox",
+      //     "CKFinder",
+      //     "CloudServices",
+      //     "EasyImage",
+      //     "Heading",
+      //     "Image",
+      //     "ImageCaption",
+      //     "ImageStyle",
+      //     "ImageToolbar",
+      //     "ImageUpload",
+      //     "Indent",
+      //     "Link",
+      //     "List",
+      //     "MediaEmbed",
+      //     "Paragraph",
+      //     "PasteFromOffice",
+      //     "PictureEditing",
+      //     "Table",
+      //     "TableToolbar",
+      //     "TextTransformation",
+      //   ];
     </script>
   </body>
 </html>
