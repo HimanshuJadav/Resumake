@@ -8,6 +8,9 @@ table {
   border-style: none;
   border-width: 0px;
 }
+p {
+  margin: 0;
+}
 .shadow {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
@@ -117,13 +120,29 @@ button:hover {
   display: inline;
 }
 .collapsible {
-  background-color: #d9e6ed;
+  background-color: lightblue;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.active,
+.arrow {
+  width: 32px;
+  height: 32px;
+}
+.collapsed-arrow {
+  transform: initial;
+  transition: transform 0.2s ease-out;
+}
+.expanded-arrow {
+  transform: rotate(90deg);
+  transition: transform 0.2s ease-out;
+}
+.expanded,
 .collapsible:hover {
   background-color: lightslategray;
 }
 .collapsible-content {
+  margin: 20px;
   max-height: 0px;
   overflow: hidden;
   transition: max-height 0.2s ease-out;

@@ -17,8 +17,20 @@
         <h1 id="template">getParam</h1>
       </section>
       <section id="personal-details" class="mt-40">
-        <div class="full-width pl-20 pr-20 collapsible">
+        <div
+          class="full-width pl-20 pr-20 collapsible"
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
           <p class="title">Personal Details</p>
+          <img
+            class="collapsed-arrow arrow"
+            src="./images/arrow-collapse.png"
+            alt="collapsed"
+          />
         </div>
         <div class="collapsible-content">
           <table>
@@ -124,9 +136,14 @@
           </table>
         </div>
       </section>
-      <section id="professional-summary" class="mt-40">
+      <section id="professional-summary" class="mt-20">
         <div class="full-width pl-20 pr-20 collapsible">
           <p class="title">Professional Summary</p>
+          <img
+            class="collapsed-arrow arrow"
+            src="./images/arrow-collapse.png"
+            alt="collapsed"
+          />
         </div>
         <div class="collapsible-content">
           <p class="subtitle">
@@ -146,14 +163,19 @@
           </table>
         </div>
       </section>
-      <section id="employment-history" class="mt-40">
+      <section id="employment-history" class="mt-20">
         <div class="full-width pl-20 pr-20 collapsible">
           <p class="title">Employment History</p>
+          <img
+            class="collapsed-arrow arrow"
+            src="./images/arrow-collapse.png"
+            alt="collapsed"
+          />
         </div>
         <div class="collapsible-content">
           <table>
             <tr>
-              <td class="pt-20 pl-20 pr-20">
+              <td class="pl-20 pr-20">
                 <div>
                   <div class="full-width">Job Title</div>
                   <div class="mt-10">
@@ -249,14 +271,19 @@
           </table>
         </div>
       </section>
-      <section id="education" class="mt-40">
+      <section id="education" class="mt-20">
         <div class="full-width pl-20 pr-20 collapsible">
           <p class="title">Education</p>
+          <img
+            class="collapsed-arrow arrow"
+            src="./images/arrow-collapse.png"
+            alt="collapsed"
+          />
         </div>
         <div class="collapsible-content">
           <table>
             <tr>
-              <td class="pt-20 pl-20 pr-20">
+              <td class="pl-20 pr-20">
                 <div>
                   <div class="full-width">School</div>
                   <div class="mt-10">
@@ -351,14 +378,19 @@
           </table>
         </div>
       </section>
-      <section id="skills" class="mt-40">
+      <section id="skills" class="mt-20">
         <div class="full-width pl-20 pr-20 collapsible">
           <p class="title">Skills</p>
+          <img
+            class="collapsed-arrow arrow"
+            src="./images/arrow-collapse.png"
+            alt="collapsed"
+          />
         </div>
         <div class="collapsible-content">
           <table>
             <tr>
-              <td class="pt-20 pl-20 pr-20">
+              <td class="pl-20 pr-20">
                 <div>
                   <div class="full-width">Skill</div>
                   <div class="mt-10">
@@ -388,14 +420,19 @@
           </table>
         </div>
       </section>
-      <section id="links" class="mt-40">
+      <section id="links" class="mt-20">
         <div class="full-width pl-20 pr-20 collapsible">
           <p class="title">Websites & Social Links</p>
+          <img
+            class="collapsed-arrow arrow"
+            src="./images/arrow-collapse.png"
+            alt="collapsed"
+          />
         </div>
         <div class="collapsible-content">
           <table>
             <tr>
-              <td class="pt-20 pl-20 pr-20">
+              <td class="pl-20 pr-20">
                 <div>
                   <div class="full-width">Label</div>
                   <div class="mt-10">
@@ -438,7 +475,23 @@
       for (let index = 0; index < arrCollapsibles.length; index++) {
         const element = arrCollapsibles[index];
         element.addEventListener("click", function () {
-          this.classList.toggle("active");
+          this.classList.toggle("expanded");
+          var arrChildren = this.children;
+          for (
+            let indexChild = 0;
+            indexChild < arrChildren.length;
+            indexChild++
+          ) {
+            const child = arrChildren[indexChild];
+            const arrClassList = child.classList["value"].split(" ");
+            if (
+              arrClassList.includes("collapsed-arrow") ||
+              arrClassList.includes("expanded-arrow")
+            ) {
+              child.classList.toggle("expanded-arrow");
+              child.classList.toggle("collapsed-arrow");
+            }
+          }
           var content = this.nextElementSibling;
           if (content.style.maxHeight) {
             content.style.maxHeight = null;
