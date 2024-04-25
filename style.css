@@ -31,6 +31,7 @@ table {
   margin-bottom: 20px;
 }
 
+/* Template Listing Screen */
 #template-list {
   display: flex;
   flex-wrap: wrap;
@@ -100,6 +101,8 @@ button:hover {
   text-align: left;
   font-weight: bold;
   font-size: larger;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 .subtitle {
   text-align: left;
@@ -112,6 +115,18 @@ button:hover {
 }
 .inline-content {
   display: inline;
+}
+.collapsible {
+  background-color: #d9e6ed;
+}
+.active,
+.collapsible:hover {
+  background-color: lightslategray;
+}
+.collapsible-content {
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
 }
 
 /*Margin and Padding*/
