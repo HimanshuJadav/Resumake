@@ -166,102 +166,112 @@
           />
         </div>
         <div class="collapsible-content">
-          <table>
-            <tr>
-              <td class="pl-20 pr-20">
-                <div>
-                  <div class="full-width">Job Title</div>
-                  <div class="mt-10">
-                    <input
-                      class="full-width height-30"
-                      type="text"
-                      name="employment-job-title"
-                      id="employment-job-title"
-                    />
+          <div class="full-width pl-20 collapsible collapsible-child">
+            <p class="subtitle">Job Title</p>
+            <img
+              class="collapsed-arrow arrow mr-30"
+              src="./images/arrow-collapse.png"
+              alt="collapsed"
+            />
+          </div>
+          <div class="collapsible-content">
+            <table>
+              <tr>
+                <td class="pl-20 pr-20">
+                  <div>
+                    <div class="full-width">Job Title</div>
+                    <div class="mt-10">
+                      <input
+                        class="full-width height-30"
+                        type="text"
+                        name="employment-job-title"
+                        id="employment-job-title"
+                      />
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td class="pt-20 pl-20 pr-20">
-                <div>
-                  <div class="full-width">Employer</div>
-                  <div class="mt-10">
-                    <input
-                      class="full-width height-30"
-                      type="text"
-                      name="employer"
-                      id="employer"
-                    />
+                </td>
+                <td class="pt-20 pl-20 pr-20">
+                  <div>
+                    <div class="full-width">Employer</div>
+                    <div class="mt-10">
+                      <input
+                        class="full-width height-30"
+                        type="text"
+                        name="employer"
+                        id="employer"
+                      />
+                    </div>
                   </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="pt-20 pl-20 pr-20">
-                <div>
-                  <div class="full-width">Start Date</div>
-                  <div class="mt-10">
-                    <input
-                      class="height-30 full-width"
-                      type="date"
-                      name="employment-start-date"
-                      id="employment-start-date"
-                    />
+                </td>
+              </tr>
+              <tr>
+                <td class="pt-20 pl-20 pr-20">
+                  <div>
+                    <div class="full-width">Start Date</div>
+                    <div class="mt-10">
+                      <input
+                        class="height-30 full-width"
+                        type="date"
+                        name="employment-start-date"
+                        id="employment-start-date"
+                      />
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td class="pt-20 pl-20 pr-20">
-                <div>
-                  <div class="full-width">End Date</div>
-                  <div class="mt-10">
-                    <input
-                      class="height-30 full-width"
-                      type="date"
-                      name="employment-end-date"
-                      id="employment-end-date"
-                    />
+                </td>
+                <td class="pt-20 pl-20 pr-20">
+                  <div>
+                    <div class="full-width">End Date</div>
+                    <div class="mt-10">
+                      <input
+                        class="height-30 full-width"
+                        type="date"
+                        name="employment-end-date"
+                        id="employment-end-date"
+                      />
+                    </div>
                   </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="pt-20 pl-20 pr-20">
-                <div>
-                  <div class="full-width">Country</div>
-                  <div class="mt-10">
-                    <input
-                      class="full-width height-30"
-                      type="text"
-                      name="employment-country"
-                      id="employment-country"
-                    />
+                </td>
+              </tr>
+              <tr>
+                <td class="pt-20 pl-20 pr-20">
+                  <div>
+                    <div class="full-width">Country</div>
+                    <div class="mt-10">
+                      <input
+                        class="full-width height-30"
+                        type="text"
+                        name="employment-country"
+                        id="employment-country"
+                      />
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td class="pt-20 pl-20 pr-20">
-                <div>
-                  <div class="full-width">City</div>
-                  <div class="mt-10">
-                    <input
-                      class="full-width height-30"
-                      type="text"
-                      name="employment-city"
-                      id="employment-city"
-                    />
+                </td>
+                <td class="pt-20 pl-20 pr-20">
+                  <div>
+                    <div class="full-width">City</div>
+                    <div class="mt-10">
+                      <input
+                        class="full-width height-30"
+                        type="text"
+                        name="employment-city"
+                        id="employment-city"
+                      />
+                    </div>
                   </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="pt-20 pl-20 pr-20" colspan="2">
-                <div class="full-width pb-10">Description</div>
-                <textarea
-                  id="employment-history-editor"
-                  placeholder="e.g. Collaborated with the product owner/client to architect change requests and defining project
+                </td>
+              </tr>
+              <tr>
+                <td class="pt-20 pl-20 pr-20" colspan="2">
+                  <div class="full-width pb-10">Description</div>
+                  <textarea
+                    id="employment-history-editor"
+                    placeholder="e.g. Collaborated with the product owner/client to architect change requests and defining project
                 development and usability flows."
-                ></textarea>
-              </td>
-            </tr>
-          </table>
+                  ></textarea>
+                </td>
+              </tr>
+            </table>
+          </div>
         </div>
       </section>
       <section id="education" class="mt-20">
@@ -490,6 +500,13 @@
             content.style.maxHeight = null;
           } else {
             content.style.maxHeight = content.scrollHeight + "px";
+          }
+
+          var parent = this.parentElement;
+          const arrParentClassList = parent.classList["value"].split(" ");
+          if (arrParentClassList.includes("collapsible-content")) {
+            parent.style.maxHeight =
+              parent.scrollHeight + content.scrollHeight + "px";
           }
         });
       }

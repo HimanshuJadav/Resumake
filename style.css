@@ -8,7 +8,6 @@ table {
   border-style: none;
   border-width: 0px;
 }
-
 .shadow {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
@@ -146,6 +145,12 @@ button:hover {
   overflow: hidden;
   transition: max-height 0.2s ease-out;
 }
+.collapsible-child {
+  background-color: #d9e6ed;
+}
+.collapsible-child:hover {
+  background-color: #d9e6ed;
+}
 
 /*Margin and Padding*/
 .mt-10 {
@@ -153,6 +158,9 @@ button:hover {
 }
 .mt-20 {
   margin-top: 20px;
+}
+.mr-30 {
+  margin-right: 30px;
 }
 .mt-40 {
   margin-top: 40px;
