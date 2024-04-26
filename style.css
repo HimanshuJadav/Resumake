@@ -8,9 +8,7 @@ table {
   border-style: none;
   border-width: 0px;
 }
-p {
-  margin: 0;
-}
+
 .shadow {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
@@ -106,6 +104,7 @@ button:hover {
   font-size: larger;
   padding-top: 20px;
   padding-bottom: 20px;
+  margin: 0;
 }
 .subtitle {
   text-align: left;
