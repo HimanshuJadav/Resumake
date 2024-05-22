@@ -1,8 +1,8 @@
+var employmentCounter = 0;
+var educationCounter = 0;
 var parser = new DOMParser();
 
-function resetCollapsible() {
-  var arrCollapsibles = document.getElementsByClassName("collapsible");
-  console.log({ arrCollapsibles });
+function resetCollapsible(arrCollapsibles) {
   for (let index = 0; index < arrCollapsibles.length; index++) {
     const element = arrCollapsibles[index];
     element.addEventListener("click", function () {
@@ -25,8 +25,9 @@ function addEducation() {
   const employmenthistory = document.querySelector(".employment-history");
   const addemployment = document.querySelector(".add-employment");
 
+  employmentCounter += 1;
   const className = "job";
-  const employment = new DOMParser().parseFromString(
+  const employmentHTML = new DOMParser().parseFromString(
     `<div class="full-width pl-20 collapsible collapsible-child">
         <p class="subtitle">Job Title</p>
         <img
@@ -134,8 +135,8 @@ function addEducation() {
         </table>
       </div>`,
     "text/html"
-  ).documentElement.childNodes[1].innerHTML;
-
+  );
+  const employment = employmentHTML.documentElement.childNodes[1].innerHTML;
   addemployment.insertAdjacentHTML("beforebegin", employment);
   console.log({
     employmenthistory,
@@ -143,6 +144,9 @@ function addEducation() {
     addemployment,
   });
   expand(employmenthistory.children[0], false);
+  var arrCollapsibles = employmentHTML.getElementsByClassName("collapsible");
+
+  resetCollapsible(arrCollapsibles);
 }
 function expand(element, isUserAction) {
   var arrChildren = element.children;
