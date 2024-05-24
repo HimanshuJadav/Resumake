@@ -1,34 +1,21 @@
 var employmentCounter = 0;
-var educationCounter = 0;
 var parser = new DOMParser();
 
-function resetCollapsible(arrCollapsibles) {
-  for (let index = 0; index < arrCollapsibles.length; index++) {
-    const element = arrCollapsibles[index];
-    element.addEventListener("click", function () {
-      this.classList.toggle("expanded");
-      expand(this, true);
-    });
-  }
-}
-
 var arrCollapsibles = document.getElementsByClassName("collapsible");
-for (let index = 0; index < arrCollapsibles.length; index++) {
-  const element = arrCollapsibles[index];
-  element.addEventListener("click", function () {
-    this.classList.toggle("expanded");
-    expand(this, true);
-  });
-}
+addCollapsibleAction(arrCollapsibles);
 
-function addEducation() {
-  const employmenthistory = document.querySelector(".employment-history");
-  const addemployment = document.querySelector(".add-employment");
+createEditorFrom(document.querySelector("#professional-summary-editor"));
+
+createEditorFrom(document.querySelector("#education-editor"));
+
+function addEmployment() {
+  const employmentHistory = document.querySelector(".employment-history");
+  const addEmployment = document.querySelector(".add-employment");
 
   employmentCounter += 1;
   const className = "job";
   const employmentHTML = new DOMParser().parseFromString(
-    `<div class="full-width pl-20 collapsible collapsible-child">
+    `<div class="full-width pl-20 collapsible collapsible-child" onclick="javascript:collapsibleClickEvent(this)">
         <p class="subtitle">Job Title</p>
         <img
           class="collapsed-arrow arrow mr-30"
@@ -136,19 +123,23 @@ function addEducation() {
       </div>`,
     "text/html"
   );
-  const employment = employmentHTML.documentElement.childNodes[1].innerHTML;
-  addemployment.insertAdjacentHTML("beforebegin", employment);
-  console.log({
-    employmenthistory,
-    employment,
-    addemployment,
-  });
-  expand(employmenthistory.children[0], false);
-  var arrCollapsibles = employmentHTML.getElementsByClassName("collapsible");
+  var historyEditor = employmentHTML.querySelector(
+    "#employment-history-editor"
+  );
+  historyEditor.id = "employment-history-editor" + "-" + employmentCounter;
 
-  resetCollapsible(arrCollapsibles);
+  createEditorFrom(historyEditor);
+
+  const employment = employmentHTML.documentElement.childNodes[1].innerHTML;
+  addEmployment.insertAdjacentHTML("beforebegin", employment);
+
+  expandOrCollapse(employmentHistory.children[0], false);
+
+  // var arrCollapsibles = employmentHTML.getElementsByClassName("collapsible");
+  // addCollapsibleAction(arrCollapsibles);
 }
-function expand(element, isUserAction) {
+
+function expandOrCollapse(element, isUserAction) {
   var arrChildren = element.children;
   for (let indexChild = 0; indexChild < arrChildren.length; indexChild++) {
     const child = arrChildren[indexChild];
@@ -180,36 +171,22 @@ function expand(element, isUserAction) {
     parent.style.maxHeight = parent.scrollHeight + content.scrollHeight + "px";
   }
 }
-ClassicEditor.create(document.querySelector("#professional-summary-editor"), {
-  removePlugins: [
-    "CKFinderUploadAdapter",
-    "Autoformat",
-    "BlockQuote",
-    "CKBox",
-    "CKFinder",
-    "CloudServices",
-    "EasyImage",
-    "Heading",
-    "Image",
-    "ImageCaption",
-    "ImageStyle",
-    "ImageToolbar",
-    "ImageUpload",
-    "Indent",
-    "MediaEmbed",
-    // "Paragraph",
-    "PasteFromOffice",
-    "PictureEditing",
-    "Table",
-    "TableToolbar",
-    "TextTransformation",
-  ],
-}).catch((error) => {
-  console.error(error);
-});
-var emp = document.querySelector("#employment-history-editor");
-if (emp) {
-  ClassicEditor.create(emp, {
+
+function addCollapsibleAction(arrCollapsibles) {
+  for (let index = 0; index < arrCollapsibles.length; index++) {
+    const element = arrCollapsibles[index];
+    element.addEventListener("click", collapsibleClickEvent);
+  }
+}
+
+function collapsibleClickEvent(element) {
+  var target = element.target != null ? element.target : element;
+  target.classList.toggle("expanded");
+  expandOrCollapse(target, true);
+}
+
+function createEditorFrom(element) {
+  ClassicEditor.create(element, {
     removePlugins: [
       "CKFinderUploadAdapter",
       "Autoformat",
@@ -237,33 +214,7 @@ if (emp) {
     console.error(error);
   });
 }
-ClassicEditor.create(document.querySelector("#education-editor"), {
-  removePlugins: [
-    "CKFinderUploadAdapter",
-    "Autoformat",
-    "BlockQuote",
-    "CKBox",
-    "CKFinder",
-    "CloudServices",
-    "EasyImage",
-    "Heading",
-    "Image",
-    "ImageCaption",
-    "ImageStyle",
-    "ImageToolbar",
-    "ImageUpload",
-    "Indent",
-    "MediaEmbed",
-    // "Paragraph",
-    "PasteFromOffice",
-    "PictureEditing",
-    "Table",
-    "TableToolbar",
-    "TextTransformation",
-  ],
-}).catch((error) => {
-  console.error(error);
-});
+
 //   var plugins = ClassicEditor.builtinPlugins.map(
 //     (plugin) => plugin.pluginName
 //   );

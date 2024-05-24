@@ -146,10 +146,10 @@ button:hover {
   transition: max-height 0.2s ease-out;
 }
 .collapsible-child {
-  background-color: #d9e6ed;
+  background-color: #fff;
 }
 .collapsible-child:hover {
-  background-color: #d9e6ed;
+  background-color: #fff;
 }
 
 /*Margin and Padding*/
