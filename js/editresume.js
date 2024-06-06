@@ -8,6 +8,13 @@ createEditorFrom(document.querySelector("#professional-summary-editor"));
 
 createEditorFrom(document.querySelector("#education-editor"));
 
+function updateJobTitleOnEnter(inputField) {
+  var jobTitle = document.querySelector(
+    "#job-title-" + inputField.getAttribute("data-index")
+  );
+  jobTitle.innerHTML = inputField.value;
+}
+
 function addEmployment() {
   const employmentHistory = document.querySelector(".employment-history");
   const addEmployment = document.querySelector(".add-employment");
@@ -16,7 +23,7 @@ function addEmployment() {
   const className = "job";
   const employmentHTML = new DOMParser().parseFromString(
     `<div class="full-width pl-20 collapsible collapsible-child" onclick="javascript:collapsibleClickEvent(this)">
-        <p class="subtitle">Job Title</p>
+        <p class="subtitle" id="job-title">Job Title</p>
         <img
           class="collapsed-arrow arrow mr-30"
           src="./images/arrow-collapse.png"
@@ -34,7 +41,7 @@ function addEmployment() {
                     class="full-width height-30"
                     type="text"
                     name="employment-job-title"
-                    id="employment-job-title"
+                    id="employment-job-title" onkeyup="javascript:updateJobTitleOnEnter(this)"
                   />
                 </div>
               </div>
@@ -60,7 +67,7 @@ function addEmployment() {
                 <div class="mt-10">
                   <input
                     class="height-30 full-width"
-                    type="date"
+                    type="month"
                     name="employment-start-date"
                     id="employment-start-date"
                   />
@@ -73,7 +80,7 @@ function addEmployment() {
                 <div class="mt-10">
                   <input
                     class="height-30 full-width"
-                    type="date"
+                    type="month"
                     name="employment-end-date"
                     id="employment-end-date"
                   />
@@ -128,10 +135,17 @@ function addEmployment() {
   );
   historyEditor.id = "employment-history-editor" + "-" + employmentCounter;
 
-  createEditorFrom(historyEditor);
+  var jobTitle = employmentHTML.querySelector("#job-title");
+  jobTitle.id = "job-title" + "-" + employmentCounter;
+
+  var jobTitleInput = employmentHTML.querySelector("#employment-job-title");
+  jobTitleInput.dataset.index = employmentCounter;
+  jobTitleInput.id = "employment-job-title" + "-" + employmentCounter;
 
   const employment = employmentHTML.documentElement.childNodes[1].innerHTML;
   addEmployment.insertAdjacentHTML("beforebegin", employment);
+
+  createEditorFrom(historyEditor);
 
   expandOrCollapse(employmentHistory.children[0], false);
 
@@ -141,9 +155,12 @@ function addEmployment() {
 
 function expandOrCollapse(element, isUserAction) {
   var arrChildren = element.children;
+  var content = element.nextElementSibling;
+  if (content == null || content.nodeName.toLowerCase() != "div") {
+    content = element.parentElement.nextElementSibling;
+  }
   for (let indexChild = 0; indexChild < arrChildren.length; indexChild++) {
     const child = arrChildren[indexChild];
-    var content = element.nextElementSibling;
     if (isUserAction == true) {
       const arrClassList = child.classList["value"].split(" ");
       if (
@@ -181,11 +198,15 @@ function addCollapsibleAction(arrCollapsibles) {
 
 function collapsibleClickEvent(element) {
   var target = element.target != null ? element.target : element;
+  if (target.nodeName.toLowerCase() != "div") {
+    target = target.parentElement;
+  }
   target.classList.toggle("expanded");
   expandOrCollapse(target, true);
 }
 
 function createEditorFrom(element) {
+  element = document.querySelector("#" + element.id);
   ClassicEditor.create(element, {
     removePlugins: [
       "CKFinderUploadAdapter",
