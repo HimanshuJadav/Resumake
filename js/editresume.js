@@ -17,17 +17,28 @@ function updateJobTitleOnEnter(inputField) {
 
 function addEmployment() {
   const employmentHistory = document.querySelector(".employment-history");
-  const addEmployment = document.querySelector(".add-employment");
+  const employmentContainer = document.querySelector(".employment-container");
 
   employmentCounter += 1;
-  const className = "job";
   const employmentHTML = new DOMParser().parseFromString(
-    `<div class="full-width pl-20 collapsible collapsible-child" onclick="javascript:collapsibleClickEvent(this)">
-        <p class="subtitle" id="job-title">Job Title</p>
+    `<div class="full-width element-container">
+      <div
+        class="full-width pl-20 collapsible flex-center clear-bg"
+        onclick="javascript:collapsibleClickEvent(this)"
+      >
+        <div class="collapsible-child flex-center full-width">
+          <p class="subtitle" id="job-title">Job Title</p>
+          <img
+            class="collapsed-arrow accessory-icon mr-10"
+            src="./images/arrow-collapse.png"
+            alt="collapsed"
+          />
+        </div>
         <img
-          class="collapsed-arrow arrow mr-30"
-          src="./images/arrow-collapse.png"
-          alt="collapsed"
+          class="accessory-icon pl-10 pr-20"
+          id="delete-job"
+          src="./images/delete.png"
+          alt="delete"
         />
       </div>
       <div class="collapsible-content">
@@ -41,7 +52,8 @@ function addEmployment() {
                     class="full-width height-30"
                     type="text"
                     name="employment-job-title"
-                    id="employment-job-title" onkeyup="javascript:updateJobTitleOnEnter(this)"
+                    id="employment-job-title"
+                    onkeyup="javascript:updateJobTitleOnEnter(this)"
                   />
                 </div>
               </div>
@@ -53,8 +65,8 @@ function addEmployment() {
                   <input
                     class="full-width height-30"
                     type="text"
-                    name="employer"
-                    id="employer"
+                    name="employer-name"
+                    id="employer-name"
                   />
                 </div>
               </div>
@@ -76,7 +88,21 @@ function addEmployment() {
             </td>
             <td class="pt-20 pl-20 pr-20">
               <div>
-                <div class="full-width">End Date</div>
+                <div class="full-width">
+                  End Date
+                  <input
+                    type="checkbox"
+                    id="employment-is-current-job"
+                    name="employment-is-current-job"
+                    value="employment-is-current-job"
+                  />
+                  <label
+                    for="employment-is-current-job-label"
+                    id="employment-is-current-job-label"
+                  >
+                    I currently work here.</label
+                  >
+                </div>
                 <div class="mt-10">
                   <input
                     class="height-30 full-width"
@@ -122,18 +148,19 @@ function addEmployment() {
               <textarea
                 id="employment-history-editor"
                 placeholder="e.g. Collaborated with the product owner/client to architect change requests and defining project
-              development and usability flows."
+            development and usability flows."
               ></textarea>
             </td>
           </tr>
         </table>
-      </div>`,
+      </div>
+    </div>`,
     "text/html"
   );
   var historyEditor = employmentHTML.querySelector(
     "#employment-history-editor"
   );
-  historyEditor.id = "employment-history-editor" + "-" + employmentCounter;
+  historyEditor.id = "employment-history-editor-" + employmentCounter;
 
   var jobTitle = employmentHTML.querySelector("#job-title");
   jobTitle.id = "job-title" + "-" + employmentCounter;
@@ -143,35 +170,90 @@ function addEmployment() {
   jobTitleInput.id = "employment-job-title" + "-" + employmentCounter;
 
   const employment = employmentHTML.documentElement.childNodes[1].innerHTML;
-  addEmployment.insertAdjacentHTML("beforebegin", employment);
+
+  employmentContainer.insertAdjacentHTML("beforeend", employment);
 
   createEditorFrom(historyEditor);
 
   expandOrCollapse(employmentHistory.children[0], false);
 
+  var deleteJob = document.querySelector("#delete-job");
+  deleteJob.dataset.index = employmentCounter;
+  deleteJob.id = "delete-job-" + employmentCounter;
+  deleteJob.addEventListener(`click`, deleteEmployment);
+
+  var employerName = document.querySelector("#employer-name");
+  employerName.name = "employer-name-" + employmentCounter;
+  employerName.id = "employer-name-" + employmentCounter;
+
+  var employerName = document.querySelector("#employment-start-date");
+  employerName.name = "employment-start-date-" + employmentCounter;
+  employerName.id = "employment-start-date-" + employmentCounter;
+
+  var employmentEndDate = document.querySelector("#employment-end-date");
+  employmentEndDate.name = "employment-end-date-" + employmentCounter;
+  employmentEndDate.id = "employment-end-date-" + employmentCounter;
+
+  var employmentIsCurrentJob = document.querySelector(
+    "#employment-is-current-job"
+  );
+  employmentIsCurrentJob.id = "employment-is-current-job-" + employmentCounter;
+  employmentIsCurrentJob.dataset.index = employmentCounter;
+  employmentIsCurrentJob.name =
+    "employment-is-current-job-" + employmentCounter;
+  employmentIsCurrentJob.value =
+    "employment-is-current-job-" + employmentCounter;
+  employmentIsCurrentJob.addEventListener(`change`, setEmploymentIsCurrentJob);
+
+  var employmentIsCurrentJobLabel = document.querySelector(
+    "#employment-is-current-job-label"
+  );
+  employmentIsCurrentJobLabel.for =
+    "employment-is-current-job-label-" + employmentCounter;
+  employmentIsCurrentJobLabel.id =
+    "employment-is-current-job-label-" + employmentCounter;
+
+  var employmentCountry = document.querySelector("#employment-country");
+  employmentCountry.name = "employment-country-" + employmentCounter;
+  employmentCountry.id = "employment-country-" + employmentCounter;
+
+  var employmentCity = document.querySelector("#employment-city");
+  employmentCity.name = "employment-city-" + employmentCounter;
+  employmentCity.id = "employment-city-" + employmentCounter;
   // var arrCollapsibles = employmentHTML.getElementsByClassName("collapsible");
   // addCollapsibleAction(arrCollapsibles);
 }
 
+function setEmploymentIsCurrentJob(event) {
+  var employmentEndDate = document.querySelector(
+    "#employment-end-date-" + event.target.getAttribute("data-index")
+  );
+
+  employmentEndDate.disabled = event.target.checked == true;
+}
+
+function deleteEmployment(event) {
+  var jobTitle = document.querySelector(
+    "#job-title-" + event.target.getAttribute("data-index")
+  );
+  let confirmation =
+    jobTitle.innerHTML + " job will be deleted. Click OK to confirm.";
+
+  if (confirm(confirmation) == true) {
+    var parent = jobTitle.parentElement.parentElement;
+    const sibling = parent.nextElementSibling;
+    parent.remove();
+    sibling.remove();
+  }
+  event.stopPropagation();
+}
 function expandOrCollapse(element, isUserAction) {
   var arrChildren = element.children;
   var content = element.nextElementSibling;
   if (content == null || content.nodeName.toLowerCase() != "div") {
     content = element.parentElement.nextElementSibling;
   }
-  for (let indexChild = 0; indexChild < arrChildren.length; indexChild++) {
-    const child = arrChildren[indexChild];
-    if (isUserAction == true) {
-      const arrClassList = child.classList["value"].split(" ");
-      if (
-        arrClassList.includes("collapsed-arrow") ||
-        arrClassList.includes("expanded-arrow")
-      ) {
-        child.classList.toggle("expanded-arrow");
-        child.classList.toggle("collapsed-arrow");
-      }
-    }
-  }
+  updateArrow(arrChildren, isUserAction);
   if (isUserAction == true) {
     if (content.style.maxHeight) {
       content.style.maxHeight = null;
@@ -183,9 +265,40 @@ function expandOrCollapse(element, isUserAction) {
   }
 
   var parent = element.parentElement;
+
+  setParentHeight(parent, content, "element-container");
+
+  parent = parent.parentElement;
+  setParentHeight(parent, content, "employment-container");
+
+  parent = parent.parentElement;
+  setParentHeight(parent, content, "collapsible-content");
+}
+
+function setParentHeight(parent, content, className) {
   const arrParentClassList = parent.classList["value"].split(" ");
-  if (arrParentClassList.includes("collapsible-content")) {
+  if (arrParentClassList.includes(className)) {
     parent.style.maxHeight = parent.scrollHeight + content.scrollHeight + "px";
+  }
+}
+
+function updateArrow(arrChildren, isUserAction) {
+  for (let indexChild = 0; indexChild < arrChildren.length; indexChild++) {
+    var child = arrChildren[indexChild];
+    if (isUserAction == true) {
+      if (child.nodeName.toLowerCase() == "div") {
+        this.updateArrow(child.children, isUserAction);
+        return;
+      }
+      const arrClassList = child.classList["value"].split(" ");
+      if (
+        arrClassList.includes("collapsed-arrow") ||
+        arrClassList.includes("expanded-arrow")
+      ) {
+        child.classList.toggle("expanded-arrow");
+        child.classList.toggle("collapsed-arrow");
+      }
+    }
   }
 }
 
