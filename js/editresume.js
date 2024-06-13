@@ -21,7 +21,7 @@ function addEmployment() {
 
   employmentCounter += 1;
   const employmentHTML = new DOMParser().parseFromString(
-    `<div class="full-width element-container">
+    `<div draggable="true" class="full-width element-container">
       <div
         class="full-width pl-20 collapsible flex-center clear-bg"
         onclick="javascript:collapsibleClickEvent(this)"
@@ -157,6 +157,9 @@ function addEmployment() {
     </div>`,
     "text/html"
   );
+  var elementContainer = employmentHTML.querySelector(".element-container");
+  elementContainer.id = "employment-container-" + employmentCounter;
+
   var historyEditor = employmentHTML.querySelector(
     "#employment-history-editor"
   );
@@ -222,6 +225,19 @@ function addEmployment() {
   employmentCity.id = "employment-city-" + employmentCounter;
   // var arrCollapsibles = employmentHTML.getElementsByClassName("collapsible");
   // addCollapsibleAction(arrCollapsibles);
+
+  const employmentItems = document.querySelectorAll(
+    ".employment-container .element-container"
+  );
+
+  employmentItems.forEach(function (employmentItem) {
+    employmentItem.addEventListener("dragstart", dragStart);
+    employmentItem.addEventListener("dragenter", dragEnter);
+    employmentItem.addEventListener("dragover", dragOver);
+    employmentItem.addEventListener("dragleave", dragLeave);
+    employmentItem.addEventListener("drop", drop);
+    employmentItem.addEventListener("dragend", dragEnd);
+  });
 }
 
 function setEmploymentIsCurrentJob(event) {
@@ -381,3 +397,48 @@ function createEditorFrom(element) {
 //     "TableToolbar",
 //     "TextTransformation",
 //   ];
+
+//DRAG AND DROP SWAP
+
+var draggedItem = null;
+
+function dragStart(e) {
+  draggedItem = this;
+  e.dataTransfer.effectAllowed = "move";
+}
+
+function dragOver(e) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = "move";
+  return false;
+}
+
+function dragEnter(e) {
+  // this.classList.add("dragover");
+}
+
+function dragLeave(e) {
+  // this.classList.remove("dragover");
+}
+
+function drop(e) {
+  e.stopPropagation();
+
+  if (draggedItem != this) {
+    const span = document.createElement("span");
+    const $container = draggedItem.parentElement;
+    $container.insertBefore(span, draggedItem);
+    $container.insertBefore(draggedItem, this.nextSibling);
+    $container.insertBefore(this, span);
+    span.remove();
+  }
+}
+
+function dragEnd(e) {
+  // const arrChildren = draggedItem.parentElement.children;
+  // for (const child in arrChildren) {
+  //   if (Object.hasOwnProperty.call(arrChildren, child)) {
+  //     arrChildren[child].classList.remove("dragover");
+  //   }
+  // }
+}
