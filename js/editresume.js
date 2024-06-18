@@ -1,4 +1,5 @@
 var employmentCounter = 0;
+var educationCounter = 0;
 var parser = new DOMParser();
 
 var arrCollapsibles = document.getElementsByClassName("collapsible");
@@ -6,16 +7,9 @@ addCollapsibleAction(arrCollapsibles);
 
 createEditorFrom(document.querySelector("#professional-summary-editor"));
 
-createEditorFrom(document.querySelector("#education-editor"));
-
-function updateJobTitleOnEnter(inputField) {
-  var jobTitle = document.querySelector(
-    "#job-title-" + inputField.getAttribute("data-index")
-  );
-  jobTitle.innerHTML = inputField.value;
-}
-
+// Employment
 function addEmployment() {
+  const type = "employment";
   const employmentHistory = document.querySelector(".employment-history");
   const employmentContainer = document.querySelector(".employment-container");
 
@@ -27,7 +21,7 @@ function addEmployment() {
         onclick="javascript:collapsibleClickEvent(this)"
       >
         <div class="collapsible-child flex-center full-width">
-          <p class="subtitle" id="job-title">Job Title</p>
+          <p class="subtitle" id="employment-title">Job Title</p>
           <img
             class="collapsed-arrow accessory-icon mr-10"
             src="./images/arrow-collapse.png"
@@ -53,12 +47,12 @@ function addEmployment() {
                     type="text"
                     name="employment-job-title"
                     id="employment-job-title"
-                    onkeyup="javascript:updateJobTitleOnEnter(this)"
+                    onkeyup="javascript:updateTitleOnEnter(this)"
                   />
                 </div>
               </div>
             </td>
-            <td class="pt-20 pl-20 pr-20">
+            <td class="pl-20 pr-20">
               <div>
                 <div class="full-width">Employer</div>
                 <div class="mt-10">
@@ -165,10 +159,11 @@ function addEmployment() {
   );
   historyEditor.id = "employment-history-editor-" + employmentCounter;
 
-  var jobTitle = employmentHTML.querySelector("#job-title");
-  jobTitle.id = "job-title" + "-" + employmentCounter;
+  var jobTitle = employmentHTML.querySelector("#employment-title");
+  jobTitle.id = "employment-title" + "-" + employmentCounter;
 
   var jobTitleInput = employmentHTML.querySelector("#employment-job-title");
+  jobTitleInput.dataset.type = type;
   jobTitleInput.dataset.index = employmentCounter;
   jobTitleInput.id = "employment-job-title" + "-" + employmentCounter;
 
@@ -181,17 +176,18 @@ function addEmployment() {
   expandOrCollapse(employmentHistory.children[0], false);
 
   var deleteJob = document.querySelector("#delete-job");
+  deleteJob.dataset.type = type;
   deleteJob.dataset.index = employmentCounter;
   deleteJob.id = "delete-job-" + employmentCounter;
-  deleteJob.addEventListener(`click`, deleteEmployment);
+  deleteJob.addEventListener(`click`, deleteItem);
 
   var employerName = document.querySelector("#employer-name");
   employerName.name = "employer-name-" + employmentCounter;
   employerName.id = "employer-name-" + employmentCounter;
 
-  var employerName = document.querySelector("#employment-start-date");
-  employerName.name = "employment-start-date-" + employmentCounter;
-  employerName.id = "employment-start-date-" + employmentCounter;
+  var employmentStartDate = document.querySelector("#employment-start-date");
+  employmentStartDate.name = "employment-start-date-" + employmentCounter;
+  employmentStartDate.id = "employment-start-date-" + employmentCounter;
 
   var employmentEndDate = document.querySelector("#employment-end-date");
   employmentEndDate.name = "employment-end-date-" + employmentCounter;
@@ -240,6 +236,210 @@ function addEmployment() {
   });
 }
 
+// Education
+function addEducation() {
+  const type = "education";
+  const educationHistory = document.querySelector("." + type + "-history");
+  const educationContainer = document.querySelector("." + type + "-container");
+
+  educationCounter += 1;
+  const educationHTML = new DOMParser().parseFromString(
+    `<div draggable="true" class="full-width element-container">
+      <div
+        class="full-width pl-20 collapsible flex-center clear-bg"
+        onclick="javascript:collapsibleClickEvent(this)"
+      >
+        <div class="collapsible-child flex-center full-width">
+          <p class="subtitle" id="education-title">Education Title</p>
+          <img
+            class="collapsed-arrow accessory-icon mr-10"
+            src="./images/arrow-collapse.png"
+            alt="collapsed"
+          />
+        </div>
+        <img
+          class="accessory-icon pl-10 pr-20"
+          id="delete-education"
+          src="./images/delete.png"
+          alt="delete"
+        />
+      </div>
+      <div class="collapsible-content">
+          <table>
+            <tr>
+              <td class="pl-20 pr-20">
+                <div>
+                  <div class="full-width">Degree</div>
+                  <div class="mt-10">
+                    <input
+                      class="full-width height-30"
+                      type="text"
+                      name="education-degree"
+                      id="education-degree"
+                      onkeyup="javascript:updateTitleOnEnter(this)"
+                    />
+                  </div>
+                </div>
+              </td>
+              <td class="pl-20 pr-20">
+                <div>
+                  <div class="full-width">School</div>
+                  <div class="mt-10">
+                    <input
+                      class="full-width height-30"
+                      type="text"
+                      name="education-school"
+                      id="education-school"
+                    />
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="pt-20 pl-20 pr-20">
+                <div>
+                  <div class="full-width">Start Date</div>
+                  <div class="mt-10">
+                    <input
+                      class="height-30 full-width"
+                      type="month"
+                      name="education-start-date"
+                      id="education-start-date"
+                    />
+                  </div>
+                </div>
+              </td>
+              <td class="pt-20 pl-20 pr-20">
+                <div>
+                  <div class="full-width">End Date</div>
+                  <div class="mt-10">
+                    <input
+                      class="height-30 full-width"
+                      type="month"
+                      name="education-end-date"
+                      id="education-end-date"
+                    />
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="pt-20 pl-20 pr-20">
+                <div>
+                  <div class="full-width">Country</div>
+                  <div class="mt-10">
+                    <input
+                      class="full-width height-30"
+                      type="text"
+                      name="education-country"
+                      id="education-country"
+                    />
+                  </div>
+                </div>
+              </td>
+              <td class="pt-20 pl-20 pr-20">
+                <div>
+                  <div class="full-width">City</div>
+                  <div class="mt-10">
+                    <input
+                      class="full-width height-30"
+                      type="text"
+                      name="education-city"
+                      id="education-city"
+                    />
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="pt-20 pl-20 pr-20" colspan="2">
+                <div class="full-width pb-10">Description</div>
+                <textarea
+                  id="education-history-editor"
+                  placeholder="e.g. Graduated with High Honors."
+                ></textarea>
+              </td>
+            </tr>
+          </table>
+        </div>
+    </div>`,
+    "text/html"
+  );
+  var elementContainer = educationHTML.querySelector(".element-container");
+  elementContainer.id = type + "-container-" + educationCounter;
+
+  var historyEditor = educationHTML.querySelector(
+    "#" + type + "-history-editor"
+  );
+  historyEditor.id = type + "-history-editor-" + educationCounter;
+
+  var educationTitle = educationHTML.querySelector("#" + type + "-title");
+  educationTitle.id = type + "-title" + "-" + educationCounter;
+
+  var jobTitleInput = educationHTML.querySelector("#" + type + "-degree");
+  jobTitleInput.dataset.type = type;
+  jobTitleInput.dataset.index = educationCounter;
+  jobTitleInput.id = type + "-degree" + "-" + educationCounter;
+
+  const education = educationHTML.documentElement.childNodes[1].innerHTML;
+
+  educationContainer.insertAdjacentHTML("beforeend", education);
+
+  createEditorFrom(historyEditor);
+
+  expandOrCollapse(educationHistory.children[0], false);
+
+  var deleteEducation = document.querySelector("#delete-" + type);
+  deleteEducation.dataset.index = educationCounter;
+  deleteEducation.dataset.type = type;
+  deleteEducation.id = "delete-" + type + "-" + educationCounter;
+  deleteEducation.addEventListener(`click`, deleteItem);
+
+  var educationSchool = document.querySelector("#education-school");
+  educationSchool.name = "education-school-" + educationCounter;
+  educationSchool.id = "education-school-" + educationCounter;
+
+  var educationStartDate = document.querySelector("#education-start-date");
+  educationStartDate.name = "education-start-date-" + educationCounter;
+  educationStartDate.id = "education-start-date-" + educationCounter;
+
+  var educationEndDate = document.querySelector("#education-end-date");
+  educationEndDate.name = "education-end-date-" + educationCounter;
+  educationEndDate.id = "education-end-date-" + educationCounter;
+
+  var educationCountry = document.querySelector("#education-country");
+  educationCountry.name = "education-country-" + educationCounter;
+  educationCountry.id = "education-country-" + educationCounter;
+
+  var educationCity = document.querySelector("#education-city");
+  educationCity.name = "education-city-" + educationCounter;
+  educationCity.id = "education-city-" + educationCounter;
+  // var arrCollapsibles = employmentHTML.getElementsByClassName("collapsible");
+  // addCollapsibleAction(arrCollapsibles);
+
+  const educationItems = document.querySelectorAll(
+    ".education-container .element-container"
+  );
+
+  educationItems.forEach(function (employmentItem) {
+    employmentItem.addEventListener("dragstart", dragStart);
+    employmentItem.addEventListener("dragenter", dragEnter);
+    employmentItem.addEventListener("dragover", dragOver);
+    employmentItem.addEventListener("dragleave", dragLeave);
+    employmentItem.addEventListener("drop", drop);
+    employmentItem.addEventListener("dragend", dragEnd);
+  });
+}
+
+function updateTitleOnEnter(inputField) {
+  const type = event.target.getAttribute("data-type");
+  console.log("#" + type + "-title-" + inputField.getAttribute("data-index"));
+  var title = document.querySelector(
+    "#" + type + "-title-" + inputField.getAttribute("data-index")
+  );
+  title.innerHTML = inputField.value;
+}
+
 function setEmploymentIsCurrentJob(event) {
   var employmentEndDate = document.querySelector(
     "#employment-end-date-" + event.target.getAttribute("data-index")
@@ -248,12 +448,13 @@ function setEmploymentIsCurrentJob(event) {
   employmentEndDate.disabled = event.target.checked == true;
 }
 
-function deleteEmployment(event) {
+function deleteItem(event) {
+  const type = event.target.getAttribute("data-type");
   var jobTitle = document.querySelector(
-    "#job-title-" + event.target.getAttribute("data-index")
+    "#" + type + "-title-" + event.target.getAttribute("data-index")
   );
   let confirmation =
-    jobTitle.innerHTML + " job will be deleted. Click OK to confirm.";
+    jobTitle.innerHTML + " " + type + " will be deleted. Click OK to confirm.";
 
   if (confirm(confirmation) == true) {
     var parent = jobTitle.parentElement.parentElement;
@@ -263,6 +464,7 @@ function deleteEmployment(event) {
   }
   event.stopPropagation();
 }
+
 function expandOrCollapse(element, isUserAction) {
   var arrChildren = element.children;
   var content = element.nextElementSibling;
@@ -281,13 +483,9 @@ function expandOrCollapse(element, isUserAction) {
   }
 
   var parent = element.parentElement;
-
   setParentHeight(parent, content, "element-container");
 
-  parent = parent.parentElement;
-  setParentHeight(parent, content, "employment-container");
-
-  parent = parent.parentElement;
+  parent = parent.parentElement.parentElement;
   setParentHeight(parent, content, "collapsible-content");
 }
 

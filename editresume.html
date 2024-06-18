@@ -173,7 +173,7 @@
           </div>
         </div>
       </section>
-      <section id="education" class="mt-20">
+      <section id="education" class="mt-20 education-history">
         <div class="full-width pl-20 pr-20 collapsible flex-center">
           <p class="title">Education</p>
           <img
@@ -183,101 +183,10 @@
           />
         </div>
         <div class="collapsible-content">
-          <table>
-            <tr>
-              <td class="pl-20 pr-20">
-                <div>
-                  <div class="full-width">School</div>
-                  <div class="mt-10">
-                    <input
-                      class="full-width height-30"
-                      type="text"
-                      name="education-school"
-                      id="education-school"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td class="pt-20 pl-20 pr-20">
-                <div>
-                  <div class="full-width">Degree</div>
-                  <div class="mt-10">
-                    <input
-                      class="full-width height-30"
-                      type="text"
-                      name="education-degree"
-                      id="education-degree"
-                    />
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="pt-20 pl-20 pr-20">
-                <div>
-                  <div class="full-width">Start Date</div>
-                  <div class="mt-10">
-                    <input
-                      class="height-30 full-width"
-                      type="date"
-                      name="education-start-date"
-                      id="education-start-date"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td class="pt-20 pl-20 pr-20">
-                <div>
-                  <div class="full-width">End Date</div>
-                  <div class="mt-10">
-                    <input
-                      class="height-30 full-width"
-                      type="date"
-                      name="education-end-date"
-                      id="education-end-date"
-                    />
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="pt-20 pl-20 pr-20">
-                <div>
-                  <div class="full-width">Country</div>
-                  <div class="mt-10">
-                    <input
-                      class="full-width height-30"
-                      type="text"
-                      name="education-country"
-                      id="education-country"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td class="pt-20 pl-20 pr-20">
-                <div>
-                  <div class="full-width">City</div>
-                  <div class="mt-10">
-                    <input
-                      class="full-width height-30"
-                      type="text"
-                      name="education-city"
-                      id="education-city"
-                    />
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="pt-20 pl-20 pr-20" colspan="2">
-                <div class="full-width pb-10">Description</div>
-                <textarea
-                  id="education-editor"
-                  placeholder="e.g. Graduated with High Honors."
-                ></textarea>
-              </td>
-            </tr>
-          </table>
+          <div class="education-container"></div>
+          <div class="add-education">
+            <a href="javascript:addEducation()">Add Education</a>
+          </div>
         </div>
       </section>
       <section id="skills" class="mt-20">
