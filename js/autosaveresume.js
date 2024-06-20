@@ -50,21 +50,59 @@ function saveValues(section, children, values) {
       child.nodeName.toLowerCase() === "tr" ||
       child.nodeName.toLowerCase() === "td"
     ) {
+      if (child.nodeName.toLowerCase() === "div") {
+        const arrClassList = child.classList["value"].split(" ");
+        if (arrClassList.includes("ck-content")) {
+          values = getSaveValue(
+            section,
+            currentIndex,
+            values,
+            child.innerHTML,
+            section
+          );
+          return;
+        }
+        if (arrClassList.includes("skill-rating")) {
+          console.log(child);
+          var rating = child.getAttribute("data-rating");
+          if (rating == null) {
+            rating = 0;
+          }
+          values = getSaveValue(
+            section,
+            currentIndex,
+            values,
+            rating,
+            "rating"
+          );
+          return;
+        }
+      }
       if (child.nodeName.toLowerCase() === "table") {
         var index = values[currentIndex].children.length;
         values[currentIndex].children[index] = {};
       }
       saveValues(section, child.children, values);
     } else if (child.nodeName.toLowerCase() === "input") {
-      if (arrMultipleItemHolder.includes(section)) {
-        var index = values[currentIndex].children.length - 1;
-        values[currentIndex].children[index][child.name] = child.value;
-      } else {
-        values[currentIndex].section[child.name] = child.value;
-      }
+      values = getSaveValue(
+        section,
+        currentIndex,
+        values,
+        child.value,
+        child.name
+      );
     }
   }
   localStorage.resume = JSON.stringify(values);
+}
+
+function getSaveValue(section, currentIndex, values, value, name) {
+  if (arrMultipleItemHolder.includes(section)) {
+    var index = values[currentIndex].children.length - 1;
+    values[currentIndex].children[index][name] = value;
+  } else {
+    values[currentIndex].section[name] = value;
+  }
 }
 
 // To stop the loop

@@ -480,14 +480,23 @@ function addSkill() {
               </td>
               <td class="pl-20 pr-20">
                 <div>
-                  <div class="full-width">Level</div>
-                  <div class="mt-10">
-                    <input
-                      class="full-width height-30"
-                      type="number"
-                      name="skill-level"
-                      id="skill-level"
-                    />
+                  <div class="full-width">Rating</div>
+                    <div class="skill-rating full-width height-30 pb-20">
+                      <span onclick="updateRating(1, this)"
+                            class="rating">•
+                      </span>
+                      <span onclick="updateRating(2, this)"
+                            class="rating">•
+                      </span>
+                      <span onclick="updateRating(3, this)"
+                            class="rating">•
+                      </span>
+                      <span onclick="updateRating(4, this)"
+                            class="rating">•
+                      </span>
+                      <span onclick="updateRating(5, this)"
+                            class="rating">•
+                      </span>
                   </div>
                 </div>
               </td>
@@ -502,6 +511,9 @@ function addSkill() {
 
   var skillTitle = skillHTML.querySelector("#" + type + "-title");
   skillTitle.id = type + "-title" + "-" + skillCounter;
+
+  var skillRating = skillHTML.querySelector(".skill-rating");
+  skillRating.id = "skill-rating-" + skillCounter;
 
   var skillTitleInput = skillHTML.querySelector("#" + type + "-label");
   skillTitleInput.dataset.type = type;
@@ -519,12 +531,6 @@ function addSkill() {
   deleteSkill.dataset.type = type;
   deleteSkill.id = "delete-" + type + "-" + skillCounter;
   deleteSkill.addEventListener(`click`, deleteItem);
-
-  var skillLevel = document.querySelector("#skill-level");
-  skillLevel.name = "skill-level-" + skillCounter;
-  skillLevel.id = "skill-level-" + skillCounter;
-  // var arrCollapsibles = employmentHTML.getElementsByClassName("collapsible");
-  // addCollapsibleAction(arrCollapsibles);
 
   const skillItems = document.querySelectorAll(
     ".skill-container .element-container"
@@ -854,4 +860,27 @@ function dragEnd(e) {
   //     arrChildren[child].classList.remove("dragover");
   //   }
   // }
+}
+
+// Update Rating
+function updateRating(n, rating) {
+  const parent = rating.parentElement;
+  parent.dataset.rating = n;
+  const arrChildren = parent.children;
+  removeRating(arrChildren);
+  for (let indexChild = 0; indexChild < n; indexChild++) {
+    if (n == 1) cls = "one";
+    else if (n == 2) cls = "two";
+    else if (n == 3) cls = "three";
+    else if (n == 4) cls = "four";
+    else if (n == 5) cls = "five";
+    arrChildren[indexChild].className = "rating " + cls;
+  }
+}
+
+// To remove the pre-applied rating
+function removeRating(arrChildren) {
+  for (let indexChild = 0; indexChild < arrChildren.length; indexChild++) {
+    arrChildren[indexChild].className = "rating";
+  }
 }
