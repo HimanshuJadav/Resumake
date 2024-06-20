@@ -1,5 +1,7 @@
 var employmentCounter = 0;
 var educationCounter = 0;
+var skillCounter = 0;
+var linkCounter = 0;
 var parser = new DOMParser();
 
 var arrCollapsibles = document.getElementsByClassName("collapsible");
@@ -421,19 +423,232 @@ function addEducation() {
     ".education-container .element-container"
   );
 
-  educationItems.forEach(function (employmentItem) {
-    employmentItem.addEventListener("dragstart", dragStart);
-    employmentItem.addEventListener("dragenter", dragEnter);
-    employmentItem.addEventListener("dragover", dragOver);
-    employmentItem.addEventListener("dragleave", dragLeave);
-    employmentItem.addEventListener("drop", drop);
-    employmentItem.addEventListener("dragend", dragEnd);
+  educationItems.forEach(function (educationItem) {
+    educationItem.addEventListener("dragstart", dragStart);
+    educationItem.addEventListener("dragenter", dragEnter);
+    educationItem.addEventListener("dragover", dragOver);
+    educationItem.addEventListener("dragleave", dragLeave);
+    educationItem.addEventListener("drop", drop);
+    educationItem.addEventListener("dragend", dragEnd);
+  });
+}
+
+// Skill
+function addSkill() {
+  const type = "skill";
+  const skillHistory = document.querySelector(".skills");
+  const skillContainer = document.querySelector("." + type + "-container");
+
+  skillCounter += 1;
+  const skillHTML = new DOMParser().parseFromString(
+    `<div draggable="true" class="full-width element-container">
+      <div
+        class="full-width pl-20 collapsible flex-center clear-bg"
+        onclick="javascript:collapsibleClickEvent(this)"
+      >
+        <div class="collapsible-child flex-center full-width">
+          <p class="subtitle" id="skill-title">Skill</p>
+          <img
+            class="collapsed-arrow accessory-icon mr-10"
+            src="./images/arrow-collapse.png"
+            alt="collapsed"
+          />
+        </div>
+        <img
+          class="accessory-icon pl-10 pr-20"
+          id="delete-skill"
+          src="./images/delete.png"
+          alt="delete"
+        />
+      </div>
+      <div class="collapsible-content">
+          <table>
+            <tr>
+              <td class="pl-20 pr-20">
+                <div>
+                  <div class="full-width">Skill</div>
+                  <div class="mt-10">
+                    <input
+                      class="full-width height-30"
+                      type="text"
+                      name="skill-label"
+                      id="skill-label"
+                      onkeyup="javascript:updateTitleOnEnter(this)"
+                    />
+                  </div>
+                </div>
+              </td>
+              <td class="pl-20 pr-20">
+                <div>
+                  <div class="full-width">Level</div>
+                  <div class="mt-10">
+                    <input
+                      class="full-width height-30"
+                      type="number"
+                      name="skill-level"
+                      id="skill-level"
+                    />
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+    </div>`,
+    "text/html"
+  );
+  var elementContainer = skillHTML.querySelector(".element-container");
+  elementContainer.id = type + "-container-" + skillCounter;
+
+  var skillTitle = skillHTML.querySelector("#" + type + "-title");
+  skillTitle.id = type + "-title" + "-" + skillCounter;
+
+  var skillTitleInput = skillHTML.querySelector("#" + type + "-label");
+  skillTitleInput.dataset.type = type;
+  skillTitleInput.dataset.index = skillCounter;
+  skillTitleInput.id = type + "-label" + "-" + skillCounter;
+
+  const skill = skillHTML.documentElement.childNodes[1].innerHTML;
+
+  skillContainer.insertAdjacentHTML("beforeend", skill);
+
+  expandOrCollapse(skillHistory.children[0], false);
+
+  var deleteSkill = document.querySelector("#delete-" + type);
+  deleteSkill.dataset.index = skillCounter;
+  deleteSkill.dataset.type = type;
+  deleteSkill.id = "delete-" + type + "-" + skillCounter;
+  deleteSkill.addEventListener(`click`, deleteItem);
+
+  var skillLevel = document.querySelector("#skill-level");
+  skillLevel.name = "skill-level-" + skillCounter;
+  skillLevel.id = "skill-level-" + skillCounter;
+  // var arrCollapsibles = employmentHTML.getElementsByClassName("collapsible");
+  // addCollapsibleAction(arrCollapsibles);
+
+  const skillItems = document.querySelectorAll(
+    ".skill-container .element-container"
+  );
+
+  skillItems.forEach(function (skillItem) {
+    skillItem.addEventListener("dragstart", dragStart);
+    skillItem.addEventListener("dragenter", dragEnter);
+    skillItem.addEventListener("dragover", dragOver);
+    skillItem.addEventListener("dragleave", dragLeave);
+    skillItem.addEventListener("drop", drop);
+    skillItem.addEventListener("dragend", dragEnd);
+  });
+}
+
+// Links
+function addLink() {
+  const type = "link";
+  const linkHistory = document.querySelector(".links");
+  const linkContainer = document.querySelector("." + type + "-container");
+
+  linkCounter += 1;
+  const skillHTML = new DOMParser().parseFromString(
+    `<div draggable="true" class="full-width element-container">
+      <div
+        class="full-width pl-20 collapsible flex-center clear-bg"
+        onclick="javascript:collapsibleClickEvent(this)"
+      >
+        <div class="collapsible-child flex-center full-width">
+          <p class="subtitle" id="link-title">Link</p>
+          <img
+            class="collapsed-arrow accessory-icon mr-10"
+            src="./images/arrow-collapse.png"
+            alt="collapsed"
+          />
+        </div>
+        <img
+          class="accessory-icon pl-10 pr-20"
+          id="delete-link"
+          src="./images/delete.png"
+          alt="delete"
+        />
+      </div>
+      <div class="collapsible-content">
+          <table>
+            <tr>
+              <td class="pl-20 pr-20">
+                <div>
+                  <div class="full-width">Link</div>
+                  <div class="mt-10">
+                    <input
+                      class="full-width height-30"
+                      type="text"
+                      name="link-label"
+                      id="link-label"
+                      onkeyup="javascript:updateTitleOnEnter(this)"
+                    />
+                  </div>
+                </div>
+              </td>
+              <td class="pl-20 pr-20">
+                <div>
+                  <div class="full-width">URL</div>
+                  <div class="mt-10">
+                    <input
+                      class="full-width height-30"
+                      type="url"
+                      name="link-url"
+                      id="link-url"
+                    />
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+    </div>`,
+    "text/html"
+  );
+  var elementContainer = skillHTML.querySelector(".element-container");
+  elementContainer.id = type + "-container-" + linkCounter;
+
+  var linkTitle = skillHTML.querySelector("#" + type + "-title");
+  linkTitle.id = type + "-title" + "-" + linkCounter;
+
+  var linkTitleInput = skillHTML.querySelector("#" + type + "-label");
+  linkTitleInput.dataset.type = type;
+  linkTitleInput.dataset.index = linkCounter;
+  linkTitleInput.id = type + "-label" + "-" + linkCounter;
+
+  const link = skillHTML.documentElement.childNodes[1].innerHTML;
+
+  linkContainer.insertAdjacentHTML("beforeend", link);
+
+  expandOrCollapse(linkHistory.children[0], false);
+
+  var deleteLink = document.querySelector("#delete-" + type);
+  deleteLink.dataset.index = linkCounter;
+  deleteLink.dataset.type = type;
+  deleteLink.id = "delete-" + type + "-" + linkCounter;
+  deleteLink.addEventListener(`click`, deleteItem);
+
+  var linkURL = document.querySelector("#" + type + "-url");
+  linkURL.name = type + "-url-" + linkCounter;
+  linkURL.id = type + "-url-" + linkCounter;
+  // var arrCollapsibles = employmentHTML.getElementsByClassName("collapsible");
+  // addCollapsibleAction(arrCollapsibles);
+
+  const linkItems = document.querySelectorAll(
+    ".link-container .element-container"
+  );
+
+  linkItems.forEach(function (linkItem) {
+    linkItem.addEventListener("dragstart", dragStart);
+    linkItem.addEventListener("dragenter", dragEnter);
+    linkItem.addEventListener("dragover", dragOver);
+    linkItem.addEventListener("dragleave", dragLeave);
+    linkItem.addEventListener("drop", drop);
+    linkItem.addEventListener("dragend", dragEnd);
   });
 }
 
 function updateTitleOnEnter(inputField) {
   const type = event.target.getAttribute("data-type");
-  console.log("#" + type + "-title-" + inputField.getAttribute("data-index"));
   var title = document.querySelector(
     "#" + type + "-title-" + inputField.getAttribute("data-index")
   );

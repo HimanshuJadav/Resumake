@@ -189,7 +189,7 @@
           </div>
         </div>
       </section>
-      <section id="skills" class="mt-20">
+      <section id="skills" class="mt-20 skills">
         <div class="full-width pl-20 pr-20 collapsible flex-center">
           <p class="title">Skills</p>
           <img
@@ -199,39 +199,13 @@
           />
         </div>
         <div class="collapsible-content">
-          <table>
-            <tr>
-              <td class="pl-20 pr-20">
-                <div>
-                  <div class="full-width">Skill</div>
-                  <div class="mt-10">
-                    <input
-                      class="full-width height-30"
-                      type="text"
-                      name="skill-label"
-                      id="skill-label"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td class="pt-20 pl-20 pr-20">
-                <div>
-                  <div class="full-width">Level</div>
-                  <div class="mt-10">
-                    <input
-                      class="full-width height-30"
-                      type="number"
-                      name="skill-level"
-                      id="skill-level"
-                    />
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </table>
+          <div class="skill-container"></div>
+          <div class="add-skill">
+            <a href="javascript:addSkill()">Add Skill</a>
+          </div>
         </div>
       </section>
-      <section id="links" class="mt-20">
+      <section id="links" class="mt-20 links">
         <div class="full-width pl-20 pr-20 collapsible flex-center">
           <p class="title">Websites & Social Links</p>
           <img
@@ -241,36 +215,10 @@
           />
         </div>
         <div class="collapsible-content">
-          <table>
-            <tr>
-              <td class="pl-20 pr-20">
-                <div>
-                  <div class="full-width">Label</div>
-                  <div class="mt-10">
-                    <input
-                      class="full-width height-30"
-                      type="text"
-                      name="links-label"
-                      id="links-label"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td class="pt-20 pl-20 pr-20">
-                <div>
-                  <div class="full-width">Link</div>
-                  <div class="mt-10">
-                    <input
-                      class="full-width height-30"
-                      type="url"
-                      name="links-link"
-                      id="links-link"
-                    />
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </table>
+          <div class="link-container"></div>
+          <div class="add-link">
+            <a href="javascript:addLink()">Add Link</a>
+          </div>
         </div>
       </section>
     </div>
