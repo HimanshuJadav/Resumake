@@ -7,17 +7,26 @@
     <link rel="stylesheet" href="/style.css" />
     <script src="/js/index.js" async></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+    <script src="/js/autosaveresume.js" async></script>
     <script src="/js/editresume.js" async></script>
   </head>
   <body>
-    <ul class="nav shadow">
-      <li class="nav-item">Edit Resume</li>
-    </ul>
+    <div class="nav shadow">
+      <ul class="nav-bar">
+        <li class="nav-item">Edit Resume</li>
+      </ul>
+      <div class="auto-save-bar">
+        <div class="auto-save-label">Auto saving in 10 seconds.</div>
+        <div class="save">
+          <a href="javascript:saveResumeNow()">Save</a>
+        </div>
+      </div>
+    </div>
     <div class="container">
-      <section id="view-template" class="mt-40">
+      <section id="view-template" class="mt-40" data-name="view-template">
         <h1 id="template">getParam</h1>
       </section>
-      <section id="personal-details" class="mt-40">
+      <section id="personal-details" class="mt-40" data-name="personal-details">
         <div class="full-width pl-20 pr-20 collapsible flex-center">
           <p class="title">Personal Details</p>
           <img
@@ -130,7 +139,11 @@
           </table>
         </div>
       </section>
-      <section id="professional-summary" class="mt-20">
+      <section
+        id="professional-summary"
+        class="mt-20"
+        data-name="professional-summary"
+      >
         <div class="full-width pl-20 pr-20 collapsible flex-center">
           <p class="title">Professional Summary</p>
           <img
@@ -157,7 +170,11 @@
           </table>
         </div>
       </section>
-      <section id="employment-history" class="mt-20 employment-history">
+      <section
+        id="employment-history"
+        class="mt-20 employment-history"
+        data-name="employment-history"
+      >
         <div class="full-width pl-20 pr-20 collapsible flex-center">
           <p class="title">Employment History</p>
           <img
@@ -173,7 +190,11 @@
           </div>
         </div>
       </section>
-      <section id="education" class="mt-20 education-history">
+      <section
+        id="education"
+        class="mt-20 education-history"
+        data-name="education-history"
+      >
         <div class="full-width pl-20 pr-20 collapsible flex-center">
           <p class="title">Education</p>
           <img
@@ -189,7 +210,7 @@
           </div>
         </div>
       </section>
-      <section id="skills" class="mt-20 skills">
+      <section id="skills" class="mt-20 skills" data-name="skills">
         <div class="full-width pl-20 pr-20 collapsible flex-center">
           <p class="title">Skills</p>
           <img
@@ -205,7 +226,7 @@
           </div>
         </div>
       </section>
-      <section id="links" class="mt-20 links">
+      <section id="links" class="mt-20 links" data-name="links">
         <div class="full-width pl-20 pr-20 collapsible flex-center">
           <p class="title">Websites & Social Links</p>
           <img
