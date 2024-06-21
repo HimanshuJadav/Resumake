@@ -5,6 +5,7 @@ const arrMultipleItemHolder = [
   "skills",
   "links",
 ];
+
 var intervalId = window.setInterval(function () {
   const autoSaveLabel = document.querySelector(".auto-save-label");
   if (autoSaveCounter > 1) {
