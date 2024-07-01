@@ -6,25 +6,29 @@ const arrMultipleItemHolder = [
   "links",
 ];
 
-var intervalId = window.setInterval(function () {
-  const autoSaveLabel = document.querySelector(".auto-save-label");
-  if (autoSaveCounter > 1) {
-    autoSaveCounter -= 1;
-    autoSaveLabel.innerHTML = "Auto saving in " + autoSaveCounter + " seconds.";
-  } else if (autoSaveCounter == 1) {
-    autoSaveCounter -= 1;
-    autoSaveLabel.innerHTML = "Saving now.";
-  } else {
-    autoSaveCounter = 11;
-    saveResume();
-    autoSaveLabel.innerHTML = "Saved.";
-  }
-}, 1000);
+// var intervalId = window.setInterval(function () {
+//   const autoSaveLabel = document.querySelector(".auto-save-label");
+//   if (autoSaveCounter > 1) {
+//     autoSaveCounter -= 1;
+//     autoSaveLabel.innerHTML = "Auto saving in " + autoSaveCounter + " seconds.";
+//   } else if (autoSaveCounter == 1) {
+//     autoSaveCounter -= 1;
+//     autoSaveLabel.innerHTML = "Saving now.";
+//   } else {
+//     autoSaveCounter = 11;
+//     saveResume();
+//     autoSaveLabel.innerHTML = "Saved.";
+//   }
+// }, 1000);
 
 function saveResumeNow() {
   const autoSaveLabel = document.querySelector(".auto-save-label");
   autoSaveCounter = 0;
   autoSaveLabel.innerHTML = "Saving now.";
+  // Remove this line
+  // clearInterval(intervalId);
+  saveResume();
+  // Till here
 }
 
 function saveResume() {

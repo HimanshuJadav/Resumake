@@ -3,14 +3,18 @@ var educationCounter = 0;
 var skillCounter = 0;
 var linkCounter = 0;
 var parser = new DOMParser();
+const ElementTypeEnum = {
+  EMPLOYMENT: "employment",
+  LINKS: "links",
+  EDUCATION: "education",
+  SKILLS: "skills",
+};
 
 var arrCollapsibles = document.getElementsByClassName("collapsible");
 addCollapsibleAction(arrCollapsibles);
 
-createEditorFrom(document.querySelector("#professional-summary-editor"));
-
 // Employment
-function addEmployment() {
+function addEmployment(employmentDescription) {
   const type = "employment";
   const employmentHistory = document.querySelector(".employment-history");
   const employmentContainer = document.querySelector(".employment-container");
@@ -173,7 +177,7 @@ function addEmployment() {
 
   employmentContainer.insertAdjacentHTML("beforeend", employment);
 
-  createEditorFrom(historyEditor);
+  createEditorFrom(historyEditor, employmentDescription);
 
   expandOrCollapse(employmentHistory.children[0], false);
 
@@ -753,8 +757,8 @@ function collapsibleClickEvent(element) {
   expandOrCollapse(target, true);
 }
 
-function createEditorFrom(element) {
-  element = document.querySelector("#" + element.id);
+function createEditorFrom(elementToChange, description) {
+  const element = document.querySelector("#" + elementToChange.id);
   ClassicEditor.create(element, {
     removePlugins: [
       "CKFinderUploadAdapter",
@@ -779,9 +783,15 @@ function createEditorFrom(element) {
       "TableToolbar",
       "TextTransformation",
     ],
-  }).catch((error) => {
-    console.error(error);
-  });
+  })
+    .then((newEditor) => {
+      if (description != undefined) {
+        newEditor.setData(description);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 //   var plugins = ClassicEditor.builtinPlugins.map(
@@ -883,4 +893,97 @@ function removeRating(arrChildren) {
   for (let indexChild = 0; indexChild < arrChildren.length; indexChild++) {
     arrChildren[indexChild].className = "rating";
   }
+}
+
+// Load Resume From Local Storage
+const resumeJSON = localStorage.resume;
+var resume;
+if (resumeJSON != null) {
+  resume = JSON.parse(resumeJSON);
+  setPersonalDetails(resume[1]);
+  // setProfessionalSummary(resume[2]);
+
+  createEditorFrom(
+    document.querySelector("#professional-summary-editor"),
+    resume[2].section["professional-summary"]
+  );
+  setLoopedRecords(resume[3], ElementTypeEnum.EMPLOYMENT);
+  setLoopedRecords(resume[4], ElementTypeEnum.EDUCATION);
+  setLoopedRecords(resume[5], ElementTypeEnum.SKILLS);
+  setLoopedRecords(resume[6], ElementTypeEnum.LINKS);
+} else {
+  createEditorFrom(document.querySelector("#professional-summary-editor"));
+}
+
+function setLoopedRecords(records, type) {
+  for (let index = 0; index < records.children.length; index++) {
+    const element = records.children[index];
+    switch (type) {
+      case ElementTypeEnum.EMPLOYMENT:
+        addEmployment(element["employment-history"]);
+        break;
+      case ElementTypeEnum.LINKS:
+        addLink();
+        break;
+      case ElementTypeEnum.EDUCATION:
+        addEducation(element["education-history"]);
+        break;
+      case ElementTypeEnum.SKILLS:
+        addSkill();
+        break;
+      default:
+        console.error("Unknown type: " + type);
+    }
+
+    const keys = Object.keys(element);
+    keys.forEach((key) => {
+      const value = element[key];
+      const keyParts = key.split("-");
+      if (isNaN(keyParts[keyParts.length - 1])) {
+        key = key + "-" + (index + 1);
+      } else {
+        keyParts[keyParts.length - 1] = index + 1;
+        key = keyParts.join("-");
+      }
+      let titleKey = key;
+      if (key.startsWith("employment-job-title")) {
+        titleKey = key.replace("employment-job-title", "employment-title");
+      } else if (key.startsWith("education-degree")) {
+        titleKey = key.replace("education-degree", "education-title");
+      } else if (key.startsWith("skill-label")) {
+        titleKey = key.replace("skill-label", "skill-title");
+      } else if (key.startsWith("link-label")) {
+        titleKey = key.replace("link-label", "link-title");
+      }
+      const HTMLElement = document.querySelector("#" + key);
+      if (HTMLElement != null) {
+        HTMLElement.value = value;
+      }
+      if (titleKey !== key) {
+        const titleHTMLElement = document.querySelector("#" + titleKey);
+        if (titleHTMLElement != null) {
+          titleHTMLElement.innerHTML = value;
+        }
+      }
+      if (key.startsWith("rating")) {
+        titleKey = "skill-rating-" + (index + 1);
+        const HTMLElement = document.querySelector("#" + titleKey);
+        const arrChildren = HTMLElement.children;
+        if (arrChildren.length > 0) {
+          updateRating(value, HTMLElement.children[0]);
+        }
+      }
+    });
+  }
+}
+
+function setPersonalDetails(personalDetails) {
+  const keys = Object.keys(personalDetails.section);
+  keys.forEach((key) => {
+    const value = personalDetails.section[key];
+    const HTMLElement = document.querySelector("#" + key);
+    if (HTMLElement != null) {
+      HTMLElement.value = value;
+    }
+  });
 }
