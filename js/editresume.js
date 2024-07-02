@@ -14,7 +14,7 @@ var arrCollapsibles = document.getElementsByClassName("collapsible");
 addCollapsibleAction(arrCollapsibles);
 
 // Employment
-function addEmployment(employmentDescription) {
+function addEmployment(employmentDescription, shouldExpand) {
   const type = "employment";
   const employmentHistory = document.querySelector(".employment-history");
   const employmentContainer = document.querySelector(".employment-container");
@@ -178,8 +178,9 @@ function addEmployment(employmentDescription) {
   employmentContainer.insertAdjacentHTML("beforeend", employment);
 
   createEditorFrom(historyEditor, employmentDescription);
-
-  expandOrCollapse(employmentHistory.children[0], false);
+  if (shouldExpand != false) {
+    expandOrCollapse(employmentHistory.children[0], false);
+  }
 
   var deleteJob = document.querySelector("#delete-job");
   deleteJob.dataset.type = type;
@@ -225,8 +226,6 @@ function addEmployment(employmentDescription) {
   var employmentCity = document.querySelector("#employment-city");
   employmentCity.name = "employment-city-" + employmentCounter;
   employmentCity.id = "employment-city-" + employmentCounter;
-  // var arrCollapsibles = employmentHTML.getElementsByClassName("collapsible");
-  // addCollapsibleAction(arrCollapsibles);
 
   const employmentItems = document.querySelectorAll(
     ".employment-container .element-container"
@@ -243,7 +242,7 @@ function addEmployment(employmentDescription) {
 }
 
 // Education
-function addEducation() {
+function addEducation(educationDescription, shouldExpand) {
   const type = "education";
   const educationHistory = document.querySelector("." + type + "-history");
   const educationContainer = document.querySelector("." + type + "-container");
@@ -391,9 +390,10 @@ function addEducation() {
 
   educationContainer.insertAdjacentHTML("beforeend", education);
 
-  createEditorFrom(historyEditor);
-
-  expandOrCollapse(educationHistory.children[0], false);
+  createEditorFrom(historyEditor, educationDescription);
+  if (shouldExpand != false) {
+    expandOrCollapse(educationHistory.children[0], false);
+  }
 
   var deleteEducation = document.querySelector("#delete-" + type);
   deleteEducation.dataset.index = educationCounter;
@@ -420,8 +420,6 @@ function addEducation() {
   var educationCity = document.querySelector("#education-city");
   educationCity.name = "education-city-" + educationCounter;
   educationCity.id = "education-city-" + educationCounter;
-  // var arrCollapsibles = employmentHTML.getElementsByClassName("collapsible");
-  // addCollapsibleAction(arrCollapsibles);
 
   const educationItems = document.querySelectorAll(
     ".education-container .element-container"
@@ -438,7 +436,7 @@ function addEducation() {
 }
 
 // Skill
-function addSkill() {
+function addSkill(shouldExpand) {
   const type = "skill";
   const skillHistory = document.querySelector(".skills");
   const skillContainer = document.querySelector("." + type + "-container");
@@ -527,8 +525,9 @@ function addSkill() {
   const skill = skillHTML.documentElement.childNodes[1].innerHTML;
 
   skillContainer.insertAdjacentHTML("beforeend", skill);
-
-  expandOrCollapse(skillHistory.children[0], false);
+  if (shouldExpand != false) {
+    expandOrCollapse(skillHistory.children[0], false);
+  }
 
   var deleteSkill = document.querySelector("#delete-" + type);
   deleteSkill.dataset.index = skillCounter;
@@ -551,7 +550,7 @@ function addSkill() {
 }
 
 // Links
-function addLink() {
+function addLink(shouldExpand) {
   const type = "link";
   const linkHistory = document.querySelector(".links");
   const linkContainer = document.querySelector("." + type + "-container");
@@ -628,8 +627,9 @@ function addLink() {
   const link = skillHTML.documentElement.childNodes[1].innerHTML;
 
   linkContainer.insertAdjacentHTML("beforeend", link);
-
-  expandOrCollapse(linkHistory.children[0], false);
+  if (shouldExpand != false) {
+    expandOrCollapse(linkHistory.children[0], false);
+  }
 
   var deleteLink = document.querySelector("#delete-" + type);
   deleteLink.dataset.index = linkCounter;
@@ -640,8 +640,6 @@ function addLink() {
   var linkURL = document.querySelector("#" + type + "-url");
   linkURL.name = type + "-url-" + linkCounter;
   linkURL.id = type + "-url-" + linkCounter;
-  // var arrCollapsibles = employmentHTML.getElementsByClassName("collapsible");
-  // addCollapsibleAction(arrCollapsibles);
 
   const linkItems = document.querySelectorAll(
     ".link-container .element-container"
@@ -920,16 +918,16 @@ function setLoopedRecords(records, type) {
     const element = records.children[index];
     switch (type) {
       case ElementTypeEnum.EMPLOYMENT:
-        addEmployment(element["employment-history"]);
+        addEmployment(element["employment-history"], false);
         break;
       case ElementTypeEnum.LINKS:
-        addLink();
+        addLink(false);
         break;
       case ElementTypeEnum.EDUCATION:
-        addEducation(element["education-history"]);
+        addEducation(element["education-history"], false);
         break;
       case ElementTypeEnum.SKILLS:
-        addSkill();
+        addSkill(false);
         break;
       default:
         console.error("Unknown type: " + type);
@@ -986,4 +984,10 @@ function setPersonalDetails(personalDetails) {
       HTMLElement.value = value;
     }
   });
+}
+
+//Download
+function download() {
+  var paramTemplate = getParam("template");
+  window.location.href = "/resumetemplates/" + paramTemplate + ".html";
 }
