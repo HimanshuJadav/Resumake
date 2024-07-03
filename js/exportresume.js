@@ -15,16 +15,18 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function exportResume() {
-  const { jsPDF } = window.jspdf;
+  var element = document.querySelector(".container");
+  var opt = {
+    margin: 1,
+    filename: "resume.pdf",
+    image: { type: "jpeg", quality: 0.98 },
+    html2canvas: { scale: 2, scrollY: 0 },
+    jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
+    pagebreak: { mode: ["css"] },
+  };
 
-  let doc = new jsPDF("p", "pt", "a4");
-  let pdfjs = document.querySelector(".container");
-
-  doc.html(pdfjs, {
-    callback: function (doc) {
-      doc.save("resume.pdf");
-    },
-  });
+  // New Promise-based usage:
+  html2pdf().set(opt).from(element).save();
 }
 
 function loadResume() {
@@ -78,6 +80,20 @@ function setLoopedRecords(records, type) {
         if (key.startsWith("link-url")) {
           HTMLElement.href = value;
         }
+        if (value == "") {
+          HTMLElement.remove();
+        } else {
+          // Remove element if it has br only - CKEditor
+          var arrChildren = HTMLElement.children;
+          if (arrChildren.length > 0) {
+            arrChildren = arrChildren[0].children;
+            if (arrChildren.length == 1) {
+              if (arrChildren[0].nodeName.toLowerCase() == "br") {
+                HTMLElement.remove();
+              }
+            }
+          }
+        }
       }
       if (key.startsWith("rating")) {
         for (let counter = 1; counter <= value; counter++) {
@@ -109,20 +125,22 @@ function addEmployment() {
   employmentCounter += 1;
   const employmentHTML = new DOMParser().parseFromString(
     `<div class="section__list-item">
-      <div class="left">
-        <div class="name" id="employer-name">KlowdBox</div>
-        <div class="one-line"><div id="employment-city"></div>,&nbsp;
-        <div id="employment-country"></div></div>
-        <div class="one-line">
-        <div id="employment-start-date"></div>&nbsp;-&nbsp;
-        <div id="employment-end-date"></div>
-        </div>
-      </div>
-      <div class="right">
-        <div class="name" id="employment-job-title"></div>
-        <div id="employment-history"></div>
-      </div>
-    </div>`,
+    <div class="one-line">
+      <div class="name" id="employment-job-title"></div>
+      <span class="separator"></span>
+      <div class="name" id="employer-name"></div>
+    </div>
+    <div class="one-line">
+      <div id="employment-city"></div>
+      ,&nbsp;
+      <div id="employment-country"></div>
+      <span class="separator"></span>
+      <div id="employment-start-date"></div>
+      &nbsp;-&nbsp;
+      <div id="employment-end-date"></div>
+    </div>
+    <div id="employment-history"></div>
+  </div>`,
     "text/html"
   );
   var elementContainer = employmentHTML.querySelector(".section__list-item");
@@ -161,22 +179,22 @@ function addEducation() {
   educationCounter += 1;
   const educationHTML = new DOMParser().parseFromString(
     `<div class="section__list-item">
-          <div class="left">
-            <div class="name" id="education-school">KlowdBox</div>
-            <div class="one-line">
-              <div id="education-city"></div>,&nbsp;
-              <div id="education-country"></div>
-            </div>
-            <div class="one-line">
-              <div id="education-start-date"></div>&nbsp;-&nbsp;
-              <div id="education-end-date"></div>
-            </div>
-          </div>
-          <div class="right">
-            <div class="name" id="education-degree"></div>
-            <div id="education-history"></div>
-          </div>
-        </div>`,
+    <div class="one-line">
+      <div class="name" id="education-degree"></div>
+      <span class="separator"></span>
+      <div class="name" id="education-school"></div>
+    </div>
+    <div class="one-line">
+      <div id="education-city"></div>
+      ,&nbsp;
+      <div id="education-country"></div>
+      <span class="separator"></span>
+      <div id="education-start-date"></div>
+      &nbsp;-&nbsp;
+      <div id="education-end-date"></div>
+    </div>
+    <div id="education-history"></div>
+  </div>`,
     "text/html"
   );
   var elementContainer = educationHTML.querySelector(".section__list-item");
@@ -215,7 +233,7 @@ function addSkill() {
   skillCounter += 1;
   const skillHTML = new DOMParser().parseFromString(
     `<div class="skills__item">
-      <div class="left"><div class="skill-label name" id="skill-label">Javascript</div></div>
+      <div class="left"><div class="name" id="skill-label">Javascript</div></div>
       <div class="right">
             <input id="skill-checkbox-1" type="checkbox" checked />
             <label for="skill-checkbox-1" id="skill-checkbox-label-1"></label>
@@ -263,11 +281,9 @@ function addLink() {
   linkCounter += 1;
   const linkHTML = new DOMParser().parseFromString(
     `<div class="section__list-item">
-              <div class="left">
-                <div class="link-label name" id="link-label">KlowdBox</div>
-              </div>
-              <div class="right">
-                <a class="link-url name" id="link-url">Fr developer</a>
+              <div class="one-line">
+                <div class="name" id="link-label"></div>:&nbsp;
+                <a class="name" id="link-url"></a>
               </div>
             </div>`,
     "text/html"

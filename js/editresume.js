@@ -667,8 +667,13 @@ function setEmploymentIsCurrentJob(event) {
   var employmentEndDate = document.querySelector(
     "#employment-end-date-" + event.target.getAttribute("data-index")
   );
-
-  employmentEndDate.disabled = event.target.checked == true;
+  const isChecked = event.target.checked == true;
+  if (isChecked) {
+    employmentEndDate.value = "Present";
+  } else {
+    employmentEndDate.value = "";
+  }
+  employmentEndDate.disabled = isChecked;
 }
 
 function deleteItem(event) {

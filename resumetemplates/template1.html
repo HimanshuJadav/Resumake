@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+      integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script src="/js/exportresume.js"></script>
     <style>
       * {
@@ -32,7 +36,14 @@
         box-shadow: 1px 1px 2px #dad7d7;
         border-radius: 3px;
         padding: 40px;
-        margin-top: 50px;
+        margin-top: 0px;
+
+        .separator {
+          height: 20px;
+          display: inline-block;
+          border-left: 2px solid #999;
+          margin: 0px 10px;
+        }
       }
 
       .header {
@@ -64,9 +75,6 @@
 
         .separator {
           height: 10px;
-          display: inline-block;
-          border-left: 2px solid #999;
-          margin: 0px 10px;
         }
 
         .wanted-job-title {
@@ -97,7 +105,7 @@
         }
 
         .section__list-item {
-          margin-bottom: 40px;
+          margin-bottom: 20px;
         }
 
         .section__list-item:last-of-type {
@@ -113,16 +121,17 @@
         }
 
         .left {
-          width: 60%;
+          width: 39%;
         }
 
         .right {
           text-align: right;
-          width: 39%;
+          width: 60%;
         }
 
         .name {
           font-weight: bold;
+          font-size: 16px;
         }
 
         a {
@@ -159,6 +168,9 @@
           }
         }
       }
+      li {
+        break-inside: avoid;
+      }
     </style>
   </head>
   <body>
@@ -184,17 +196,14 @@
           <span class="phone">Phone: </span>
           <span class="phone-number">111-222-3333</span>
         </div>
-
-        <div class="about">
-          <span class="wanted-job-title">Front-End Developer </span>
-          <span class="professional-summary">
-            I am a front-end developer with more than 3 years of experience
-            writing html, css, and js. I'm motivated, result-focused and seeking
-            a successful team-oriented company with opportunity to grow.
-          </span>
-        </div>
       </div>
       <div class="details">
+        <div class="section">
+          <div class="about">
+            <div class="section__title wanted-job-title"></div>
+            <span class="professional-summary"> </span>
+          </div>
+        </div>
         <div class="section">
           <div class="section__title">Experience</div>
           <div class="section__list employment-container"></div>
