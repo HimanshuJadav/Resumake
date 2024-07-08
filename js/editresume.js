@@ -992,6 +992,11 @@ function setLoopedRecords(records, type) {
       const HTMLElement = document.querySelector("#" + key);
       if (HTMLElement != null) {
         HTMLElement.value = value;
+        if (HTMLElement.type == "checkbox") {
+          HTMLElement.checked = value;
+          var event = new Event("change");
+          HTMLElement.dispatchEvent(event);
+        }
       }
       if (titleKey !== key) {
         const titleHTMLElement = document.querySelector("#" + titleKey);

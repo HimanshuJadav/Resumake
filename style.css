@@ -8,6 +8,9 @@ table {
   border-style: none;
   border-width: 0px;
 }
+td {
+  width: 50%;
+}
 .shadow {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }

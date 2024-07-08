@@ -91,12 +91,16 @@ function saveValues(section, children, values) {
       }
       saveValues(section, child.children, values);
     } else if (child.nodeName.toLowerCase() === "input") {
+      var value = child.value;
+      if (child.type === "checkbox") {
+        value = child.checked;
+      }
       values = getSaveValue(
         child,
         section,
         currentIndex,
         values,
-        child.value,
+        value,
         child.name
       );
     }
