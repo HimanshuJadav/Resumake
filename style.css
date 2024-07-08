@@ -189,6 +189,10 @@ button:hover {
   background-color: #ffffff00;
 }
 
+.required {
+  border: 1px solid red;
+}
+
 /*Margin and Padding*/
 .mt-10 {
   margin-top: 10px;

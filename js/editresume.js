@@ -54,6 +54,8 @@ function addEmployment(employmentDescription, shouldExpand) {
                     name="employment-job-title"
                     id="employment-job-title"
                     onkeyup="javascript:updateTitleOnEnter(this)"
+                    placeholder="Job title" title="Enter job title"
+                    required
                   />
                 </div>
               </div>
@@ -67,6 +69,8 @@ function addEmployment(employmentDescription, shouldExpand) {
                     type="text"
                     name="employer-name"
                     id="employer-name"
+                    placeholder="Employer name" title="Enter employer name"
+                    required
                   />
                 </div>
               </div>
@@ -82,6 +86,8 @@ function addEmployment(employmentDescription, shouldExpand) {
                     type="month"
                     name="employment-start-date"
                     id="employment-start-date"
+                    placeholder="Start date" title="When did your employment start?"
+                    required
                   />
                 </div>
               </div>
@@ -95,6 +101,7 @@ function addEmployment(employmentDescription, shouldExpand) {
                     id="employment-is-current-job"
                     name="employment-is-current-job"
                     value="employment-is-current-job"
+                    title="Is it your current job?"
                   />
                   <label
                     for="employment-is-current-job-label"
@@ -109,6 +116,8 @@ function addEmployment(employmentDescription, shouldExpand) {
                     type="month"
                     name="employment-end-date"
                     id="employment-end-date"
+                    placeholder="End date" title="When did your employment end?"
+                    required
                   />
                 </div>
               </div>
@@ -124,6 +133,8 @@ function addEmployment(employmentDescription, shouldExpand) {
                     type="text"
                     name="employment-country"
                     id="employment-country"
+                    placeholder="Employment country" title="Enter employment country"
+                    required
                   />
                 </div>
               </div>
@@ -137,6 +148,8 @@ function addEmployment(employmentDescription, shouldExpand) {
                     type="text"
                     name="employment-city"
                     id="employment-city"
+                    placeholder="Employment city" title="Enter employment city"
+                    required
                   />
                 </div>
               </div>
@@ -282,6 +295,8 @@ function addEducation(educationDescription, shouldExpand) {
                       name="education-degree"
                       id="education-degree"
                       onkeyup="javascript:updateTitleOnEnter(this)"
+                      placeholder="Education degree" title="Enter education degree"
+                      required
                     />
                   </div>
                 </div>
@@ -295,6 +310,8 @@ function addEducation(educationDescription, shouldExpand) {
                       type="text"
                       name="education-school"
                       id="education-school"
+                      placeholder="School name" title="Enter school name"
+                      required
                     />
                   </div>
                 </div>
@@ -310,6 +327,8 @@ function addEducation(educationDescription, shouldExpand) {
                       type="month"
                       name="education-start-date"
                       id="education-start-date"
+                      placeholder="Start date" title="When did your education start?"
+                      required
                     />
                   </div>
                 </div>
@@ -323,6 +342,8 @@ function addEducation(educationDescription, shouldExpand) {
                       type="month"
                       name="education-end-date"
                       id="education-end-date"
+                      placeholder="End date" title="When did your education end?"
+                      required
                     />
                   </div>
                 </div>
@@ -338,6 +359,8 @@ function addEducation(educationDescription, shouldExpand) {
                       type="text"
                       name="education-country"
                       id="education-country"
+                      placeholder="Education country" title="Enter education country"
+                      required
                     />
                   </div>
                 </div>
@@ -351,6 +374,8 @@ function addEducation(educationDescription, shouldExpand) {
                       type="text"
                       name="education-city"
                       id="education-city"
+                      placeholder="Education city" title="Enter education city"
+                      required
                     />
                   </div>
                 </div>
@@ -476,6 +501,8 @@ function addSkill(shouldExpand) {
                       name="skill-label"
                       id="skill-label"
                       onkeyup="javascript:updateTitleOnEnter(this)"
+                      placeholder="Skill" title="Enter skill"
+                      required
                     />
                   </div>
                 </div>
@@ -590,6 +617,8 @@ function addLink(shouldExpand) {
                       name="link-label"
                       id="link-label"
                       onkeyup="javascript:updateTitleOnEnter(this)"
+                      placeholder="Label" title="Enter link label"
+                      required
                     />
                   </div>
                 </div>
@@ -603,6 +632,8 @@ function addLink(shouldExpand) {
                       type="url"
                       name="link-url"
                       id="link-url"
+                      placeholder="URL" title="Enter URL"
+                      required
                     />
                   </div>
                 </div>

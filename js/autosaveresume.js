@@ -59,6 +59,7 @@ function saveValues(section, children, values) {
         const arrClassList = child.classList["value"].split(" ");
         if (arrClassList.includes("ck-content")) {
           values = getSaveValue(
+            child,
             section,
             currentIndex,
             values,
@@ -74,6 +75,7 @@ function saveValues(section, children, values) {
             rating = 0;
           }
           values = getSaveValue(
+            child,
             section,
             currentIndex,
             values,
@@ -90,6 +92,7 @@ function saveValues(section, children, values) {
       saveValues(section, child.children, values);
     } else if (child.nodeName.toLowerCase() === "input") {
       values = getSaveValue(
+        child,
         section,
         currentIndex,
         values,
@@ -101,7 +104,20 @@ function saveValues(section, children, values) {
   localStorage.resume = JSON.stringify(values);
 }
 
-function getSaveValue(section, currentIndex, values, value, name) {
+function getSaveValue(element, section, currentIndex, values, value, name) {
+  if (
+    element.nodeName.toLowerCase() === "input" &&
+    value == "" &&
+    !element.classList["value"].includes("required")
+  ) {
+    element.classList.add("required");
+  } else if (
+    name.toLowerCase() === "rating" &&
+    value == "0" &&
+    !element.classList["value"].includes("required")
+  ) {
+    element.classList.add("required");
+  }
   if (arrMultipleItemHolder.includes(section)) {
     var index = values[currentIndex].children.length - 1;
     values[currentIndex].children[index][name] = value;
