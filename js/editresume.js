@@ -12,6 +12,25 @@ const ElementTypeEnum = {
 
 var arrCollapsibles = document.getElementsByClassName("collapsible");
 addCollapsibleAction(arrCollapsibles);
+const month = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
+function getCurrentMonth(element) {
+  var today = new Date();
+  element.placeholder = month[today.getMonth()] + " " + today.getFullYear();
+}
 
 // Employment
 function addEmployment(employmentDescription, shouldExpand) {
@@ -22,152 +41,156 @@ function addEmployment(employmentDescription, shouldExpand) {
   employmentCounter += 1;
   const employmentHTML = new DOMParser().parseFromString(
     `<div draggable="true" class="full-width element-container">
-      <div
-        class="full-width pl-20 collapsible flex-center clear-bg"
-        onclick="javascript:collapsibleClickEvent(this)"
-      >
-        <div class="collapsible-child flex-center full-width">
-          <p class="subtitle" id="employment-title">Job Title</p>
-          <img
-            class="collapsed-arrow accessory-icon mr-10"
-            src="./images/arrow-collapse.png"
-            alt="collapsed"
-          />
-        </div>
+    <div
+      class="full-width pl-20 collapsible flex-center clear-bg"
+      onclick="javascript:collapsibleClickEvent(this)"
+    >
+      <div class="collapsible-child flex-center full-width">
+        <p class="subtitle" id="employment-title">Job Title</p>
         <img
-          class="accessory-icon pl-10 pr-20"
-          id="delete-job"
-          src="./images/delete.png"
-          alt="delete"
+          class="collapsed-arrow accessory-icon mr-10"
+          src="./images/arrow-collapse.png"
+          alt="collapsed"
         />
       </div>
-      <div class="collapsible-content">
-        <table>
-          <tr>
-            <td class="pl-20 pr-20">
-              <div>
-                <div class="full-width">Job Title</div>
-                <div class="mt-10">
-                  <input
-                    class="full-width height-30"
-                    type="text"
-                    name="employment-job-title"
-                    id="employment-job-title"
-                    onkeyup="javascript:updateTitleOnEnter(this)"
-                    placeholder="Job title" title="Enter job title"
-                    required
-                  />
-                </div>
+      <img
+        class="accessory-icon pl-10 pr-20"
+        id="delete-job"
+        src="./images/delete.png"
+        alt="delete"
+      />
+    </div>
+    <div class="collapsible-content">
+      <table>
+        <tr>
+          <td class="pl-20 pr-20">
+            <div>
+              <div class="full-width">Job Title</div>
+              <div class="mt-10">
+                <input
+                  class="full-width height-30"
+                  type="text"
+                  name="employment-job-title"
+                  id="employment-job-title"
+                  onkeyup="javascript:updateTitleOnEnter(this)"
+                  placeholder="Job title"
+                  title="Enter job title"
+                  required
+                />
               </div>
-            </td>
-            <td class="pl-20 pr-20">
-              <div>
-                <div class="full-width">Employer</div>
-                <div class="mt-10">
-                  <input
-                    class="full-width height-30"
-                    type="text"
-                    name="employer-name"
-                    id="employer-name"
-                    placeholder="Employer name" title="Enter employer name"
-                    required
-                  />
-                </div>
+            </div>
+          </td>
+          <td class="pl-20 pr-20">
+            <div>
+              <div class="full-width">Employer</div>
+              <div class="mt-10">
+                <input
+                  class="full-width height-30"
+                  type="text"
+                  name="employer-name"
+                  id="employer-name"
+                  placeholder="Employer name"
+                  title="Enter employer name"
+                  required
+                />
               </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="pt-20 pl-20 pr-20">
-              <div>
-                <div class="full-width">Start Date</div>
-                <div class="mt-10">
-                  <input
-                    class="height-30 full-width"
-                    type="month"
-                    name="employment-start-date"
-                    id="employment-start-date"
-                    placeholder="Start date" title="When did your employment start?"
-                    required
-                  />
-                </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="pt-20 pl-20 pr-20">
+            <div>
+              <div class="full-width">Start Date</div>
+              <div class="mt-10">
+                <input
+                  class="height-30 full-width"
+                  type="month"
+                  name="employment-start-date"
+                  id="employment-start-date"
+                  pattern="(January|Jan|February|Feb|March|Mar|April|Apr|May|June|Jun|July|Jul|August|Aug|September|Sep|October|Oct|November|Nov|December|Dec)(-| )\\d{4}"
+                  required
+                />
               </div>
-            </td>
-            <td class="pt-20 pl-20 pr-20">
-              <div>
-                <div class="full-width">
-                  End Date
-                  <input
-                    type="checkbox"
-                    id="employment-is-current-job"
-                    name="employment-is-current-job"
-                    value="employment-is-current-job"
-                    title="Is it your current job?"
-                  />
-                  <label
-                    for="employment-is-current-job-label"
-                    id="employment-is-current-job-label"
-                  >
-                    I currently work here.</label
-                  >
-                </div>
-                <div class="mt-10">
-                  <input
-                    class="height-30 full-width"
-                    type="month"
-                    name="employment-end-date"
-                    id="employment-end-date"
-                    placeholder="End date" title="When did your employment end?"
-                    required
-                  />
-                </div>
+            </div>
+          </td>
+          <td class="pt-20 pl-20 pr-20">
+            <div>
+              <div class="full-width">
+                End Date
+                <input
+                  type="checkbox"
+                  id="employment-is-current-job"
+                  name="employment-is-current-job"
+                  value="employment-is-current-job"
+                  title="Is it your current job?"
+                />
+                <label
+                  for="employment-is-current-job-label"
+                  id="employment-is-current-job-label"
+                >
+                  I currently work here.</label
+                >
               </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="pt-20 pl-20 pr-20">
-              <div>
-                <div class="full-width">Country</div>
-                <div class="mt-10">
-                  <input
-                    class="full-width height-30"
-                    type="text"
-                    name="employment-country"
-                    id="employment-country"
-                    placeholder="Employment country" title="Enter employment country"
-                    required
-                  />
-                </div>
+              <div class="mt-10">
+                <input
+                  class="height-30 full-width"
+                  type="month"
+                  name="employment-end-date"
+                  id="employment-end-date"
+                  pattern="(January|Jan|February|Feb|March|Mar|April|Apr|May|June|Jun|July|Jul|August|Aug|September|Sep|October|Oct|November|Nov|December|Dec)(-| )\\d{4}"
+                  required
+                />
               </div>
-            </td>
-            <td class="pt-20 pl-20 pr-20">
-              <div>
-                <div class="full-width">City</div>
-                <div class="mt-10">
-                  <input
-                    class="full-width height-30"
-                    type="text"
-                    name="employment-city"
-                    id="employment-city"
-                    placeholder="Employment city" title="Enter employment city"
-                    required
-                  />
-                </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="pt-20 pl-20 pr-20">
+            <div>
+              <div class="full-width">Country</div>
+              <div class="mt-10">
+                <input
+                  class="full-width height-30"
+                  type="text"
+                  name="employment-country"
+                  id="employment-country"
+                  placeholder="Employment country"
+                  title="Enter employment country"
+                  required
+                />
               </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="pt-20 pl-20 pr-20" colspan="2">
-              <div class="full-width pb-10">Description</div>
-              <textarea
-                id="employment-history-editor"
-                placeholder="e.g. Collaborated with the product owner/client to architect change requests and defining project
-            development and usability flows."
-              ></textarea>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>`,
+            </div>
+          </td>
+          <td class="pt-20 pl-20 pr-20">
+            <div>
+              <div class="full-width">City</div>
+              <div class="mt-10">
+                <input
+                  class="full-width height-30"
+                  type="text"
+                  name="employment-city"
+                  id="employment-city"
+                  placeholder="Employment city"
+                  title="Enter employment city"
+                  required
+                />
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="pt-20 pl-20 pr-20" colspan="2">
+            <div class="full-width pb-10">Description</div>
+            <textarea
+              id="employment-history-editor"
+              placeholder="e.g. Collaborated with the product owner/client to architect change requests and defining project
+          development and usability flows."
+            ></textarea>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>`,
     "text/html"
   );
   var elementContainer = employmentHTML.querySelector(".element-container");
@@ -208,10 +231,18 @@ function addEmployment(employmentDescription, shouldExpand) {
   var employmentStartDate = document.querySelector("#employment-start-date");
   employmentStartDate.name = "employment-start-date-" + employmentCounter;
   employmentStartDate.id = "employment-start-date-" + employmentCounter;
+  employmentStartDate.parentElement.addEventListener(
+    "load",
+    getCurrentMonth(employmentStartDate)
+  );
 
   var employmentEndDate = document.querySelector("#employment-end-date");
   employmentEndDate.name = "employment-end-date-" + employmentCounter;
   employmentEndDate.id = "employment-end-date-" + employmentCounter;
+  employmentEndDate.parentElement.addEventListener(
+    "load",
+    getCurrentMonth(employmentEndDate)
+  );
 
   var employmentIsCurrentJob = document.querySelector(
     "#employment-is-current-job"
@@ -263,136 +294,140 @@ function addEducation(educationDescription, shouldExpand) {
   educationCounter += 1;
   const educationHTML = new DOMParser().parseFromString(
     `<div draggable="true" class="full-width element-container">
-      <div
-        class="full-width pl-20 collapsible flex-center clear-bg"
-        onclick="javascript:collapsibleClickEvent(this)"
-      >
-        <div class="collapsible-child flex-center full-width">
-          <p class="subtitle" id="education-title">Education Title</p>
-          <img
-            class="collapsed-arrow accessory-icon mr-10"
-            src="./images/arrow-collapse.png"
-            alt="collapsed"
-          />
-        </div>
+    <div
+      class="full-width pl-20 collapsible flex-center clear-bg"
+      onclick="javascript:collapsibleClickEvent(this)"
+    >
+      <div class="collapsible-child flex-center full-width">
+        <p class="subtitle" id="education-title">Education Title</p>
         <img
-          class="accessory-icon pl-10 pr-20"
-          id="delete-education"
-          src="./images/delete.png"
-          alt="delete"
+          class="collapsed-arrow accessory-icon mr-10"
+          src="./images/arrow-collapse.png"
+          alt="collapsed"
         />
       </div>
-      <div class="collapsible-content">
-          <table>
-            <tr>
-              <td class="pl-20 pr-20">
-                <div>
-                  <div class="full-width">Degree</div>
-                  <div class="mt-10">
-                    <input
-                      class="full-width height-30"
-                      type="text"
-                      name="education-degree"
-                      id="education-degree"
-                      onkeyup="javascript:updateTitleOnEnter(this)"
-                      placeholder="Education degree" title="Enter education degree"
-                      required
-                    />
-                  </div>
-                </div>
-              </td>
-              <td class="pl-20 pr-20">
-                <div>
-                  <div class="full-width">School</div>
-                  <div class="mt-10">
-                    <input
-                      class="full-width height-30"
-                      type="text"
-                      name="education-school"
-                      id="education-school"
-                      placeholder="School name" title="Enter school name"
-                      required
-                    />
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="pt-20 pl-20 pr-20">
-                <div>
-                  <div class="full-width">Start Date</div>
-                  <div class="mt-10">
-                    <input
-                      class="height-30 full-width"
-                      type="month"
-                      name="education-start-date"
-                      id="education-start-date"
-                      placeholder="Start date" title="When did your education start?"
-                      required
-                    />
-                  </div>
-                </div>
-              </td>
-              <td class="pt-20 pl-20 pr-20">
-                <div>
-                  <div class="full-width">End Date</div>
-                  <div class="mt-10">
-                    <input
-                      class="height-30 full-width"
-                      type="month"
-                      name="education-end-date"
-                      id="education-end-date"
-                      placeholder="End date" title="When did your education end?"
-                      required
-                    />
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="pt-20 pl-20 pr-20">
-                <div>
-                  <div class="full-width">Country</div>
-                  <div class="mt-10">
-                    <input
-                      class="full-width height-30"
-                      type="text"
-                      name="education-country"
-                      id="education-country"
-                      placeholder="Education country" title="Enter education country"
-                      required
-                    />
-                  </div>
-                </div>
-              </td>
-              <td class="pt-20 pl-20 pr-20">
-                <div>
-                  <div class="full-width">City</div>
-                  <div class="mt-10">
-                    <input
-                      class="full-width height-30"
-                      type="text"
-                      name="education-city"
-                      id="education-city"
-                      placeholder="Education city" title="Enter education city"
-                      required
-                    />
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="pt-20 pl-20 pr-20" colspan="2">
-                <div class="full-width pb-10">Description</div>
-                <textarea
-                  id="education-history-editor"
-                  placeholder="e.g. Graduated with High Honors."
-                ></textarea>
-              </td>
-            </tr>
-          </table>
-        </div>
-    </div>`,
+      <img
+        class="accessory-icon pl-10 pr-20"
+        id="delete-education"
+        src="./images/delete.png"
+        alt="delete"
+      />
+    </div>
+    <div class="collapsible-content">
+      <table>
+        <tr>
+          <td class="pl-20 pr-20">
+            <div>
+              <div class="full-width">Degree</div>
+              <div class="mt-10">
+                <input
+                  class="full-width height-30"
+                  type="text"
+                  name="education-degree"
+                  id="education-degree"
+                  onkeyup="javascript:updateTitleOnEnter(this)"
+                  placeholder="Education degree"
+                  title="Enter education degree"
+                  required
+                />
+              </div>
+            </div>
+          </td>
+          <td class="pl-20 pr-20">
+            <div>
+              <div class="full-width">School</div>
+              <div class="mt-10">
+                <input
+                  class="full-width height-30"
+                  type="text"
+                  name="education-school"
+                  id="education-school"
+                  placeholder="School name"
+                  title="Enter school name"
+                  required
+                />
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="pt-20 pl-20 pr-20">
+            <div>
+              <div class="full-width">Start Date</div>
+              <div class="mt-10">
+                <input
+                  class="height-30 full-width"
+                  type="month"
+                  name="education-start-date"
+                  id="education-start-date"
+                  pattern="(January|Jan|February|Feb|March|Mar|April|Apr|May|June|Jun|July|Jul|August|Aug|September|Sep|October|Oct|November|Nov|December|Dec)(-| )\\d{4}"
+                  required
+                />
+              </div>
+            </div>
+          </td>
+          <td class="pt-20 pl-20 pr-20">
+            <div>
+              <div class="full-width">End Date</div>
+              <div class="mt-10">
+                <input
+                  class="height-30 full-width"
+                  type="month"
+                  name="education-end-date"
+                  id="education-end-date"
+                  pattern="(January|Jan|February|Feb|March|Mar|April|Apr|May|June|Jun|July|Jul|August|Aug|September|Sep|October|Oct|November|Nov|December|Dec)(-| )\\d{4}"
+                  required
+                />
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="pt-20 pl-20 pr-20">
+            <div>
+              <div class="full-width">Country</div>
+              <div class="mt-10">
+                <input
+                  class="full-width height-30"
+                  type="text"
+                  name="education-country"
+                  id="education-country"
+                  placeholder="Education country"
+                  title="Enter education country"
+                  required
+                />
+              </div>
+            </div>
+          </td>
+          <td class="pt-20 pl-20 pr-20">
+            <div>
+              <div class="full-width">City</div>
+              <div class="mt-10">
+                <input
+                  class="full-width height-30"
+                  type="text"
+                  name="education-city"
+                  id="education-city"
+                  placeholder="Education city"
+                  title="Enter education city"
+                  required
+                />
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="pt-20 pl-20 pr-20" colspan="2">
+            <div class="full-width pb-10">Description</div>
+            <textarea
+              id="education-history-editor"
+              placeholder="e.g. Graduated with High Honors."
+            ></textarea>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>`,
     "text/html"
   );
   var elementContainer = educationHTML.querySelector(".element-container");
@@ -433,10 +468,18 @@ function addEducation(educationDescription, shouldExpand) {
   var educationStartDate = document.querySelector("#education-start-date");
   educationStartDate.name = "education-start-date-" + educationCounter;
   educationStartDate.id = "education-start-date-" + educationCounter;
+  educationStartDate.parentElement.addEventListener(
+    "load",
+    getCurrentMonth(educationStartDate)
+  );
 
   var educationEndDate = document.querySelector("#education-end-date");
   educationEndDate.name = "education-end-date-" + educationCounter;
   educationEndDate.id = "education-end-date-" + educationCounter;
+  educationEndDate.parentElement.addEventListener(
+    "load",
+    getCurrentMonth(educationEndDate)
+  );
 
   var educationCountry = document.querySelector("#education-country");
   educationCountry.name = "education-country-" + educationCounter;
@@ -632,7 +675,8 @@ function addLink(shouldExpand) {
                       type="url"
                       name="link-url"
                       id="link-url"
-                      placeholder="URL" title="Enter URL"
+                      placeholder="https://www.example.com"
+                      pattern="(https://|http://)[a-zA-Z0-9._]{7,}(/.*)?$"
                       required
                     />
                   </div>

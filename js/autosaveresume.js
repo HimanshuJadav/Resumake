@@ -32,13 +32,11 @@ function saveResumeNow() {
 }
 
 function saveResume() {
-  console.log("save resume");
   const arrChildren = document.querySelector(".container").children;
   saveValues(null, arrChildren, []);
 }
 
 function saveValues(section, children, values) {
-  var oldSection = section;
   var currentIndex = values.length - 1;
   for (let childIndex = 0; childIndex < children.length; childIndex++) {
     const child = children[childIndex];
@@ -47,7 +45,6 @@ function saveValues(section, children, values) {
       currentIndex += 1;
       values[currentIndex] = { section: { name: section }, children: [] };
       saveValues(section, child.children, values);
-      console.log("section changed");
     } else if (
       child.nodeName.toLowerCase() === "div" ||
       child.nodeName.toLowerCase() === "table" ||
@@ -69,7 +66,6 @@ function saveValues(section, children, values) {
           return;
         }
         if (arrClassList.includes("skill-rating")) {
-          console.log(child);
           var rating = child.getAttribute("data-rating");
           if (rating == null) {
             rating = 0;
