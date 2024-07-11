@@ -40,13 +40,13 @@ function addEmployment(employmentDescription, shouldExpand) {
 
   employmentCounter += 1;
   const employmentHTML = new DOMParser().parseFromString(
-    `<div draggable="true" class="full-width element-container">
+    `<div draggable="true" class="element-container">
     <div
-      class="full-width pl-20 collapsible flex-center clear-bg"
+      class="collapsible flex-center clear-bg"
       onclick="javascript:collapsibleClickEvent(this)"
     >
       <div class="collapsible-child flex-center full-width">
-        <p class="subtitle" id="employment-title">Job Title</p>
+        <p class="subtitle pl-20" id="employment-title">Job Title</p>
         <img
           class="collapsed-arrow accessory-icon mr-10"
           src="./images/arrow-collapse.png"
@@ -54,7 +54,7 @@ function addEmployment(employmentDescription, shouldExpand) {
         />
       </div>
       <img
-        class="accessory-icon pl-10 pr-20"
+        class="accessory-icon pl-10"
         id="delete-job"
         src="./images/delete.png"
         alt="delete"
@@ -63,7 +63,7 @@ function addEmployment(employmentDescription, shouldExpand) {
     <div class="collapsible-content">
       <table>
         <tr>
-          <td class="pl-20 pr-20">
+          <td class="pt-20 pr-20">
             <div>
               <div class="full-width">Job Title</div>
               <div class="mt-10">
@@ -80,7 +80,7 @@ function addEmployment(employmentDescription, shouldExpand) {
               </div>
             </div>
           </td>
-          <td class="pl-20 pr-20">
+          <td class="pt-20 pr-20">
             <div>
               <div class="full-width">Employer</div>
               <div class="mt-10">
@@ -98,7 +98,7 @@ function addEmployment(employmentDescription, shouldExpand) {
           </td>
         </tr>
         <tr>
-          <td class="pt-20 pl-20 pr-20">
+          <td class="pt-20 pr-20">
             <div>
               <div class="full-width">Start Date</div>
               <div class="mt-10">
@@ -113,7 +113,7 @@ function addEmployment(employmentDescription, shouldExpand) {
               </div>
             </div>
           </td>
-          <td class="pt-20 pl-20 pr-20">
+          <td class="pt-20 pr-20">
             <div>
               <div class="full-width">
                 End Date
@@ -145,7 +145,7 @@ function addEmployment(employmentDescription, shouldExpand) {
           </td>
         </tr>
         <tr>
-          <td class="pt-20 pl-20 pr-20">
+          <td class="pt-20 pr-20">
             <div>
               <div class="full-width">Country</div>
               <div class="mt-10">
@@ -161,7 +161,7 @@ function addEmployment(employmentDescription, shouldExpand) {
               </div>
             </div>
           </td>
-          <td class="pt-20 pl-20 pr-20">
+          <td class="pt-20 pr-20">
             <div>
               <div class="full-width">City</div>
               <div class="mt-10">
@@ -179,7 +179,7 @@ function addEmployment(employmentDescription, shouldExpand) {
           </td>
         </tr>
         <tr>
-          <td class="pt-20 pl-20 pr-20" colspan="2">
+          <td class="pt-20 pr-20" colspan="2">
             <div class="full-width pb-10">Description</div>
             <textarea
               id="employment-history-editor"
@@ -293,13 +293,13 @@ function addEducation(educationDescription, shouldExpand) {
 
   educationCounter += 1;
   const educationHTML = new DOMParser().parseFromString(
-    `<div draggable="true" class="full-width element-container">
+    `<div draggable="true" class="element-container">
     <div
-      class="full-width pl-20 collapsible flex-center clear-bg"
+      class="collapsible flex-center clear-bg"
       onclick="javascript:collapsibleClickEvent(this)"
     >
       <div class="collapsible-child flex-center full-width">
-        <p class="subtitle" id="education-title">Education Title</p>
+        <p class="subtitle pl-20" id="education-title">Education Title</p>
         <img
           class="collapsed-arrow accessory-icon mr-10"
           src="./images/arrow-collapse.png"
@@ -307,7 +307,7 @@ function addEducation(educationDescription, shouldExpand) {
         />
       </div>
       <img
-        class="accessory-icon pl-10 pr-20"
+        class="accessory-icon pl-10"
         id="delete-education"
         src="./images/delete.png"
         alt="delete"
@@ -316,7 +316,7 @@ function addEducation(educationDescription, shouldExpand) {
     <div class="collapsible-content">
       <table>
         <tr>
-          <td class="pl-20 pr-20">
+          <td class="pt-20 pr-20">
             <div>
               <div class="full-width">Degree</div>
               <div class="mt-10">
@@ -333,7 +333,7 @@ function addEducation(educationDescription, shouldExpand) {
               </div>
             </div>
           </td>
-          <td class="pl-20 pr-20">
+          <td class="pt-20 pr-20">
             <div>
               <div class="full-width">School</div>
               <div class="mt-10">
@@ -351,7 +351,7 @@ function addEducation(educationDescription, shouldExpand) {
           </td>
         </tr>
         <tr>
-          <td class="pt-20 pl-20 pr-20">
+          <td class="pt-20 pr-20">
             <div>
               <div class="full-width">Start Date</div>
               <div class="mt-10">
@@ -366,7 +366,7 @@ function addEducation(educationDescription, shouldExpand) {
               </div>
             </div>
           </td>
-          <td class="pt-20 pl-20 pr-20">
+          <td class="pt-20 pr-20">
             <div>
               <div class="full-width">End Date</div>
               <div class="mt-10">
@@ -383,7 +383,7 @@ function addEducation(educationDescription, shouldExpand) {
           </td>
         </tr>
         <tr>
-          <td class="pt-20 pl-20 pr-20">
+          <td class="pt-20 pr-20">
             <div>
               <div class="full-width">Country</div>
               <div class="mt-10">
@@ -399,7 +399,7 @@ function addEducation(educationDescription, shouldExpand) {
               </div>
             </div>
           </td>
-          <td class="pt-20 pl-20 pr-20">
+          <td class="pt-20 pr-20">
             <div>
               <div class="full-width">City</div>
               <div class="mt-10">
@@ -417,7 +417,7 @@ function addEducation(educationDescription, shouldExpand) {
           </td>
         </tr>
         <tr>
-          <td class="pt-20 pl-20 pr-20" colspan="2">
+          <td class="pt-20 pr-20" colspan="2">
             <div class="full-width pb-10">Description</div>
             <textarea
               id="education-history-editor"
@@ -511,13 +511,13 @@ function addSkill(shouldExpand) {
 
   skillCounter += 1;
   const skillHTML = new DOMParser().parseFromString(
-    `<div draggable="true" class="full-width element-container">
+    `<div draggable="true" class="element-container">
       <div
-        class="full-width pl-20 collapsible flex-center clear-bg"
+        class="collapsible flex-center clear-bg"
         onclick="javascript:collapsibleClickEvent(this)"
       >
         <div class="collapsible-child flex-center full-width">
-          <p class="subtitle" id="skill-title">Skill</p>
+          <p class="subtitle pl-20" id="skill-title">Skill</p>
           <img
             class="collapsed-arrow accessory-icon mr-10"
             src="./images/arrow-collapse.png"
@@ -525,7 +525,7 @@ function addSkill(shouldExpand) {
           />
         </div>
         <img
-          class="accessory-icon pl-10 pr-20"
+          class="accessory-icon pl-10"
           id="delete-skill"
           src="./images/delete.png"
           alt="delete"
@@ -534,7 +534,7 @@ function addSkill(shouldExpand) {
       <div class="collapsible-content">
           <table>
             <tr>
-              <td class="pl-20 pr-20">
+              <td class="pt-20 pr-20">
                 <div>
                   <div class="full-width">Skill</div>
                   <div class="mt-10">
@@ -550,10 +550,10 @@ function addSkill(shouldExpand) {
                   </div>
                 </div>
               </td>
-              <td class="pl-20 pr-20">
+              <td class="pt-20 pr-20">
                 <div>
-                  <div class="full-width">Rating</div>
-                    <div class="skill-rating full-width height-30 pb-20">
+                  <div>Rating</div>
+                    <div class="skill-rating height-30 pb-20">
                       <span onclick="updateRating(1, this)"
                             class="rating">•
                       </span>
@@ -627,21 +627,21 @@ function addLink(shouldExpand) {
 
   linkCounter += 1;
   const skillHTML = new DOMParser().parseFromString(
-    `<div draggable="true" class="full-width element-container">
+    `<div draggable="true" class="element-container">
       <div
-        class="full-width pl-20 collapsible flex-center clear-bg"
+        class="collapsible flex-center clear-bg"
         onclick="javascript:collapsibleClickEvent(this)"
       >
         <div class="collapsible-child flex-center full-width">
-          <p class="subtitle" id="link-title">Link</p>
+          <p class="subtitle pl-20" id="link-title">Link</p>
           <img
-            class="collapsed-arrow accessory-icon mr-10"
+            class="collapsed-arrow accessory-icon-child mr-10"
             src="./images/arrow-collapse.png"
             alt="collapsed"
           />
         </div>
         <img
-          class="accessory-icon pl-10 pr-20"
+          class="accessory-icon-child pl-10"
           id="delete-link"
           src="./images/delete.png"
           alt="delete"
@@ -650,7 +650,7 @@ function addLink(shouldExpand) {
       <div class="collapsible-content">
           <table>
             <tr>
-              <td class="pl-20 pr-20">
+              <td class="pt-20 pr-20">
                 <div>
                   <div class="full-width">Link</div>
                   <div class="mt-10">
@@ -666,7 +666,7 @@ function addLink(shouldExpand) {
                   </div>
                 </div>
               </td>
-              <td class="pl-20 pr-20">
+              <td class="pt-20 pr-20">
                 <div>
                   <div class="full-width">URL</div>
                   <div class="mt-10">
@@ -769,6 +769,11 @@ function deleteItem(event) {
 }
 
 function expandOrCollapse(element, isUserAction) {
+  if (element.classList["value"].includes("expanded")) {
+    element.nextElementSibling.classList.add("mt-20");
+  } else {
+    element.nextElementSibling.classList.remove("mt-20");
+  }
   var arrChildren = element.children;
   var content = element.nextElementSibling;
   if (content == null || content.nodeName.toLowerCase() != "div") {
@@ -978,17 +983,17 @@ const resumeJSON = localStorage.resume;
 var resume;
 if (resumeJSON != null) {
   resume = JSON.parse(resumeJSON);
-  setPersonalDetails(resume[1]);
+  setPersonalDetails(resume[0]);
   // setProfessionalSummary(resume[2]);
 
   createEditorFrom(
     document.querySelector("#professional-summary-editor"),
-    resume[2].section["professional-summary"]
+    resume[1].section["professional-summary"]
   );
-  setLoopedRecords(resume[3], ElementTypeEnum.EMPLOYMENT);
-  setLoopedRecords(resume[4], ElementTypeEnum.EDUCATION);
-  setLoopedRecords(resume[5], ElementTypeEnum.SKILLS);
-  setLoopedRecords(resume[6], ElementTypeEnum.LINKS);
+  setLoopedRecords(resume[2], ElementTypeEnum.EMPLOYMENT);
+  setLoopedRecords(resume[3], ElementTypeEnum.EDUCATION);
+  setLoopedRecords(resume[4], ElementTypeEnum.SKILLS);
+  setLoopedRecords(resume[5], ElementTypeEnum.LINKS);
 } else {
   createEditorFrom(document.querySelector("#professional-summary-editor"));
 }

@@ -35,12 +35,12 @@ function loadResume() {
   var resume;
   if (resumeJSON != null) {
     resume = JSON.parse(resumeJSON);
+    setDetails(resume[0]);
     setDetails(resume[1]);
-    setDetails(resume[2]);
-    setLoopedRecords(resume[3], ElementTypeEnum.EMPLOYMENT);
-    setLoopedRecords(resume[4], ElementTypeEnum.EDUCATION);
-    setLoopedRecords(resume[5], ElementTypeEnum.SKILLS);
-    setLoopedRecords(resume[6], ElementTypeEnum.LINKS);
+    setLoopedRecords(resume[2], ElementTypeEnum.EMPLOYMENT);
+    setLoopedRecords(resume[3], ElementTypeEnum.EDUCATION);
+    setLoopedRecords(resume[4], ElementTypeEnum.SKILLS);
+    setLoopedRecords(resume[5], ElementTypeEnum.LINKS);
   }
 }
 

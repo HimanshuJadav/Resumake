@@ -31,6 +31,7 @@ input:invalid {
 .nav-bar {
   margin: 0;
   width: 100%;
+  padding: 0;
 }
 .auto-save-bar {
   width: fit-content;
@@ -43,14 +44,19 @@ input:invalid {
 .auto-save-label {
   margin-left: auto;
   margin-right: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
   text-align: center;
 }
 .button {
   margin-right: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
+  text-align: center;
+}
+.nav-button {
+  margin-right: 10px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   text-align: center;
 }
 .nav-item {
@@ -71,7 +77,7 @@ input:invalid {
 #template-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .template-item {
@@ -146,7 +152,6 @@ button:hover {
   font-weight: normal;
   font-size: small;
   color: gray;
-  padding-left: 20px;
 }
 .overflow {
   overflow: hidden;
@@ -166,6 +171,10 @@ button:hover {
   width: 32px;
   height: 32px;
 }
+.accessory-icon-child {
+  width: 24px;
+  height: 24px;
+}
 .collapsed-arrow {
   transform: initial;
   transition: transform 0.2s ease-out;
@@ -179,7 +188,7 @@ button:hover {
   background-color: lightslategray;
 }
 .collapsible-content {
-  margin: 20px;
+  margin: 5px 20px 20px 20px;
   max-height: 0px;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
@@ -273,4 +282,157 @@ button:hover {
 
 .five {
   color: rgb(24, 159, 14);
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  td {
+    width: 100%;
+  }
+  tr {
+    display: grid;
+  }
+
+  .nav {
+    height: 48px;
+  }
+  .auto-save-label {
+    padding-bottom: 10px;
+  }
+  .nav-button {
+    margin-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+  }
+  .container {
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 20px;
+  }
+
+  /*Edit Resume*/
+  .full-width {
+    width: 90%;
+  }
+  .title {
+    font-size: medium;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  /* CK Editor */
+  .ck-editor__editable_inline {
+    min-height: 200px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  td {
+    width: 100%;
+  }
+  tr {
+    display: grid;
+  }
+
+  .nav {
+    height: 48px;
+  }
+  .auto-save-label {
+    padding-bottom: 10px;
+  }
+  .nav-button {
+    margin-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+  }
+  .container {
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 20px;
+  }
+
+  /*Edit Resume*/
+  .full-width {
+    width: 90%;
+  }
+  .title {
+    font-size: medium;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  /* CK Editor */
+  .ck-editor__editable_inline {
+    min-height: 200px;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  td {
+    width: 50%;
+  }
+  tr {
+    display: revert;
+  }
+
+  .nav {
+    height: 40px;
+  }
+  .auto-save-label {
+    padding-top: 10px;
+  }
+  .nav-button {
+    margin-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+  }
+  .container {
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 20px;
+  }
+
+  /*Edit Resume*/
+  .full-width {
+    width: 100%;
+  }
+  .title {
+    font-size: large;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .container {
+    width: 70%;
+    margin-left: 15%;
+  }
+
+  /*Edit Resume*/
+  .title {
+    font-size: larger;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  /*Edit Resume*/
+  .title {
+    font-size: x-large;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .subtitle {
+    font-size: medium;
+  }
+  /* CK Editor */
+  .ck-editor__editable_inline {
+    min-height: 300px;
+  }
 }

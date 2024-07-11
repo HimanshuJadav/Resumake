@@ -17,21 +17,25 @@
       </ul>
       <div class="auto-save-bar">
         <div class="auto-save-label">Auto saving in 10 seconds.</div>
-        <div class="button">
-          <a href="javascript:saveResumeNow()">Save</a>
+        <div class="nav-button">
+          <a href="javascript:saveResumeNow()"
+            ><img class="accessory-icon" src="/images/save.png" alt="Save"
+          /></a>
         </div>
-        <div class="button">
-          <a href="javascript:download()">Download</a>
+        <div class="nav-button">
+          <a href="javascript:download()"
+            ><img
+              class="accessory-icon"
+              src="/images/download.png"
+              alt="Download"
+          /></a>
         </div>
       </div>
     </div>
     <div class="container">
-      <section id="view-template" class="mt-40" data-name="view-template">
-        <h1 id="template">getParam</h1>
-      </section>
       <section id="personal-details" class="mt-40" data-name="personal-details">
-        <div class="full-width pl-20 pr-20 collapsible flex-center">
-          <p class="title">Personal Details</p>
+        <div class="collapsible flex-center pr-10">
+          <p class="title pl-20">Personal Details</p>
           <img
             class="collapsed-arrow accessory-icon"
             src="./images/arrow-collapse.png"
@@ -41,7 +45,7 @@
         <div class="collapsible-content">
           <table>
             <tr>
-              <td colspan="2" class="pl-20 pr-20">
+              <td colspan="2" class="pr-20">
                 <div>
                   <div class="full-width">Job Title</div>
                   <div class="mt-10">
@@ -59,7 +63,7 @@
               </td>
             </tr>
             <tr>
-              <td class="pt-20 pl-20 pr-20">
+              <td class="pt-20 pr-20">
                 <div>
                   <div class="full-width">First Name</div>
                   <div class="mt-10">
@@ -75,7 +79,7 @@
                   </div>
                 </div>
               </td>
-              <td class="pt-20 pl-20 pr-20">
+              <td class="pt-20 pr-20">
                 <div>
                   <div class="full-width">Last Name</div>
                   <div class="mt-10">
@@ -93,7 +97,7 @@
               </td>
             </tr>
             <tr>
-              <td class="pt-20 pl-20 pr-20">
+              <td class="pt-20 pr-20">
                 <div>
                   <div class="full-width">Email Address</div>
                   <div class="mt-10">
@@ -108,7 +112,7 @@
                   </div>
                 </div>
               </td>
-              <td class="pt-20 pl-20 pr-20">
+              <td class="pt-20 pr-20">
                 <div>
                   <div class="full-width">Phone Number</div>
                   <div class="mt-10">
@@ -126,7 +130,7 @@
               </td>
             </tr>
             <tr>
-              <td class="pt-20 pl-20 pr-20">
+              <td class="pt-20 pr-20">
                 <div>
                   <div class="full-width">Country</div>
                   <div class="mt-10">
@@ -142,7 +146,7 @@
                   </div>
                 </div>
               </td>
-              <td class="pt-20 pl-20 pr-20">
+              <td class="pt-20 pr-20">
                 <div>
                   <div class="full-width">City</div>
                   <div class="mt-10">
@@ -162,13 +166,9 @@
           </table>
         </div>
       </section>
-      <section
-        id="professional-summary"
-        class="mt-20"
-        data-name="professional-summary"
-      >
-        <div class="full-width pl-20 pr-20 collapsible flex-center">
-          <p class="title">Professional Summary</p>
+      <section id="professional-summary" data-name="professional-summary">
+        <div class="collapsible flex-center pr-10">
+          <p class="title pl-20">Professional Summary</p>
           <img
             class="collapsed-arrow accessory-icon"
             src="./images/arrow-collapse.png"
@@ -176,14 +176,18 @@
           />
         </div>
         <div class="collapsible-content">
-          <p class="subtitle">
-            Write 2-4 short & energetic sentences to interest the reader!
-            Mention your role, experience & most importantly - your biggest
-            achievements, best qualities and skills.
-          </p>
           <table>
             <tr>
-              <td colspan="2" class="pl-20 pr-20">
+              <td colspan="2">
+                <p class="subtitle">
+                  Write 2-4 short & energetic sentences to interest the reader!
+                  Mention your role, experience & most importantly - your
+                  biggest achievements, best qualities and skills.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="">
                 <textarea
                   id="professional-summary-editor"
                   placeholder="e.g. Passionate software developer with 8+ years of experience and a track record of ..."
@@ -195,11 +199,11 @@
       </section>
       <section
         id="employment-history"
-        class="mt-20 employment-history"
+        class="employment-history"
         data-name="employment-history"
       >
-        <div class="full-width pl-20 pr-20 collapsible flex-center">
-          <p class="title">Employment History</p>
+        <div class="collapsible flex-center pr-10">
+          <p class="title pl-20">Employment History</p>
           <img
             class="collapsed-arrow accessory-icon"
             src="./images/arrow-collapse.png"
@@ -215,11 +219,11 @@
       </section>
       <section
         id="education"
-        class="mt-20 education-history"
+        class="education-history"
         data-name="education-history"
       >
-        <div class="full-width pl-20 pr-20 collapsible flex-center">
-          <p class="title">Education</p>
+        <div class="collapsible flex-center pr-10">
+          <p class="title pl-20">Education</p>
           <img
             class="collapsed-arrow accessory-icon"
             src="./images/arrow-collapse.png"
@@ -233,9 +237,9 @@
           </div>
         </div>
       </section>
-      <section id="skills" class="mt-20 skills" data-name="skills">
-        <div class="full-width pl-20 pr-20 collapsible flex-center">
-          <p class="title">Skills</p>
+      <section id="skills" class="skills" data-name="skills">
+        <div class="collapsible flex-center pr-10">
+          <p class="title pl-20">Skills</p>
           <img
             class="collapsed-arrow accessory-icon"
             src="./images/arrow-collapse.png"
@@ -249,9 +253,9 @@
           </div>
         </div>
       </section>
-      <section id="links" class="mt-20 links" data-name="links">
-        <div class="full-width pl-20 pr-20 collapsible flex-center">
-          <p class="title">Websites & Social Links</p>
+      <section id="links" class="links" data-name="links">
+        <div class="collapsible flex-center pr-10">
+          <p class="title pl-20">Websites & Social Links</p>
           <img
             class="collapsed-arrow accessory-icon"
             src="./images/arrow-collapse.png"
