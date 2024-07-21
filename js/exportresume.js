@@ -2,12 +2,6 @@ var employmentCounter = 0;
 var educationCounter = 0;
 var skillCounter = 0;
 var linkCounter = 0;
-const ElementTypeEnum = {
-  EMPLOYMENT: "employment",
-  LINKS: "links",
-  EDUCATION: "education",
-  SKILLS: "skills",
-};
 
 document.addEventListener("DOMContentLoaded", function () {
   loadResume();
@@ -66,12 +60,27 @@ function loadResume() {
   var resume;
   if (resumeJSON != null) {
     resume = JSON.parse(resumeJSON);
-    setDetails(resume[0]);
-    setDetails(resume[1]);
-    setLoopedRecords(resume[2], ElementTypeEnum.EMPLOYMENT);
-    setLoopedRecords(resume[3], ElementTypeEnum.EDUCATION);
-    setLoopedRecords(resume[4], ElementTypeEnum.SKILLS);
-    setLoopedRecords(resume[5], ElementTypeEnum.LINKS);
+    for (let index = 0; index < resume.length; index++) {
+      const element = resume[index];
+      const name = element.section.name;
+      if (arrCustomSections.includes(name)) {
+        switch (name) {
+          case "hobbies":
+            addHobbiesSection();
+            break;
+          case "internship-history":
+            addInternshipsSection();
+            break;
+          default:
+            break;
+        }
+      }
+      if (arrMultipleItemHolder.includes(name)) {
+        setLoopedRecords(element, getElementTypeFrom(name));
+      } else {
+        setDetails(element);
+      }
+    }
   }
 }
 
@@ -80,7 +89,7 @@ function setLoopedRecords(records, type) {
     const element = records.children[index];
     switch (type) {
       case ElementTypeEnum.EMPLOYMENT:
-        addEmployment();
+        addEmploymentTypeItem("employment");
         break;
       case ElementTypeEnum.LINKS:
         addLink();
@@ -90,6 +99,11 @@ function setLoopedRecords(records, type) {
         break;
       case ElementTypeEnum.SKILLS:
         addSkill();
+        break;
+      case ElementTypeEnum.INTERNSHIP:
+        addEmploymentTypeItem("internship");
+        break;
+      case ElementTypeEnum.HOBBIES:
         break;
       default:
         console.error("Unknown type: " + type);

@@ -3,12 +3,6 @@ var educationCounter = 0;
 var skillCounter = 0;
 var linkCounter = 0;
 var parser = new DOMParser();
-const ElementTypeEnum = {
-  EMPLOYMENT: "employment",
-  LINKS: "links",
-  EDUCATION: "education",
-  SKILLS: "skills",
-};
 
 var arrCollapsibles = document.getElementsByClassName("collapsible");
 addCollapsibleAction(arrCollapsibles);
@@ -33,20 +27,18 @@ function getCurrentMonth(element) {
 }
 
 // Employment
-function addEmployment(employmentDescription, shouldExpand) {
-  const type = "employment";
-  const employmentHistory = document.querySelector(".employment-history");
-  const employmentContainer = document.querySelector(".employment-container");
-
-  employmentCounter += 1;
-  const employmentHTML = new DOMParser().parseFromString(
+function addEmploymentTypeItem(type, employmentDescription, shouldExpand) {
+  const employmentHistory = document.querySelector("." + type + "-history");
+  const employmentContainer = document.querySelector("." + type + "-container");
+  const typeCounter = employmentContainer.children.length + 1;
+  const typeHTML = new DOMParser().parseFromString(
     `<div draggable="true" class="element-container">
     <div
       class="collapsible flex-center clear-bg"
       onclick="javascript:collapsibleClickEvent(this)"
     >
       <div class="collapsible-child flex-center full-width">
-        <p class="subtitle pl-20" id="employment-title">Job Title</p>
+        <p class="subtitle pl-20" id="employment-title-label">Job Title</p>
         <img
           class="collapsed-arrow accessory-icon mr-10"
           src="./images/arrow-collapse.png"
@@ -70,8 +62,8 @@ function addEmployment(employmentDescription, shouldExpand) {
                 <input
                   class="full-width height-30"
                   type="text"
-                  name="employment-job-title"
-                  id="employment-job-title"
+                  name="employment-title-input"
+                  id="employment-title-input"
                   onkeyup="javascript:updateTitleOnEnter(this)"
                   placeholder="Job title"
                   title="Enter job title"
@@ -119,14 +111,14 @@ function addEmployment(employmentDescription, shouldExpand) {
                 End Date
                 <input
                   type="checkbox"
-                  id="employment-is-current-job"
-                  name="employment-is-current-job"
-                  value="employment-is-current-job"
+                  id="is-current-employment"
+                  name="is-current-employment"
+                  value="is-current-employment"
                   title="Is it your current job?"
                 />
                 <label
-                  for="employment-is-current-job-label"
-                  id="employment-is-current-job-label"
+                  for="is-current-employment-label"
+                  id="is-current-employment-label"
                 >
                   I currently work here.</label
                 >
@@ -193,23 +185,22 @@ function addEmployment(employmentDescription, shouldExpand) {
   </div>`,
     "text/html"
   );
-  var elementContainer = employmentHTML.querySelector(".element-container");
-  elementContainer.id = "employment-container-" + employmentCounter;
+  var elementContainer = typeHTML.querySelector(".element-container");
+  elementContainer.id = type + "-container-" + typeCounter;
 
-  var historyEditor = employmentHTML.querySelector(
-    "#employment-history-editor"
-  );
-  historyEditor.id = "employment-history-editor-" + employmentCounter;
+  var historyEditor = typeHTML.querySelector("#employment-history-editor");
+  historyEditor.id = type + "-history-editor-" + typeCounter;
 
-  var jobTitle = employmentHTML.querySelector("#employment-title");
-  jobTitle.id = "employment-title" + "-" + employmentCounter;
+  var jobTitle = typeHTML.querySelector("#employment-title-label");
+  jobTitle.id = type + "-title-label" + "-" + typeCounter;
 
-  var jobTitleInput = employmentHTML.querySelector("#employment-job-title");
+  var jobTitleInput = typeHTML.querySelector("#employment-title-input");
   jobTitleInput.dataset.type = type;
-  jobTitleInput.dataset.index = employmentCounter;
-  jobTitleInput.id = "employment-job-title" + "-" + employmentCounter;
+  jobTitleInput.dataset.index = typeCounter;
+  jobTitleInput.id = type + "-title-input" + "-" + typeCounter;
+  jobTitleInput.name = type + "-title-input" + "-" + typeCounter;
 
-  const employment = employmentHTML.documentElement.childNodes[1].innerHTML;
+  const employment = typeHTML.documentElement.childNodes[1].innerHTML;
 
   employmentContainer.insertAdjacentHTML("beforeend", employment);
 
@@ -220,59 +211,56 @@ function addEmployment(employmentDescription, shouldExpand) {
 
   var deleteJob = document.querySelector("#delete-job");
   deleteJob.dataset.type = type;
-  deleteJob.dataset.index = employmentCounter;
-  deleteJob.id = "delete-job-" + employmentCounter;
+  deleteJob.dataset.index = typeCounter;
+  deleteJob.id = "delete-" + type + "-" + typeCounter;
   deleteJob.addEventListener(`click`, deleteItem);
 
   var employerName = document.querySelector("#employer-name");
-  employerName.name = "employer-name-" + employmentCounter;
-  employerName.id = "employer-name-" + employmentCounter;
+  employerName.name = type + "-employer-name-" + typeCounter;
+  employerName.id = type + "-employer-name-" + typeCounter;
 
   var employmentStartDate = document.querySelector("#employment-start-date");
-  employmentStartDate.name = "employment-start-date-" + employmentCounter;
-  employmentStartDate.id = "employment-start-date-" + employmentCounter;
+  employmentStartDate.name = type + "-start-date-" + typeCounter;
+  employmentStartDate.id = type + "-start-date-" + typeCounter;
   employmentStartDate.parentElement.addEventListener(
     "load",
     getCurrentMonth(employmentStartDate)
   );
 
   var employmentEndDate = document.querySelector("#employment-end-date");
-  employmentEndDate.name = "employment-end-date-" + employmentCounter;
-  employmentEndDate.id = "employment-end-date-" + employmentCounter;
+  employmentEndDate.name = type + "-end-date-" + typeCounter;
+  employmentEndDate.id = type + "-end-date-" + typeCounter;
   employmentEndDate.parentElement.addEventListener(
     "load",
     getCurrentMonth(employmentEndDate)
   );
 
-  var employmentIsCurrentJob = document.querySelector(
-    "#employment-is-current-job"
-  );
-  employmentIsCurrentJob.id = "employment-is-current-job-" + employmentCounter;
-  employmentIsCurrentJob.dataset.index = employmentCounter;
-  employmentIsCurrentJob.name =
-    "employment-is-current-job-" + employmentCounter;
-  employmentIsCurrentJob.value =
-    "employment-is-current-job-" + employmentCounter;
+  var employmentIsCurrentJob = document.querySelector("#is-current-employment");
+  employmentIsCurrentJob.id = "is-current-" + type + "-" + typeCounter;
+  employmentIsCurrentJob.dataset.index = typeCounter;
+  employmentIsCurrentJob.dataset.type = type;
+  employmentIsCurrentJob.name = "is-current-" + type + "-" + typeCounter;
+  employmentIsCurrentJob.value = "is-current-" + type + "-" + typeCounter;
   employmentIsCurrentJob.addEventListener(`change`, setEmploymentIsCurrentJob);
 
   var employmentIsCurrentJobLabel = document.querySelector(
-    "#employment-is-current-job-label"
+    "#is-current-employment-label"
   );
   employmentIsCurrentJobLabel.for =
-    "employment-is-current-job-label-" + employmentCounter;
+    "is-current-" + type + "-label-" + typeCounter;
   employmentIsCurrentJobLabel.id =
-    "employment-is-current-job-label-" + employmentCounter;
+    "is-current-" + type + "-label-" + typeCounter;
 
   var employmentCountry = document.querySelector("#employment-country");
-  employmentCountry.name = "employment-country-" + employmentCounter;
-  employmentCountry.id = "employment-country-" + employmentCounter;
+  employmentCountry.name = type + "-country-" + typeCounter;
+  employmentCountry.id = type + "-country-" + typeCounter;
 
   var employmentCity = document.querySelector("#employment-city");
-  employmentCity.name = "employment-city-" + employmentCounter;
-  employmentCity.id = "employment-city-" + employmentCounter;
+  employmentCity.name = type + "-city-" + typeCounter;
+  employmentCity.id = type + "-city-" + typeCounter;
 
   const employmentItems = document.querySelectorAll(
-    ".employment-container .element-container"
+    "." + type + "-container .element-container"
   );
 
   employmentItems.forEach(function (employmentItem) {
@@ -733,14 +721,17 @@ function addLink(shouldExpand) {
 function updateTitleOnEnter(inputField) {
   const type = event.target.getAttribute("data-type");
   var title = document.querySelector(
-    "#" + type + "-title-" + inputField.getAttribute("data-index")
+    "#" + type + "-title-label-" + inputField.getAttribute("data-index")
   );
   title.innerHTML = inputField.value;
 }
 
 function setEmploymentIsCurrentJob(event) {
   var employmentEndDate = document.querySelector(
-    "#employment-end-date-" + event.target.getAttribute("data-index")
+    "#" +
+      event.target.getAttribute("data-type") +
+      "-end-date-" +
+      event.target.getAttribute("data-index")
   );
   const isChecked = event.target.checked == true;
   if (isChecked) {
@@ -754,7 +745,7 @@ function setEmploymentIsCurrentJob(event) {
 function deleteItem(event) {
   const type = event.target.getAttribute("data-type");
   var jobTitle = document.querySelector(
-    "#" + type + "-title-" + event.target.getAttribute("data-index")
+    "#" + type + "-title-label-" + event.target.getAttribute("data-index")
   );
   let confirmation =
     jobTitle.innerHTML + " " + type + " will be deleted. Click OK to confirm.";
@@ -983,17 +974,34 @@ const resumeJSON = localStorage.resume;
 var resume;
 if (resumeJSON != null) {
   resume = JSON.parse(resumeJSON);
-  setPersonalDetails(resume[0]);
-  // setProfessionalSummary(resume[2]);
+  setDetails(resume[0]);
 
   createEditorFrom(
     document.querySelector("#professional-summary-editor"),
     resume[1].section["professional-summary"]
   );
-  setLoopedRecords(resume[2], ElementTypeEnum.EMPLOYMENT);
-  setLoopedRecords(resume[3], ElementTypeEnum.EDUCATION);
-  setLoopedRecords(resume[4], ElementTypeEnum.SKILLS);
-  setLoopedRecords(resume[5], ElementTypeEnum.LINKS);
+  for (let index = 2; index < resume.length; index++) {
+    const element = resume[index];
+    const name = element.section.name;
+    if (arrCustomSections.includes(name)) {
+      switch (name) {
+        case ElementTypeEnum.HOBBIES.name:
+          addHobbiesSection(false);
+          setHobbies(element);
+          removeAddSectionForExistingSections(ElementTypeEnum.HOBBIES);
+          break;
+        case ElementTypeEnum.INTERNSHIP.name:
+          addInternshipsSection(false);
+          removeAddSectionForExistingSections(ElementTypeEnum.INTERNSHIP);
+          break;
+        default:
+          break;
+      }
+    }
+    if (arrMultipleItemHolder.includes(name)) {
+      setLoopedRecords(element, getElementTypeFrom(name));
+    }
+  }
 } else {
   createEditorFrom(document.querySelector("#professional-summary-editor"));
 }
@@ -1003,7 +1011,11 @@ function setLoopedRecords(records, type) {
     const element = records.children[index];
     switch (type) {
       case ElementTypeEnum.EMPLOYMENT:
-        addEmployment(element["employment-history"], false);
+        addEmploymentTypeItem(
+          "employment",
+          element["employment-history"],
+          false
+        );
         break;
       case ElementTypeEnum.LINKS:
         addLink(false);
@@ -1014,10 +1026,18 @@ function setLoopedRecords(records, type) {
       case ElementTypeEnum.SKILLS:
         addSkill(false);
         break;
+      case ElementTypeEnum.INTERNSHIP:
+        addEmploymentTypeItem(
+          "internship",
+          element["internship-history"],
+          false
+        );
+        break;
+      case ElementTypeEnum.HOBBIES:
+        break;
       default:
         console.error("Unknown type: " + type);
     }
-
     const keys = Object.keys(element);
     keys.forEach((key) => {
       const value = element[key];
@@ -1029,8 +1049,11 @@ function setLoopedRecords(records, type) {
         key = keyParts.join("-");
       }
       let titleKey = key;
-      if (key.startsWith("employment-job-title")) {
-        titleKey = key.replace("employment-job-title", "employment-title");
+      if (key.startsWith(type.value + "-title-input")) {
+        titleKey = key.replace(
+          type.value + "-title-input",
+          type.value + "-title-label"
+        );
       } else if (key.startsWith("education-degree")) {
         titleKey = key.replace("education-degree", "education-title");
       } else if (key.startsWith("skill-label")) {
@@ -1065,15 +1088,51 @@ function setLoopedRecords(records, type) {
   }
 }
 
-function setPersonalDetails(personalDetails) {
-  const keys = Object.keys(personalDetails.section);
+function setDetails(details) {
+  const keys = Object.keys(details.section);
   keys.forEach((key) => {
-    const value = personalDetails.section[key];
+    const value = details.section[key];
     const HTMLElement = document.querySelector("#" + key);
     if (HTMLElement != null) {
       HTMLElement.value = value;
     }
   });
+}
+
+function setHobbies(details) {
+  const HTMLElement = document.querySelector(
+    "#" + ElementTypeEnum.HOBBIES.value
+  );
+  if (HTMLElement != null) {
+    HTMLElement.innerHTML = details.section.hobbies;
+  }
+}
+
+function removeAddSectionForExistingSections(type) {
+  switch (type) {
+    case ElementTypeEnum.HOBBIES:
+      const hobbies = document.querySelector(
+        ".add-section .collapsible-content .add-hobbies-section"
+      );
+      if (hobbies != null) {
+        hobbies.remove();
+      }
+      break;
+    case ElementTypeEnum.INTERNSHIP:
+      const internships = document.querySelector(
+        ".add-section .collapsible-content .add-internships-section"
+      );
+      if (internships != null) {
+        internships.remove();
+      }
+      break;
+    default:
+      break;
+  }
+  const parent = document.querySelector(".add-section .collapsible-content");
+  if (parent != null && parent.children.length == 0) {
+    parent.parentElement.remove();
+  }
 }
 
 //Download

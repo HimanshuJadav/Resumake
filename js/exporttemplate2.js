@@ -1,8 +1,8 @@
 // Employment
-function addEmployment() {
-  const employmentContainer = document.querySelector(".section__list");
+function addEmploymentTypeItem(type) {
+  const employmentContainer = document.querySelector("." + type + "-container");
 
-  employmentCounter += 1;
+  const typeCounter = employmentContainer.children.length + 1;
   const employmentHTML = new DOMParser().parseFromString(
     `<li class="section__list-item">
     <div class="one-line">
@@ -26,32 +26,32 @@ function addEmployment() {
     "text/html"
   );
   var elementContainer = employmentHTML.querySelector(".section__list-item");
-  elementContainer.id = "employment-item-" + employmentCounter;
+  elementContainer.id = type + "-item-" + typeCounter;
 
   const employment = employmentHTML.documentElement.childNodes[1].innerHTML;
 
   employmentContainer.insertAdjacentHTML("beforeend", employment);
 
   var employmentJobTitle = document.querySelector("#employment-job-title");
-  employmentJobTitle.id = "employment-job-title-" + employmentCounter;
+  employmentJobTitle.id = type + "-title-input-" + typeCounter;
 
   var employerName = document.querySelector("#employer-name");
-  employerName.id = "employer-name-" + employmentCounter;
+  employerName.id = type + "-employer-name-" + typeCounter;
 
   var employmentStartDate = document.querySelector("#employment-start-date");
-  employmentStartDate.id = "employment-start-date-" + employmentCounter;
+  employmentStartDate.id = type + "-start-date-" + typeCounter;
 
   var employmentEndDate = document.querySelector("#employment-end-date");
-  employmentEndDate.id = "employment-end-date-" + employmentCounter;
+  employmentEndDate.id = type + "-end-date-" + typeCounter;
 
   var employmentCountry = document.querySelector("#employment-country");
-  employmentCountry.id = "employment-country-" + employmentCounter;
+  employmentCountry.id = type + "-country-" + typeCounter;
 
   var employmentCity = document.querySelector("#employment-city");
-  employmentCity.id = "employment-city-" + employmentCounter;
+  employmentCity.id = type + "-city-" + typeCounter;
 
   var employmentHistory = document.querySelector("#employment-history");
-  employmentHistory.id = "employment-history-" + employmentCounter;
+  employmentHistory.id = type + "-history-" + typeCounter;
 }
 
 // Education
@@ -171,6 +171,42 @@ function addLink() {
 
   var linkURL = document.querySelector("#link-url");
   linkURL.id = "link-url-" + linkCounter;
+}
+
+// Internship Section
+function addInternshipsSection() {
+  const baseContainer = document.querySelector(".resume_right");
+  console.log("int called");
+  const internshipHTML = new DOMParser().parseFromString(
+    `<div class="resume_item resume_work">
+    <div class="title">
+      <p class="bold">Internships</p>
+    </div>
+    <ul class="section__list internship-container"></ul>
+  </div>`,
+    "text/html"
+  );
+
+  const internships = internshipHTML.documentElement.childNodes[1].innerHTML;
+  baseContainer.insertAdjacentHTML("beforeend", internships);
+}
+
+// Hobbies Section
+function addHobbiesSection() {
+  const baseContainer = document.querySelector(".resume_content");
+
+  const hobbiesHTML = new DOMParser().parseFromString(
+    `<div class="resume_item resume_about">
+            <div class="title">
+              <p class="bold">Hobbies</p>
+            </div>
+            <span class="hobbies" id="hobbies"></span>
+          </div>`,
+    "text/html"
+  );
+
+  const hobbies = hobbiesHTML.documentElement.childNodes[1].innerHTML;
+  baseContainer.insertAdjacentHTML("beforeend", hobbies);
 }
 
 function getMargins() {

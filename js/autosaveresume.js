@@ -1,10 +1,4 @@
 var autoSaveCounter = 10;
-const arrMultipleItemHolder = [
-  "employment-history",
-  "education-history",
-  "skills",
-  "links",
-];
 
 // var intervalId = window.setInterval(function () {
 //   const autoSaveLabel = document.querySelector(".auto-save-label");

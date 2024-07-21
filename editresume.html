@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edit Resume</title>
     <link rel="stylesheet" href="/style.css" />
+    <script src="/js/common.js"></script>
     <script src="/js/index.js" async></script>
+    <script src="/js/addsection.js" async></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
     <script src="/js/editresume.js" async></script>
     <script src="/js/autosaveresume.js" async></script>
-    <script src="/js/addsection.js" async></script>
   </head>
   <body>
     <div class="nav shadow">
@@ -214,7 +215,9 @@
         <div class="collapsible-content">
           <div class="employment-container"></div>
           <div class="add-employment">
-            <a href="javascript:addEmployment()">Add Employment</a>
+            <a href="javascript:addEmploymentTypeItem('employment')"
+              >Add Employment</a
+            >
           </div>
         </div>
       </section>
@@ -280,9 +283,11 @@
           />
         </div>
         <div class="collapsible-content">
-          <div class="link-container"></div>
-          <div class="add-link">
-            <a href="javascript:addHobbiesSection()">Hobbies</a>
+          <div class="add-hobbies-section">
+            <a href="javascript:addHobbiesSection(true)">Hobbies</a>
+          </div>
+          <div class="add-internships-section">
+            <a href="javascript:addInternshipsSection(true)">Internships</a>
           </div>
         </div>
       </section>
