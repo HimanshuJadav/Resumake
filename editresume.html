@@ -9,6 +9,7 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
     <script src="/js/editresume.js" async></script>
     <script src="/js/autosaveresume.js" async></script>
+    <script src="/js/addsection.js" async></script>
   </head>
   <body>
     <div class="nav shadow">
@@ -266,6 +267,22 @@
           <div class="link-container"></div>
           <div class="add-link">
             <a href="javascript:addLink()">Add Link</a>
+          </div>
+        </div>
+      </section>
+      <section id="add-section" class="add-section" data-name="add-section">
+        <div class="collapsible flex-center pr-10">
+          <p class="title pl-20">Add Section</p>
+          <img
+            class="collapsed-arrow accessory-icon"
+            src="./images/arrow-collapse.png"
+            alt="collapsed"
+          />
+        </div>
+        <div class="collapsible-content">
+          <div class="link-container"></div>
+          <div class="add-link">
+            <a href="javascript:addHobbiesSection()">Hobbies</a>
           </div>
         </div>
       </section>

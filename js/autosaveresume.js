@@ -42,6 +42,9 @@ function saveValues(section, children, values) {
     const child = children[childIndex];
     if (child.nodeName.toLowerCase() === "section") {
       section = child.getAttribute("data-name");
+      if (section == "add-section") {
+        continue;
+      }
       currentIndex += 1;
       values[currentIndex] = { section: { name: section }, children: [] };
       saveValues(section, child.children, values);
@@ -91,6 +94,19 @@ function saveValues(section, children, values) {
       if (child.type === "checkbox") {
         value = child.checked;
       }
+      values = getSaveValue(
+        child,
+        section,
+        currentIndex,
+        values,
+        value,
+        child.name
+      );
+    } else if (
+      section.toLowerCase() === "hobbies" &&
+      child.nodeName.toLowerCase() === "textarea"
+    ) {
+      var value = child.value;
       values = getSaveValue(
         child,
         section,
