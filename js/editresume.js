@@ -796,23 +796,30 @@ function setParentHeight(parent, content, className) {
 }
 
 function updateArrow(arrChildren, isUserAction) {
-  for (let indexChild = 0; indexChild < arrChildren.length; indexChild++) {
-    var child = arrChildren[indexChild];
-    if (isUserAction == true) {
-      if (child.nodeName.toLowerCase() == "div") {
-        this.updateArrow(child.children, isUserAction);
-        return;
-      }
-      const arrClassList = child.classList["value"].split(" ");
-      if (
-        arrClassList.includes("collapsed-arrow") ||
-        arrClassList.includes("expanded-arrow")
-      ) {
-        child.classList.toggle("expanded-arrow");
-        child.classList.toggle("collapsed-arrow");
-      }
+  if (!isUserAction) return;
+
+  const arrowElement = findArrowElement(arrChildren);
+  if (arrowElement) {
+    arrowElement.classList.toggle("expanded-arrow");
+    arrowElement.classList.toggle("collapsed-arrow");
+  }
+}
+
+function findArrowElement(elements) {
+  for (let element of elements) {
+    if (
+      element.classList.contains("collapsed-arrow") ||
+      element.classList.contains("expanded-arrow")
+    ) {
+      return element;
+    }
+
+    if (element.children.length > 0) {
+      const nestedArrow = findArrowElement(element.children);
+      if (nestedArrow) return nestedArrow;
     }
   }
+  return null;
 }
 
 function addCollapsibleAction(arrCollapsibles) {

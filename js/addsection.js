@@ -6,7 +6,6 @@ function addHobbiesSection(shouldExpand) {
     `<section id="hobbies" class="hobbies" data-name="hobbies">
   <div
     class="collapsible flex-center pr-10"
-    onclick="javascript:collapsibleClickEvent(this)"
   >
     <div class="flex-center">
       <p class="title pl-20">Hobbies</p>
@@ -51,7 +50,11 @@ function addHobbiesSection(shouldExpand) {
   baseContainer.insertAdjacentHTML("beforebegin", hobbies);
   hobbies = document.querySelector(".hobbies");
   const collapsible = document.querySelector(".hobbies .collapsible");
+  collapsible.addEventListener(`click`, collapsibleClickEvent);
+  const arrow = document.querySelector(".hobbies .collapsed-arrow");
   if (shouldExpand) {
+    arrow.classList.toggle("expanded-arrow");
+    arrow.classList.toggle("collapsed-arrow");
     collapsible.classList.add("expanded");
     expandOrCollapse(hobbies.children[0], false);
   } else {
@@ -73,8 +76,7 @@ function addInternshipsSection(shouldExpand) {
     class="internship-history"
     data-name="internship-history"
   >
-    <div class="collapsible flex-center pr-10"
-    onclick="javascript:collapsibleClickEvent(this)">
+    <div class="collapsible flex-center pr-10">
       <div class="flex-center">
       <p class="title pl-20">Internships</p>
       <img
@@ -107,7 +109,11 @@ function addInternshipsSection(shouldExpand) {
   const collapsible = document.querySelector(
     ".internship-history .collapsible"
   );
+  collapsible.addEventListener(`click`, collapsibleClickEvent);
+  const arrow = document.querySelector(".internship-history .collapsed-arrow");
   if (shouldExpand) {
+    arrow.classList.toggle("expanded-arrow");
+    arrow.classList.toggle("collapsed-arrow");
     collapsible.classList.add("expanded");
     expandOrCollapse(internships.children[0], false);
   } else {
