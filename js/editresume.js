@@ -1135,6 +1135,24 @@ function removeAddSectionForExistingSections(type) {
   }
 }
 
+function deleteSectionItem(event) {
+  const type = event.target.getAttribute("data-type");
+  var section = document.querySelector("#" + type);
+  section.remove();
+  switch (type) {
+    case "hobbies":
+      addHobbiesItemBackToAddSection();
+      break;
+    case "internship-history":
+      addInternshipsItemBackToAddSection();
+      break;
+
+    default:
+      break;
+  }
+  event.stopPropagation();
+}
+
 //Download
 function download() {
   var paramTemplate = getParam("template");
