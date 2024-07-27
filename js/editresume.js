@@ -775,10 +775,10 @@ function expandOrCollapse(element, isUserAction) {
     if (content.style.maxHeight) {
       content.style.maxHeight = null;
     } else {
-      content.style.maxHeight = content.scrollHeight + "px";
+      content.style.maxHeight = "100%";
     }
   } else {
-    content.style.maxHeight = content.scrollHeight + "px";
+    content.style.maxHeight = "100%";
   }
 
   var parent = element.parentElement;
@@ -791,7 +791,7 @@ function expandOrCollapse(element, isUserAction) {
 function setParentHeight(parent, content, className) {
   const arrParentClassList = parent.classList["value"].split(" ");
   if (arrParentClassList.includes(className)) {
-    parent.style.maxHeight = parent.scrollHeight + content.scrollHeight + "px";
+    parent.style.maxHeight = "100%";
   }
 }
 

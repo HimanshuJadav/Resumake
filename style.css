@@ -257,6 +257,7 @@ button:hover {
 /* CK Editor */
 .ck-editor__editable_inline {
   min-height: 250px;
+  max-height: 450px;
 }
 
 /* Drag and swap */
@@ -326,6 +327,7 @@ button:hover {
   /* CK Editor */
   .ck-editor__editable_inline {
     min-height: 200px;
+    max-height: 300px;
   }
 }
 
@@ -363,6 +365,7 @@ button:hover {
   /* CK Editor */
   .ck-editor__editable_inline {
     min-height: 200px;
+    max-height: 300px;
   }
 }
 
@@ -429,5 +432,6 @@ button:hover {
   /* CK Editor */
   .ck-editor__editable_inline {
     min-height: 300px;
+    max-height: 450px;
   }
 }
