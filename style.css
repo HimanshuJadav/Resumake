@@ -27,6 +27,7 @@ input:invalid {
   height: auto;
   position: relative;
   display: flex;
+  align-items: center;
 }
 .nav-bar {
   margin: 0;
@@ -54,6 +55,7 @@ input:invalid {
   margin-left: auto;
   margin-right: 10px;
   text-align: center;
+  min-width: 120px;
 }
 .button {
   margin-right: 10px;
