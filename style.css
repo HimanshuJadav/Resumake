@@ -24,7 +24,7 @@ input:invalid {
   background-color: #fff;
   margin: 0px;
   padding: 0px;
-  height: 40px;
+  height: auto;
   position: relative;
   display: flex;
 }
@@ -32,19 +32,27 @@ input:invalid {
   margin: 0;
   width: 100%;
   padding: 0;
+  display: flex;
+  align-items: center;
+  margin-left: 15%;
+}
+.nav-button-item {
+  padding: 4px;
+  height: 24px;
+  width: 24px;
 }
 .auto-save-bar {
   width: fit-content;
-  align-items: end;
+  align-items: center;
   display: flex;
   margin-left: auto;
   position: absolute;
   right: 0;
+  height: 100%;
 }
 .auto-save-label {
   margin-left: auto;
   margin-right: 10px;
-  padding-bottom: 15px;
   text-align: center;
 }
 .button {
@@ -55,8 +63,6 @@ input:invalid {
 }
 .nav-button {
   margin-right: 10px;
-  padding-top: 4px;
-  padding-bottom: 4px;
   text-align: center;
 }
 .nav-item {
@@ -291,17 +297,14 @@ button:hover {
   tr {
     display: grid;
   }
-
-  .nav {
-    height: 48px;
+  .nav-bar {
+    margin-left: 5%;
   }
-  .auto-save-label {
-    padding-bottom: 10px;
+  .auto-save-bar {
+    position: relative;
   }
   .nav-button {
     margin-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
     text-align: center;
   }
   .container {
@@ -334,17 +337,11 @@ button:hover {
   tr {
     display: grid;
   }
-
-  .nav {
-    height: 48px;
-  }
-  .auto-save-label {
-    padding-bottom: 10px;
+  .nav-bar {
+    margin-left: 5%;
   }
   .nav-button {
     margin-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
     text-align: center;
   }
   .container {
@@ -378,16 +375,11 @@ button:hover {
     display: revert;
   }
 
-  .nav {
-    height: 40px;
-  }
-  .auto-save-label {
-    padding-top: 10px;
+  .nav-bar {
+    margin-left: 10%;
   }
   .nav-button {
     margin-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
     text-align: center;
   }
   .container {
@@ -408,6 +400,9 @@ button:hover {
 }
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
+  .nav-bar {
+    margin-left: 15%;
+  }
   .container {
     width: 70%;
     margin-left: 15%;
