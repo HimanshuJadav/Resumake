@@ -129,27 +129,94 @@ function addInternshipsSection(shouldExpand) {
   removeAddSectionForExistingSections(ElementTypeEnum.INTERNSHIP);
 }
 
-function addHobbiesItemBackToAddSection() {
-  var baseContainer = document.querySelector(
-    ".add-section .collapsible-content"
-  );
-  if (baseContainer == null) {
-    addAddSectionContainer();
-    baseContainer = document.querySelector(".add-section .collapsible-content");
-  }
-  const hobbiesHTML = new DOMParser().parseFromString(
-    `<div class="add-hobbies-section">
-    <a href="javascript:addHobbiesSection(true)">Hobbies</a>
-  </div>`,
+// Extra-curricular Activities Section
+function addExtraCurricularSection(shouldExpand) {
+  const baseContainer = document.querySelector(".add-section");
+
+  const extraCurricularHTML = new DOMParser().parseFromString(
+    `<section
+    id="extra-curricular-activities"
+    class="extra-curricular-activities"
+    data-name="extra-curricular-activities"
+  >
+    <div class="collapsible flex-center pr-10">
+      <div class="flex-center">
+      <p class="title pl-20">Extra-curricular Activities</p>
+      <img
+        class="accessory-icon pl-10"
+        id="delete-extra-curricular-activities-section"
+        src="./images/delete.png"
+        alt="delete"
+      />
+    </div>
+      <img
+        class="collapsed-arrow accessory-icon"
+        src="./images/arrow-collapse.png"
+        alt="collapsed"
+      />
+    </div>
+    <div class="collapsible-content">
+      <div class="extra-curricular-activities-container"></div>
+      <div class="add-extra-curricular-activity">
+        <a href="javascript:addEmploymentTypeItem('extra-curricular-activity')">Add Extra-curricular activity</a>
+      </div>
+    </div>
+  </section>`,
     "text/html"
   );
 
-  var hobbies = hobbiesHTML.documentElement.childNodes[1].innerHTML;
+  var extraCurricular =
+    extraCurricularHTML.documentElement.childNodes[1].innerHTML;
 
-  baseContainer.insertAdjacentHTML("afterbegin", hobbies);
+  baseContainer.insertAdjacentHTML("beforebegin", extraCurricular);
+  extraCurricular = document.querySelector(".extra-curricular-activities");
+  const collapsible = document.querySelector(
+    ".extra-curricular-activities .collapsible"
+  );
+  collapsible.addEventListener(`click`, collapsibleClickEvent);
+  const arrow = document.querySelector(
+    ".extra-curricular-activities .collapsed-arrow"
+  );
+  if (shouldExpand) {
+    arrow.classList.toggle("expanded-arrow");
+    arrow.classList.toggle("collapsed-arrow");
+    collapsible.classList.add("expanded");
+    expandOrCollapse(extraCurricular.children[0], false);
+  } else {
+    collapsible.classList.remove("expanded");
+  }
+
+  var deleteInternshipsSection = document.querySelector(
+    "#delete-extra-curricular-activities-section"
+  );
+  deleteInternshipsSection.dataset.type = "extra-curricular-activities";
+  deleteInternshipsSection.addEventListener(`click`, deleteSectionItem);
+
+  removeAddSectionForExistingSections(ElementTypeEnum.EXTRACURRICULAR);
+}
+
+function addHobbiesItemBackToAddSection() {
+  const hobbiesHTML = `<div class="add-hobbies-section">
+    <a href="javascript:addHobbiesSection(true)">Hobbies</a>
+  </div>`;
+  addItemBackToAddSection(hobbiesHTML);
 }
 
 function addInternshipsItemBackToAddSection() {
+  const internshipsHTML = `<div class="add-internships-section">
+    <a href="javascript:addInternshipsSection(true)">Internships</a>
+  </div>`;
+  addItemBackToAddSection(internshipsHTML);
+}
+
+function addExtraCurricularItemBackToAddSection() {
+  const extraCurricularHTML = `<div class="add-extra-curricular-section">
+            <a href="javascript:addExtraCurricularSection(true)">Extra-curricular Activities</a>
+          </div>`;
+  addItemBackToAddSection(extraCurricularHTML);
+}
+
+function addItemBackToAddSection(itemHTMLString) {
   var baseContainer = document.querySelector(
     ".add-section .collapsible-content"
   );
@@ -157,16 +224,11 @@ function addInternshipsItemBackToAddSection() {
     addAddSectionContainer();
     baseContainer = document.querySelector(".add-section .collapsible-content");
   }
-  const hobbiesHTML = new DOMParser().parseFromString(
-    `<div class="add-internships-section">
-    <a href="javascript:addInternshipsSection(true)">Internships</a>
-  </div>`,
-    "text/html"
-  );
+  const itemHTML = new DOMParser().parseFromString(itemHTMLString, "text/html");
 
-  var hobbies = hobbiesHTML.documentElement.childNodes[1].innerHTML;
+  var item = itemHTML.documentElement.childNodes[1].innerHTML;
 
-  baseContainer.insertAdjacentHTML("beforeend", hobbies);
+  baseContainer.insertAdjacentHTML("beforeend", item);
 }
 
 function addAddSectionContainer() {

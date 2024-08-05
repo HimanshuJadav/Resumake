@@ -1116,25 +1116,29 @@ function setHobbies(details) {
 }
 
 function removeAddSectionForExistingSections(type) {
+  var item = null;
   switch (type) {
     case ElementTypeEnum.HOBBIES:
-      const hobbies = document.querySelector(
+      item = document.querySelector(
         ".add-section .collapsible-content .add-hobbies-section"
       );
-      if (hobbies != null) {
-        hobbies.remove();
-      }
       break;
     case ElementTypeEnum.INTERNSHIP:
-      const internships = document.querySelector(
+      item = document.querySelector(
         ".add-section .collapsible-content .add-internships-section"
       );
-      if (internships != null) {
-        internships.remove();
-      }
+      break;
+    case ElementTypeEnum.EXTRACURRICULAR:
+      item = document.querySelector(
+        ".add-section .collapsible-content .add-extra-curricular-section"
+      );
       break;
     default:
       break;
+  }
+
+  if (item != null) {
+    item.remove();
   }
   const parent = document.querySelector(".add-section .collapsible-content");
   if (parent != null && parent.children.length == 0) {
@@ -1147,13 +1151,15 @@ function deleteSectionItem(event) {
   var section = document.querySelector("#" + type);
   section.remove();
   switch (type) {
-    case "hobbies":
+    case ElementTypeEnum.HOBBIES.name:
       addHobbiesItemBackToAddSection();
       break;
-    case "internship-history":
+    case ElementTypeEnum.INTERNSHIP.name:
       addInternshipsItemBackToAddSection();
       break;
-
+    case ElementTypeEnum.EXTRACURRICULAR.name:
+      addExtraCurricularItemBackToAddSection();
+      break;
     default:
       break;
   }

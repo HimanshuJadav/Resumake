@@ -15,6 +15,10 @@ const ElementTypeEnum = {
   SKILLS: { name: "skills", value: "skills" },
   INTERNSHIP: { name: "internship-history", value: "internship" },
   HOBBIES: { name: "hobbies", value: "hobbies-editor" },
+  EXTRACURRICULAR: {
+    name: "extra-curricular-activities",
+    value: "extra-curricular-activity",
+  },
 };
 
 function getElementTypeFrom(name) {
