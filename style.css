@@ -1,5 +1,5 @@
 body {
-  background-color: #d9e6ed;
+  background-color: #4255b30f;
   margin: 0px;
   font-family: Helvetica;
 }
@@ -10,6 +10,36 @@ table {
 }
 td {
   width: 50%;
+}
+
+h1 {
+  color: #fff;
+  font-weight: bold;
+  font-size: xxx-large;
+}
+
+h2 {
+  color: #fff;
+  font-weight: normal;
+  font-size: xx-large;
+}
+
+.btn {
+  padding: 10px;
+  color: #fff;
+  text-decoration: none;
+  background-color: #4255b3;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.btn:hover {
+  color: #ddd;
+  background-color: #4255b3;
+  border-radius: 4px;
+  transform: scale(1.05);
+  margin: -0.25% -0.25% 0.25% 0.25%;
 }
 
 /* When provided input is invalid */
@@ -81,48 +111,132 @@ input:invalid {
   margin-bottom: 20px;
 }
 
+.full-screen {
+  overflow: hidden;
+  height: 100vh;
+  padding: 0px;
+  margin: 0px;
+  background: black;
+}
+.scaled-bg {
+  overflow: hidden;
+  object-fit: cover;
+  height: 100vh;
+  width: 100vw;
+  filter: blur(1px);
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+.scaled-bg.active {
+  opacity: 1;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0.7;
+  background-color: black;
+}
+.bg {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.caption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.bottom-center {
+  position: absolute;
+  text-align: center;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  bottom: 20px;
+}
+.bottom-center:hover {
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.contact-links {
+  display: flex;
+  gap: 15px;
+}
+
+.contact-link {
+  color: #4255b3;
+  font-size: 24px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+  color: #ddd;
+}
+
+.bottom-right {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
 /* Template Listing Screen */
-#template-list {
+#templates {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  width: 100%;
 }
 
 .template-item {
-  border: 1px solid #fff;
-  border-radius: 5px;
-  height: 200px;
-  width: 150px;
-  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: auto;
 }
-
-.template-item:hover {
-  transform: translate3d(1px, 1px, -1px);
-  border: 1px solid #464545;
-  border-radius: 5px;
-  height: 200px;
-  width: 150px;
-  margin-top: 30px;
+.template-item-name {
+  font-size: large;
+  font-weight: bold;
+  color: #4255b3;
 }
-
-.template-view {
+.template-item div {
+  width: 100%;
+}
+.template-preview {
   border: 1px solid #fff;
-  border-radius: 5px;
-  height: 120px;
-  width: 110px;
-  margin: 20px;
+  height: 50vh;
+  overflow: hidden;
   display: flex;
   align-items: center;
+  justify-content: center;
+  background-color: #4255b340;
 }
-
-.template-item-name {
-  margin: auto;
+.template-preview-image {
+  height: 70%;
+  object-fit: cover;
 }
-
 .template-action {
-  margin: 10px;
+  border: 1px solid #fff;
+  height: 50vh;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: white;
+}
+.template-item-detail {
+  margin: 0 0 20px 0;
+  padding: 0 20px;
+}
+
+.large-font {
+  font-size: large;
 }
 
 button {
@@ -133,7 +247,34 @@ button {
 button:hover {
   background-color: #d9e6ed;
 }
+.footer {
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #f0f0f0;
+  color: #4255b3;
+  font-size: 14px;
+}
 
+.footer-links {
+  display: flex;
+}
+
+.footer-link {
+  color: #4255b3;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+.footer-link:first-child {
+  margin-left: 0;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
 /*Edit Resume*/
 .full-width {
   width: 100%;
@@ -225,6 +366,7 @@ button:hover {
 .mt-20 {
   margin-top: 20px;
 }
+
 .mr-10 {
   margin-right: 10px;
 }
@@ -391,6 +533,26 @@ button:hover {
     width: 80%;
     margin-left: 10%;
     margin-bottom: 20px;
+  }
+  .template-item {
+    flex-direction: row;
+    height: 50vh;
+  }
+
+  .template-item div {
+    width: 50%;
+  }
+
+  .template-item:nth-child(odd) {
+    flex-direction: row-reverse;
+  }
+
+  .template-preview {
+    height: 100%;
+  }
+
+  .template-action {
+    height: 100%;
   }
 
   /*Edit Resume*/

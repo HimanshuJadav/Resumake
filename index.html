@@ -4,54 +4,69 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Resumake</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/fonts/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/style.css" />
     <script src="/js/index.js" async></script>
   </head>
   <body>
-    <div class="nav shadow">
-      <ul class="nav-bar">
-        <li class="nav-item">Resumake</li>
-      </ul>
-    </div>
-    <div class="container">
-      <section id="template-list">
-        <div class="template-item shadow">
-          <div class="template-view">
-            <p class="template-item-name">Template 1</p>
+      <section id="home">
+        <div class="flex-center">
+          <div class="bg full-screen">
+            <div class="flex-center">
+              <img class="scaled-bg active" src="images/bg-1.jpg" alt="bg" />
+              <img class="scaled-bg" src="images/bg-2.jpg" alt="bg" />
+              <img class="scaled-bg" src="images/bg-3.jpg" alt="bg" />
+            </div>
+            <div class="overlay"></div>
+          </div>
+          <div class="caption">
+            <h1>Resumake</h1>
+            <h2>Craft your career story</h2>
+          </div>
+
+            <div id="go-to-templates" class="btn bottom-center large-font" onclick="javascript:selectTemplate()">Select Template</div>
+            <div class="contact-links bottom-right">
+              <a href="tel:+17099867459" class="contact-link">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+              </a>
+              <a href="https://github.com/himanshujadav" target="_blank" rel="noopener noreferrer" class="contact-link">
+                <i class="fa fa-github-square" aria-hidden="true"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/himanshujadav/" target="_blank" rel="noopener noreferrer" class="contact-link">
+                <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+              </a>
+            </div>
+        </div>
+      </section>
+      <section id="templates">
+        <div class="template-item">
+          <div class="template-preview">
+            <img class="template-preview-image" src="/images/templates/template-1.png" alt="template-2 sample">
           </div>
           <div class="template-action">
-            <a href="/viewtemplate.html?template=template1">View</a>
-            <a href="/editresume.html?template=template1">Use</a>
+            <p class="template-item-name">Milano</p>
+            <p class="template-item-detail">A touch of personality with a well-organized resume structure.</p>
+            <a class="btn template-action-use" href="/editresume.html?template=template1">Get Started</a>
           </div>
         </div>
-        <div class="template-item shadow">
-          <div class="template-view">
-            <p class="template-item-name">Template 2</p>
+        <div class="template-item">
+          <div class="template-preview">
+            <img class="template-preview-image" src="/images/templates/template-2.png" alt="template-2 sample">
           </div>
           <div class="template-action">
-            <a href="/viewtemplate.html?template=template2">View</a>
-            <a href="/editresume.html?template=template2">Use</a>
-          </div>
-        </div>
-        <div class="template-item shadow">
-          <div class="template-view">
-            <p class="template-item-name">Template 3</p>
-          </div>
-          <div class="template-action">
-            <a href="/viewtemplate.html?template=template3">View</a>
-            <a href="/editresume.html?template=template3">Use</a>
-          </div>
-        </div>
-        <div class="template-item shadow">
-          <div class="template-view">
-            <p class="template-item-name">Template 4</p>
-          </div>
-          <div class="template-action">
-            <a href="/viewtemplate.html?template=template4">View</a>
-            <a href="/editresume.html?template=template4">Use</a>
+            <p class="template-item-name">Windsor</p>
+            <p class="template-item-detail">Professional and elegant resume template with a timeline structure.</p>
+            <a class="btn template-action-use" href="/editresume.html?template=template2">Get Started</a>
           </div>
         </div>
       </section>
     </div>
   </body>
+  <footer class="footer">
+    <span>© 2024 Himanshu Jadav</span>
+    <div class="footer-links">
+      <a href="https://github.com/himanshujadav" target="_blank" rel="noopener noreferrer" class="footer-link"><i class="fa fa-github-square" aria-hidden="true"></i></a>
+      <a href="https://www.linkedin.com/in/himanshujadav/" target="_blank" rel="noopener noreferrer" class="footer-link"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+    </div>
+  </footer>
 </html>

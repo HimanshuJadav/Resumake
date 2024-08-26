@@ -176,7 +176,6 @@ function addLink() {
 // Internship Section
 function addInternshipsSection() {
   const baseContainer = document.querySelector(".resume_right");
-  console.log("int called");
   const internshipHTML = new DOMParser().parseFromString(
     `<div class="resume_item resume_work">
     <div class="title">

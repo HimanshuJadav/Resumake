@@ -287,7 +287,7 @@ function addEducation(educationDescription, shouldExpand) {
       onclick="javascript:collapsibleClickEvent(this)"
     >
       <div class="collapsible-child flex-center full-width">
-        <p class="subtitle pl-20" id="education-title">Education Title</p>
+        <p class="subtitle pl-20" id="education-title-label">Education Title</p>
         <img
           class="collapsed-arrow accessory-icon mr-10"
           src="./images/arrow-collapse.png"
@@ -426,8 +426,8 @@ function addEducation(educationDescription, shouldExpand) {
   );
   historyEditor.id = type + "-history-editor-" + educationCounter;
 
-  var educationTitle = educationHTML.querySelector("#" + type + "-title");
-  educationTitle.id = type + "-title" + "-" + educationCounter;
+  var educationTitle = educationHTML.querySelector("#" + type + "-title-label");
+  educationTitle.id = type + "-title-label-" + educationCounter;
 
   var jobTitleInput = educationHTML.querySelector("#" + type + "-degree");
   jobTitleInput.dataset.type = type;
@@ -505,7 +505,7 @@ function addSkill(shouldExpand) {
         onclick="javascript:collapsibleClickEvent(this)"
       >
         <div class="collapsible-child flex-center full-width">
-          <p class="subtitle pl-20" id="skill-title">Skill</p>
+          <p class="subtitle pl-20" id="skill-title-label">Skill</p>
           <img
             class="collapsed-arrow accessory-icon mr-10"
             src="./images/arrow-collapse.png"
@@ -569,8 +569,8 @@ function addSkill(shouldExpand) {
   var elementContainer = skillHTML.querySelector(".element-container");
   elementContainer.id = type + "-container-" + skillCounter;
 
-  var skillTitle = skillHTML.querySelector("#" + type + "-title");
-  skillTitle.id = type + "-title" + "-" + skillCounter;
+  var skillTitle = skillHTML.querySelector("#" + type + "-title-label");
+  skillTitle.id = type + "-title-label-" + skillCounter;
 
   var skillRating = skillHTML.querySelector(".skill-rating");
   skillRating.id = "skill-rating-" + skillCounter;
@@ -621,7 +621,7 @@ function addLink(shouldExpand) {
         onclick="javascript:collapsibleClickEvent(this)"
       >
         <div class="collapsible-child flex-center full-width">
-          <p class="subtitle pl-20" id="link-title">Link</p>
+          <p class="subtitle pl-20" id="link-title-label">Link</p>
           <img
             class="collapsed-arrow accessory-icon-child mr-10"
             src="./images/arrow-collapse.png"
@@ -679,8 +679,8 @@ function addLink(shouldExpand) {
   var elementContainer = skillHTML.querySelector(".element-container");
   elementContainer.id = type + "-container-" + linkCounter;
 
-  var linkTitle = skillHTML.querySelector("#" + type + "-title");
-  linkTitle.id = type + "-title" + "-" + linkCounter;
+  var linkTitle = skillHTML.querySelector("#" + type + "-title-label");
+  linkTitle.id = type + "-title-label-" + linkCounter;
 
   var linkTitleInput = skillHTML.querySelector("#" + type + "-label");
   linkTitleInput.dataset.type = type;
@@ -1062,11 +1062,11 @@ function setLoopedRecords(records, type) {
           type.value + "-title-label"
         );
       } else if (key.startsWith("education-degree")) {
-        titleKey = key.replace("education-degree", "education-title");
+        titleKey = key.replace("education-degree", "education-title-label");
       } else if (key.startsWith("skill-label")) {
-        titleKey = key.replace("skill-label", "skill-title");
+        titleKey = key.replace("skill-label", "skill-title-label");
       } else if (key.startsWith("link-label")) {
-        titleKey = key.replace("link-label", "link-title");
+        titleKey = key.replace("link-label", "link-title-label");
       }
       const HTMLElement = document.querySelector("#" + key);
       if (HTMLElement != null) {
