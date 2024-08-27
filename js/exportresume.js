@@ -30,6 +30,7 @@ function exportResume() {
       const remaining = img.height % 2371;
       const ptPerIn = 202.65;
       startingPt = remaining / ptPerIn;
+      startingPt += 1;
     })
     .toPdf()
     .get("pdf")

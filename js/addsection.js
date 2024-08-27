@@ -12,13 +12,13 @@ function addHobbiesSection(shouldExpand) {
       <img
         class="accessory-icon pl-10"
         id="delete-hobbies-section"
-        src="./images/delete.png"
+        src="./images/delete.svg"
         alt="delete"
       />
     </div>
     <img
       class="collapsed-arrow accessory-icon"
-      src="./images/arrow-collapse.png"
+      src="./images/arrow-collapse.svg"
       alt="collapsed"
     />
   </div>
@@ -82,13 +82,13 @@ function addInternshipsSection(shouldExpand) {
       <img
         class="accessory-icon pl-10"
         id="delete-internships-section"
-        src="./images/delete.png"
+        src="./images/delete.svg"
         alt="delete"
       />
     </div>
       <img
         class="collapsed-arrow accessory-icon"
-        src="./images/arrow-collapse.png"
+        src="./images/arrow-collapse.svg"
         alt="collapsed"
       />
     </div>
@@ -239,7 +239,7 @@ function addAddSectionContainer() {
           <p class="title pl-20">Add Section</p>
           <img
             class="collapsed-arrow accessory-icon"
-            src="./images/arrow-collapse.png"
+            src="./images/arrow-collapse.svg"
             alt="collapsed"
           />
         </div>

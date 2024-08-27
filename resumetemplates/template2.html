@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
       integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
@@ -8,7 +9,6 @@
       referrerpolicy="no-referrer"
     ></script>
     <script src="/js/common.js"></script>
-    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
     <script src="/js/exporttemplate2.js"></script>
     <script src="/js/exportresume.js"></script>
     <style>
@@ -62,6 +62,10 @@
         height: 100%;
       }
 
+      .container .resume_left .resume_about {
+        color: #fff;
+      }
+
       .container .resume_left .resume_content {
         padding: 0 25px;
       }
@@ -108,10 +112,32 @@
         font-size: 16px;
         position: relative;
       }
+      .container .resume_left .professional-summary {
+        color: #fff;
+      }
 
-      .container .icon i,
-      .container .resume_right .resume_hobby ul li i {
+      .container .resume_left .professional-summary ul li {
+        position: relative;
+        padding-left: 15px;
+        margin-bottom: 5px;
+      }
+
+      .container .resume_left .professional-summary ul li::before {
+        content: "•";
         position: absolute;
+        left: 0;
+        top: -8px;
+        font-size: 32px;
+        line-height: 1;
+      }
+
+      .container .resume_left .resume_hobby {
+        color: #fff;
+      }
+
+      .container .icon i {
+        position: absolute;
+        color: #0bb5f4;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -253,7 +279,9 @@
       .one-line {
         display: flex;
       }
-      p li {
+      p li,
+      li span,
+      .resume_work {
         break-inside: avoid;
       }
       .separator {
@@ -273,8 +301,8 @@
         <div class="resume_content">
           <div class="resume_item resume_info">
             <div class="title">
-              <p class="first-name bold">stephen</p>
-              <p class="last-name bold">colbert</p>
+              <p class="first-name bold">John</p>
+              <p class="last-name bold">Doe</p>
               <p class="regular wanted-job-title">Designer</p>
             </div>
             <ul>
