@@ -4,9 +4,14 @@ const arrMultipleItemHolder = [
   "skills",
   "links",
   "internship-history",
+  "extra-curricular-activities",
 ];
 
-const arrCustomSections = ["hobbies", "internship-history"];
+const arrCustomSections = [
+  "hobbies",
+  "internship-history",
+  "extra-curricular-activities",
+];
 
 const ElementTypeEnum = {
   EMPLOYMENT: { name: "employment-history", value: "employment" },
@@ -35,6 +40,8 @@ function getElementTypeFrom(name) {
       return ElementTypeEnum.INTERNSHIP;
     case ElementTypeEnum.HOBBIES.name:
       return ElementTypeEnum.HOBBIES;
+    case ElementTypeEnum.EXTRACURRICULAR.name:
+      return ElementTypeEnum.EXTRACURRICULAR;
     default:
       break;
   }

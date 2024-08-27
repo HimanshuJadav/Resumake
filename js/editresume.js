@@ -748,7 +748,10 @@ function deleteItem(event) {
     "#" + type + "-title-label-" + event.target.getAttribute("data-index")
   );
   let confirmation =
-    jobTitle.innerHTML + " " + type + " will be deleted. Click OK to confirm.";
+    jobTitle.innerHTML +
+    " " +
+    type.replaceAll("-", " ") +
+    " will be deleted. Click OK to confirm.";
 
   if (confirm(confirmation) == true) {
     var parent = jobTitle.parentElement.parentElement;

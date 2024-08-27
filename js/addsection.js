@@ -136,7 +136,7 @@ function addExtraCurricularSection(shouldExpand) {
   const extraCurricularHTML = new DOMParser().parseFromString(
     `<section
     id="extra-curricular-activities"
-    class="extra-curricular-activities"
+    class="extra-curricular-activity-history"
     data-name="extra-curricular-activities"
   >
     <div class="collapsible flex-center pr-10">
@@ -145,18 +145,18 @@ function addExtraCurricularSection(shouldExpand) {
       <img
         class="accessory-icon pl-10"
         id="delete-extra-curricular-activities-section"
-        src="./images/delete.png"
+        src="./images/delete.svg"
         alt="delete"
       />
     </div>
       <img
         class="collapsed-arrow accessory-icon"
-        src="./images/arrow-collapse.png"
+        src="./images/arrow-collapse.svg"
         alt="collapsed"
       />
     </div>
     <div class="collapsible-content">
-      <div class="extra-curricular-activities-container"></div>
+      <div class="extra-curricular-activity-container"></div>
       <div class="add-extra-curricular-activity">
         <a href="javascript:addEmploymentTypeItem('extra-curricular-activity')">Add Extra-curricular activity</a>
       </div>
@@ -169,13 +169,15 @@ function addExtraCurricularSection(shouldExpand) {
     extraCurricularHTML.documentElement.childNodes[1].innerHTML;
 
   baseContainer.insertAdjacentHTML("beforebegin", extraCurricular);
-  extraCurricular = document.querySelector(".extra-curricular-activities");
+  extraCurricular = document.querySelector(
+    ".extra-curricular-activity-history"
+  );
   const collapsible = document.querySelector(
-    ".extra-curricular-activities .collapsible"
+    ".extra-curricular-activity-history .collapsible"
   );
   collapsible.addEventListener(`click`, collapsibleClickEvent);
   const arrow = document.querySelector(
-    ".extra-curricular-activities .collapsed-arrow"
+    ".extra-curricular-activity-history .collapsed-arrow"
   );
   if (shouldExpand) {
     arrow.classList.toggle("expanded-arrow");
