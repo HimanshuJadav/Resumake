@@ -40,15 +40,15 @@ function addEmploymentTypeItem(type, employmentDescription, shouldExpand) {
       <div class="collapsible-child flex-center full-width">
         <p class="subtitle pl-20" id="employment-title-label">Job Title</p>
         <img
-          class="collapsed-arrow accessory-icon mr-10"
-          src="./images/arrow-collapse.png"
+          class="collapsed-arrow accessory-icon-child mr-10 black-icon"
+          src="./images/arrow-collapse.svg"
           alt="collapsed"
         />
       </div>
       <img
-        class="accessory-icon pl-10"
+        class="accessory-icon-child pl-10"
         id="delete-job"
-        src="./images/delete.png"
+        src="./images/delete.svg"
         alt="delete"
       />
     </div>
@@ -289,15 +289,15 @@ function addEducation(educationDescription, shouldExpand) {
       <div class="collapsible-child flex-center full-width">
         <p class="subtitle pl-20" id="education-title-label">Education Title</p>
         <img
-          class="collapsed-arrow accessory-icon mr-10"
-          src="./images/arrow-collapse.png"
+          class="collapsed-arrow accessory-icon-child mr-10 black-icon"
+          src="./images/arrow-collapse.svg"
           alt="collapsed"
         />
       </div>
       <img
-        class="accessory-icon pl-10"
+        class="accessory-icon-child pl-10"
         id="delete-education"
-        src="./images/delete.png"
+        src="./images/delete.svg"
         alt="delete"
       />
     </div>
@@ -507,15 +507,15 @@ function addSkill(shouldExpand) {
         <div class="collapsible-child flex-center full-width">
           <p class="subtitle pl-20" id="skill-title-label">Skill</p>
           <img
-            class="collapsed-arrow accessory-icon mr-10"
-            src="./images/arrow-collapse.png"
+            class="collapsed-arrow accessory-icon-child mr-10 black-icon"
+            src="./images/arrow-collapse.svg"
             alt="collapsed"
           />
         </div>
         <img
-          class="accessory-icon pl-10"
+          class="accessory-icon-child pl-10"
           id="delete-skill"
-          src="./images/delete.png"
+          src="./images/delete.svg"
           alt="delete"
         />
       </div>
@@ -623,15 +623,15 @@ function addLink(shouldExpand) {
         <div class="collapsible-child flex-center full-width">
           <p class="subtitle pl-20" id="link-title-label">Link</p>
           <img
-            class="collapsed-arrow accessory-icon-child mr-10"
-            src="./images/arrow-collapse.png"
+            class="collapsed-arrow accessory-icon-child mr-10 black-icon"
+            src="./images/arrow-collapse.svg"
             alt="collapsed"
           />
         </div>
         <img
           class="accessory-icon-child pl-10"
           id="delete-link"
-          src="./images/delete.png"
+          src="./images/delete.svg"
           alt="delete"
         />
       </div>
