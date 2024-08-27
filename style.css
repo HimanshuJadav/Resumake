@@ -154,12 +154,24 @@ input:invalid {
   transform: translate(-50%, -50%);
   text-align: center;
 }
+.top-center {
+  position: absolute;
+  text-align: center;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 20px;
+}
+.center-logo {
+  margin-top: 60px;
+  height: 40px;
+  width: 40px;
+}
 .bottom-center {
   position: absolute;
   text-align: center;
   left: 50%;
   transform: translate(-50%, -50%);
-  bottom: 20px;
+  bottom: 40px;
 }
 .bottom-center:hover {
   transform: translate(-50%, -50%) scale(1.05);
@@ -448,6 +460,9 @@ button:hover {
   }
   tr {
     display: grid;
+  }
+  .contact-link {
+    font-size: 16px;
   }
   .nav-bar {
     margin-left: 5%;
