@@ -2,6 +2,9 @@ body {
   background-color: #4255b30f;
   margin: 0px;
   font-family: Helvetica;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 table {
   width: 100%;
@@ -267,7 +270,7 @@ button:hover {
   padding: 0 20px;
   background-color: #f0f0f0;
   color: #4255b3;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .footer-links {
@@ -477,6 +480,7 @@ button:hover {
   .container {
     width: 90%;
     margin-left: 5%;
+    flex: 1;
     margin-bottom: 20px;
   }
 
