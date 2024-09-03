@@ -20,28 +20,43 @@ h1 {
   font-weight: bold;
   font-size: xxx-large;
 }
+.app-title {
+  margin-block-end: 10px;
+}
 
 h2 {
   color: #fff;
   font-weight: normal;
   font-size: xx-large;
 }
+.app-subtitle {
+  margin-block-start: 0;
+}
+
+textarea {
+  background-color: #fff;
+  resize: none;
+  border-radius: 4px;
+  border: 1px solid;
+}
 
 .btn {
   padding: 10px;
-  color: #fff;
+  min-width: 100px;
+  color: #4255b3;
   text-decoration: none;
-  background-color: #4255b3;
+  background-color: #fff;
   border-radius: 4px;
   transition: all 0.3s ease;
   display: inline-block;
+  border: 2px solid;
 }
 
 .btn:hover {
-  color: #ddd;
-  border-radius: 4px;
-  transform: scale(1.05);
-  margin: -0.25% -0.25% 0.25% 0.25%;
+  color: #fff;
+  text-decoration: none;
+  background-color: #4255b3;
+  border: 2px solid #4255b3;
 }
 
 /* When provided input is invalid */
@@ -176,9 +191,6 @@ input:invalid {
   transform: translate(-50%, -50%);
   bottom: 40px;
 }
-.bottom-center:hover {
-  transform: translate(-50%, -50%) scale(1.05);
-}
 
 .contact-links {
   display: flex;
@@ -215,7 +227,7 @@ input:invalid {
   height: auto;
 }
 .template-item-name {
-  font-size: large;
+  font-size: x-large;
   font-weight: bold;
   color: #4255b3;
 }
@@ -232,7 +244,8 @@ input:invalid {
   background-color: #4255b340;
 }
 .template-preview-image {
-  height: 70%;
+  max-height: 70%;
+  max-width: 90%;
   object-fit: cover;
 }
 .template-action {
