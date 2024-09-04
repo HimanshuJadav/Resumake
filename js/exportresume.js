@@ -152,9 +152,11 @@ function setDetails(details) {
   const keys = Object.keys(details.section);
   keys.forEach((key) => {
     const value = details.section[key];
-    const HTMLElement = document.querySelector("." + key);
-    if (HTMLElement != null) {
-      HTMLElement.innerHTML = value;
+    if (key != "name") {
+      const HTMLElement = document.querySelector("." + key);
+      if (HTMLElement != null) {
+        HTMLElement.innerHTML = value;
+      }
     }
   });
 }
