@@ -1163,5 +1163,5 @@ function deleteSectionItem(event) {
 //Download
 function download() {
   var paramTemplate = getParam("template");
-  window.location.href = "/resumetemplates/" + paramTemplate + ".html";
+  window.location.href = "./resumetemplates/" + paramTemplate + ".html";
 }
