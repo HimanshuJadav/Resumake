@@ -394,6 +394,17 @@ button:hover {
   border: 1px solid red;
 }
 
+.add-new-item {
+  text-decoration: none;
+  font-weight: bold;
+  color: #4255b3;
+}
+.add-new-item::before {
+  content: "\f067"; /* FontAwesome Unicode for plus icon */
+  font-family: "FontAwesome";
+  margin-right: 5px;
+}
+
 /*Margin and Padding*/
 .mt-10 {
   margin-top: 10px;

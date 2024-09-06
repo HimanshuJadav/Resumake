@@ -95,7 +95,7 @@ function addInternshipsSection(shouldExpand) {
     <div class="collapsible-content">
       <div class="internship-container"></div>
       <div class="add-internship">
-        <a href="javascript:addEmploymentTypeItem('internship')">Add Internship</a>
+        <a class="add-new-item" href="javascript:addEmploymentTypeItem('internship')">Add Internship</a>
       </div>
     </div>
   </section>`,
